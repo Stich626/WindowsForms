@@ -97,7 +97,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Content Include="Database.mdf" />
+    <None Include="Databasemdf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -117,7 +117,7 @@
   <ItemGroup>
     <Content Include="Database_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Database.mdf</DependentUpon>
+      <DependentUpon>Databasemdf</DependentUpon>
     </Content>
     <Content Include="Resources\Add.png" />
     <Content Include="Resources\ApplicationRegistry.png" />
