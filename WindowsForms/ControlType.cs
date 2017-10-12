@@ -104,7 +104,7 @@ namespace WindowsForms
             return (ComboBox)toolTip(comboBox);
         }
 
-        public DataGridView dataGridView(int column)
+        public DataGridView dataGridView()
         {
             DataGridView dataGridView = new DataGridView();
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -119,17 +119,15 @@ namespace WindowsForms
             dataGridView.AllowUserToResizeRows = false;
             dataGridView.MultiSelect = false;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            if (column != 0)
-            {
-                for (int i = 0; i < column; i++)
-                {
-                    DataGridViewTextBoxColumn Column = new DataGridViewTextBoxColumn();
-                    Column.Name = String.Format("Column{0}", i);
-                    Column.HeaderText = Column.Name;
-                    dataGridView.Columns.AddRange(new DataGridViewColumn[] { Column });
-                }
-            }
             return dataGridView;
+        }
+
+        public DataGridView dataGridView(int column, int row)
+        {
+            DataGridView gridView = dataGridView();
+            gridView.ColumnCount = column;
+            gridView.RowCount = row;
+            return gridView;
         }
     }   
 }

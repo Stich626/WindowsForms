@@ -232,17 +232,17 @@ namespace WindowsForms
 
         private void registry(Registry form)
         {
-            form.filter = control.dataGridView(1);
+            form.filter = control.dataGridView();
             form.filter.Visible = false;
-            form.registry = control.dataGridView(10);
+            form.registry = control.dataGridView();
             form.Controls.Add(form.registry);
             form.Controls.Add(form.filter);          
         }
 
         private void settings(Settings form)
         {
-            form.left = control.dataGridView(1);
-            form.right = control.dataGridView(0);
+            form.left = control.dataGridView(1, 11);
+            form.right = control.dataGridView();
         }
 
         private void edit(Edit form)

@@ -42,9 +42,13 @@ namespace WindowsForms
             //
             new TextCreate(form);
             //
-            //данные формы
+            //данные в контролах
             //
             new ControlData(form);
+            //
+            //события контролов
+            //
+            new ControlEvent(form);
         }
     }
     static class Program
