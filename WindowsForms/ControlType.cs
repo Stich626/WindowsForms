@@ -119,12 +119,15 @@ namespace WindowsForms
             dataGridView.AllowUserToResizeRows = false;
             dataGridView.MultiSelect = false;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            for (int i = 0; i < column; i++)
+            if (column != 0)
             {
-                DataGridViewTextBoxColumn Column = new DataGridViewTextBoxColumn();
-                Column.Name = String.Format("Column{0}", i);
-                Column.HeaderText = Column.Name;
-                dataGridView.Columns.AddRange(new DataGridViewColumn[] { Column });
+                for (int i = 0; i < column; i++)
+                {
+                    DataGridViewTextBoxColumn Column = new DataGridViewTextBoxColumn();
+                    Column.Name = String.Format("Column{0}", i);
+                    Column.HeaderText = Column.Name;
+                    dataGridView.Columns.AddRange(new DataGridViewColumn[] { Column });
+                }
             }
             return dataGridView;
         }

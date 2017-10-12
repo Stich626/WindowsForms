@@ -33,8 +33,9 @@ namespace WindowsForms
                 //
                 document.minSize = panel.panel();
                 document.Controls.Add(document.minSize);
-                //document.sizePanel.Visible = false;
             }
+            if (form is Settings)
+                settings((Settings)form);
             if (form is Edit)
                 edit((Edit)form);
         }
@@ -278,6 +279,15 @@ namespace WindowsForms
                 for (int j = 0; j < tableLayoutPanel4.RowCount; j++)
                     panel.tableLayoutPanel(tableLayoutPanel4, i, j, form.load[index], index++);
             form.Controls.Add(tabControl1);    
+        }
+
+        private void settings(Settings form)
+        {
+            int[] Column = { 50, 50 };
+            TableLayoutPanel tableLayoutPanel = panel.tableLayoutPanel(Column, 1);
+            tableLayoutPanel.Controls.Add(form.left, 0, 0);
+            tableLayoutPanel.Controls.Add(form.right, 1, 0);
+            form.Controls.Add(tableLayoutPanel);
         }
 
         private void edit(Edit form)

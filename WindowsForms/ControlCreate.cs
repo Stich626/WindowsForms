@@ -30,6 +30,8 @@ namespace WindowsForms
             }
             if (form is Registry)
                 registry(form as Registry);
+            if (form is Settings)
+                settings(form as Settings);
             if (form is Edit)
                 edit(form as Edit);
         } 
@@ -235,6 +237,12 @@ namespace WindowsForms
             form.registry = control.dataGridView(10);
             form.Controls.Add(form.registry);
             form.Controls.Add(form.filter);          
+        }
+
+        private void settings(Settings form)
+        {
+            form.left = control.dataGridView(1);
+            form.right = control.dataGridView(0);
         }
 
         private void edit(Edit form)

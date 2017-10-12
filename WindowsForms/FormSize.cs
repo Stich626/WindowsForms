@@ -43,15 +43,6 @@ namespace WindowsForms
                                       new Size(corSize.Width, corSize.Height) -
                                               (form.Size - form.ClientSize);
             }
-
-            //if (sender is Filter)
-            //{
-            //    Filter form = sender as Filter;
-            //    form.minSize.Size = new Size(mdiSize.Width / 2, mdiSize.Height) -
-            //                          new Size(corSize.Width, corSize.Height) -
-            //                                  (form.Size - form.ClientSize);
-            //}
-
             if (sender is Settings)
             {
                 Settings form = sender as Settings;

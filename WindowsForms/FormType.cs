@@ -139,6 +139,8 @@ namespace WindowsForms
     {
         public TypeForm typeForm;
         public Panel minSize = new Panel();
+        public DataGridView left;
+        public DataGridView right;
 
         public Settings(TypeForm type)
         {
