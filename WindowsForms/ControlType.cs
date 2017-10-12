@@ -112,13 +112,15 @@ namespace WindowsForms
             dataGridView.BorderStyle = BorderStyle.None;
             dataGridView.ColumnHeadersVisible = false;
             dataGridView.RowHeadersVisible = false;
-            dataGridView.Margin = new Padding(0);
+            dataGridView.Margin = new Padding(6);
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.AllowUserToAddRows = false;
             dataGridView.AllowUserToDeleteRows = false;
             dataGridView.AllowUserToResizeRows = false;
             dataGridView.MultiSelect = false;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView.ReadOnly = true;
+            dataGridView.BackgroundColor = SystemColors.Control;
             return dataGridView;
         }
 

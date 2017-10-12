@@ -224,8 +224,12 @@ namespace WindowsForms
 
         private void application(Document form)
         {
-            for (int i = 0; i < form.name.Count; i++)
+            for (int i = 0; i < 20; i++)
                 form.name[i].Text = TextType.application[i];
+            for (int i = 0; i < 10; i++)
+                form.name[20 + i].Text = (String.Format("{1} {0}{2}", (i < 9) ? "0" : "", TextType.application[20], i + 1));
+            for (int i = 0; i < 7; i++)
+                form.name[30 + i].Text = TextType.application[20 + i];
         }
 
         private void specification(Document form)

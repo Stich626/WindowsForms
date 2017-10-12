@@ -69,7 +69,6 @@
     <Compile Include="MenuType.cs" />
     <Compile Include="MenuEvent.cs" />
     <Compile Include="MenuVisible.cs" />
-    <Compile Include="FormMove.cs" />
     <Compile Include="FormType.cs" />
     <Compile Include="ControlType.cs" />
     <Compile Include="FormSize.cs" />
