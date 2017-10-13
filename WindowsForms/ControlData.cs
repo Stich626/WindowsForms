@@ -7,21 +7,21 @@ using System.Windows.Forms;
 
 namespace WindowsForms
 {
-    class ControlData
+    class settingsData
     {
         SqlQuery sqlQuery = new SqlQuery();
         private Form form;
 
-        public ControlData(Form Form)
+        public settingsData(Form Form)
         {
             form = Form;
             //if (form is Registry)
             //   
             if (form is Settings)
-                settings((Settings)form);
+                settingsText((Settings)form);
         }
 
-        private void settings(Settings settings)
+        private void settingsText(Settings settings)
         {
             int i = 0;
             if (settings.typeForm == TypeForm.application)
@@ -45,13 +45,22 @@ namespace WindowsForms
                 settings.left.Columns[0].HeaderText = TextType.name[11];
                 settings.left.RowCount = 3;
                 settings.left.Rows[i++].Cells[0].Value = TextType.specification[4];
+                settings.left.Rows[i++].Cells[0].Value = TextType.specification[24];
                 settings.left.Rows[i++].Cells[0].Value = TextType.specification[25];
-                settings.left.Rows[i++].Cells[0].Value = TextType.specification[26];
+            }
+            if (settings.typeForm == TypeForm.engraving)
+            {
+                settings.left.Columns[0].HeaderText = TextType.name[11];
+                settings.left.RowCount = 3;
+                settings.left.Rows[i++].Cells[0].Value = TextType.engraving[4];
+                settings.left.Rows[i++].Cells[0].Value = TextType.engraving[24];
+                settings.left.Rows[i++].Cells[0].Value = TextType.engraving[25];
             }
         }
 
-        public ControlData(Settings settings)
+        public settingsData(Settings settings)
         {
+            settings.right.DataSource = null;
             string table = String.Empty;
             if (settings.typeForm == TypeForm.application)
             {
@@ -69,6 +78,9 @@ namespace WindowsForms
                     case 9: table = SqlApplication.ApplicationContactsKontinent.ToString(); break;
                     case 10: table = SqlApplication.ApplicationContactCustomers.ToString(); break;
                 }
+                settings.right.DataSource = sqlQuery.GetArrayList(table);
+                settings.right.Columns[0].Visible = false;
+                settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
             }
             if (settings.typeForm == TypeForm.specification)
             {
@@ -78,28 +90,23 @@ namespace WindowsForms
                     case 1: table = SqlSpecification.SpecificationPrametryMachining.ToString(); break;
                     case 2: table = SqlSpecification.SpecificationRotationalSpeed.ToString(); break;
                 }
-            }
-            settings.right.DataSource = null;
-            settings.right.DataSource = sqlQuery.GetArrayList(table);
-            if (settings.typeForm == TypeForm.application)
-            {
-                settings.right.Columns[0].Visible = false;
-                settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
-            }
                 if (table == SqlSpecification.SpecificationParametersWorkpiece.ToString() ||
-                table == SqlSpecification.SpecificationPrametryMachining.ToString())
-            {
-                for(int i = 0; i < settings.right.Columns.Count; i++)
-                    if(i != 1)
-                        settings.right.Columns[i].Visible = false;
-                settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
-            }
-            if (table == SqlSpecification.SpecificationRotationalSpeed.ToString())
-            {
-                settings.right.Columns[0].Visible = false;
-                settings.right.Columns[1].HeaderText = TextType.specification[27];
-                settings.right.Columns[2].HeaderText = TextType.specification[28];
-                settings.right.Columns[3].HeaderText = TextType.specification[29];
+                    table == SqlSpecification.SpecificationPrametryMachining.ToString())
+                {
+                    for (int i = 0; i < settings.right.Columns.Count; i++)
+                        if (i != 1)
+                            settings.right.Columns[i].Visible = false;
+                    settings.right.DataSource = sqlQuery.GetArrayList(table);
+                    settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
+                }
+                if (table == SqlSpecification.SpecificationRotationalSpeed.ToString())
+                {
+                    settings.right.Columns[0].Visible = false;
+                    settings.right.Columns[1].HeaderText = TextType.specification[37];
+                    settings.right.Columns[2].HeaderText = TextType.specification[37];
+                    settings.right.Columns[3].HeaderText = TextType.specification[38];
+                    settings.right.DataSource = sqlQuery.GetArrayList(table);
+                }
             }
         }
     }

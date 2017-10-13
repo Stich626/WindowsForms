@@ -234,9 +234,9 @@ namespace WindowsForms
 
         private void specification(Document form)
         {
-            for (int i = 0; i < TextType.specification.Length; i++)
+            for (int i = 0; i < 26; i++)
                 form.name[i].Text = TextType.specification[i];
-            for (int i = TextType.specification.Length; i < form.name.Count; i++)
+            for (int i = 26; i < 31; i++)
                 form.name[i].Text = TextType.specification[i - 5];
         }
 

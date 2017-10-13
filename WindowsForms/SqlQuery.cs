@@ -12,6 +12,7 @@ namespace WindowsForms
 {
     enum SqlApplication { ApplicationViewWork, ApplicationTypeWorks, ApplicationCustomers, ApplicationProgreso, ApplicationDrawing, ApplicationPaint, ApplicationSubstrates, ApplicationColor, ApplicationContactCustomers, ApplicationContactsKontinent, ApplicationWorkpieceLength, ApplicationPrint };
     enum SqlSpecification { SpecificationParametersWorkpiece, SpecificationPrametryMachining, SpecificationRotationalSpeed };
+    enum SqlEngraving { EngravingCode, EngravingCompensation, EngravingCutter, EngravingTime };
 
     class SqlQuery
     {
