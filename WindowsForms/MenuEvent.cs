@@ -52,15 +52,15 @@ namespace WindowsForms
             if (name == String.Format("{0}{1}", TypeForm.printing, MenuBar.registry))
                 new Registry(TypeForm.printing).Show();
             if (name == String.Format("{0}{1}", TypeForm.main, MenuBar.settings))
-                new Settings(TypeForm.main).Show();
+                settings(TypeForm.main);
             if (name == String.Format("{0}{1}", TypeForm.application, MenuBar.settings))
-                new Settings(TypeForm.application).Show();
+                settings(TypeForm.application);
             if (name == String.Format("{0}{1}", TypeForm.specification, MenuBar.settings))
-                new Settings(TypeForm.specification).Show();
+                settings(TypeForm.specification);
             if (name == String.Format("{0}{1}", TypeForm.engraving, MenuBar.settings))
-                new Settings(TypeForm.engraving).Show();
+                settings(TypeForm.engraving);
             if (name == String.Format("{0}{1}", TypeForm.printing, MenuBar.settings))
-                new Settings(TypeForm.printing).Show();
+                settings(TypeForm.printing);
             if (FormType.mdiParent.ActiveMdiChild is Registry)
             {
                 //
@@ -75,9 +75,6 @@ namespace WindowsForms
                     new MenuVisible(registry);
                     new TextCreate(registry);
                 }
-                //
-                //
-                //
                 if (name == String.Format("{0}", MenuFile.add))
                     new Edit(registry, MenuFile.add).ShowDialog();
                 if (name == String.Format("{0}", MenuFile.clean))
@@ -94,6 +91,23 @@ namespace WindowsForms
                 new FormSize(MenuView.cascade);
             if (name == MenuView.vertically.ToString())
                 new FormSize(MenuView.vertically);
+        }
+
+        private void settings(TypeForm type)
+        {
+            bool flag = true;
+            for (int i = 0; i < FormType.mdiParent.MdiChildren.Length; i++)
+                if (FormType.mdiParent.MdiChildren[i] is Settings)
+                {
+                    Settings settings = (Settings)FormType.mdiParent.MdiChildren[i];
+                    if (settings.typeForm == type)
+                    {
+                        settings.Activate();
+                        flag = false;
+                    }
+                }
+            if (flag)
+                new Settings(type).Show();
         }
     }
 }

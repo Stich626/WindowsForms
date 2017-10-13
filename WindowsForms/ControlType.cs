@@ -110,7 +110,7 @@ namespace WindowsForms
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.BorderStyle = BorderStyle.None;
-            dataGridView.ColumnHeadersVisible = false;
+            //dataGridView.ColumnHeadersVisible = false;
             dataGridView.RowHeadersVisible = false;
             dataGridView.Margin = new Padding(6);
             dataGridView.Dock = DockStyle.Fill;

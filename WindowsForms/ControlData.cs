@@ -26,6 +26,7 @@ namespace WindowsForms
             int i = 0;
             if (settings.typeForm == TypeForm.application)
             {
+                settings.left.Columns[0].HeaderText = TextType.name[10];
                 settings.left.RowCount = 11;
                 settings.left.Rows[i++].Cells[0].Value = TextType.application[2];
                 settings.left.Rows[i++].Cells[0].Value = TextType.application[4];
@@ -41,6 +42,7 @@ namespace WindowsForms
             }
             if (settings.typeForm == TypeForm.specification)
             {
+                settings.left.Columns[0].HeaderText = TextType.name[11];
                 settings.left.RowCount = 3;
                 settings.left.Rows[i++].Cells[0].Value = TextType.specification[4];
                 settings.left.Rows[i++].Cells[0].Value = TextType.specification[25];
@@ -79,7 +81,26 @@ namespace WindowsForms
             }
             settings.right.DataSource = null;
             settings.right.DataSource = sqlQuery.GetArrayList(table);
-            settings.right.Columns[0].Visible = false;
+            if (settings.typeForm == TypeForm.application)
+            {
+                settings.right.Columns[0].Visible = false;
+                settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
+            }
+                if (table == SqlSpecification.SpecificationParametersWorkpiece.ToString() ||
+                table == SqlSpecification.SpecificationPrametryMachining.ToString())
+            {
+                for(int i = 0; i < settings.right.Columns.Count; i++)
+                    if(i != 1)
+                        settings.right.Columns[i].Visible = false;
+                settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
+            }
+            if (table == SqlSpecification.SpecificationRotationalSpeed.ToString())
+            {
+                settings.right.Columns[0].Visible = false;
+                settings.right.Columns[1].HeaderText = TextType.specification[27];
+                settings.right.Columns[2].HeaderText = TextType.specification[28];
+                settings.right.Columns[3].HeaderText = TextType.specification[29];
+            }
         }
     }
 }
