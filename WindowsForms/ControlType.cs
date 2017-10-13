@@ -124,11 +124,10 @@ namespace WindowsForms
             return dataGridView;
         }
 
-        public DataGridView dataGridView(int column, int row)
+        public DataGridView dataGridView(int column)
         {
             DataGridView gridView = dataGridView();
             gridView.ColumnCount = column;
-            gridView.RowCount = row;
             return gridView;
         }
     }   

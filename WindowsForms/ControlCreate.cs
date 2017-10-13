@@ -241,9 +241,7 @@ namespace WindowsForms
 
         private void settings(Settings form)
         {
-            int row = 0;
-            if (form.typeForm == TypeForm.application) row = 12;
-            form.left = control.dataGridView(1, row);
+            form.left = control.dataGridView(1);            
             form.right = control.dataGridView();
         }
 
