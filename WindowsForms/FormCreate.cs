@@ -44,7 +44,7 @@ namespace WindowsForms
             //
             //данные в контролах
             //
-            new ControlData(form);
+            new FormData(form);
             //
             //события контролов
             //

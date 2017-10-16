@@ -60,7 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControlData.cs" />
+    <Compile Include="FormData.cs" />
     <Compile Include="ContriolEvent.cs" />
     <Compile Include="FormInspector.cs" />
     <Compile Include="PanelType.cs" />
