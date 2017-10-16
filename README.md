@@ -1,6 +1,6 @@
 # WindowsForms
 
-# Подключение базы данных (*.Database.mdf)
+# Подключение базы данных (Database.mdf)
 Поставить точку перед mdf.
 В классе SqlQuery изменить путь в переменной conect
 
