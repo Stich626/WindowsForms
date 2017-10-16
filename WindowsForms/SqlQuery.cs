@@ -16,7 +16,7 @@ namespace WindowsForms
 
     class SqlQuery
     {
-        private static string conect = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\stich.CONTINENT\Source\Repos\WindowsForms\WindowsForms\Database.mdf;Integrated Security=True";
+        private static string conect = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\stich.CONTINENT\Source\Repos\WindowsForms\WindowsForms\Resources\Database.mdf;Integrated Security=True";
         private SqlConnection sqlConnection = new SqlConnection(conect);
 
         public ArrayList GetArrayList(string table)

@@ -23,7 +23,7 @@ namespace WindowsForms
         private void DataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (settings != null)
-                new settingsData(settings);
+                new ControlData(settings);
         }
     }
 }

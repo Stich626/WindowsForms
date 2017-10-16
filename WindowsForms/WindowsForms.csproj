@@ -73,21 +73,11 @@
     <Compile Include="ControlType.cs" />
     <Compile Include="FormSize.cs" />
     <Compile Include="SqlQuery.cs" />
-    <Compile Include="zzz.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="zzz.Designer.cs">
-      <DependentUpon>zzz.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TextCreate.cs" />
     <Compile Include="FormCreate.cs" />
     <Compile Include="ControlCreate.cs" />
     <Compile Include="FormEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TextType.cs" />
-    <EmbeddedResource Include="zzz.resx">
-      <DependentUpon>zzz.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="FormText.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -98,9 +88,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Databasemdf">
+    <Content Include="Resources\Database.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -110,44 +100,45 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\README.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ApplicationForm.png" />
+    <None Include="Resources\Image\ApplicationForm.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database_log.ldf">
+    <Content Include="Resources\Database_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Databasemdf</DependentUpon>
+      <DependentUpon>Database.mdf</DependentUpon>
     </Content>
-    <Content Include="Resources\Add.png" />
-    <Content Include="Resources\ApplicationRegistry.png" />
-    <Content Include="Resources\Cascade.png" />
-    <Content Include="Resources\Clean.png" />
-    <Content Include="Resources\Dell.png" />
-    <Content Include="Resources\Edit.png" />
-    <Content Include="Resources\EngravingForm.png" />
-    <Content Include="Resources\EngravingRegistry.png" />
-    <Content Include="Resources\Fill.png" />
-    <Content Include="Resources\Filter.png" />
-    <Content Include="Resources\Horizontal.png" />
-    <Content Include="Resources\Open.png" />
-    <Content Include="Resources\Print.png" />
-    <Content Include="Resources\Save.png" />
-    <Content Include="Resources\SpecificationForm.png" />
-    <Content Include="Resources\SpecificationRegistry.png" />
-    <Content Include="Resources\TrialPrintingForm.png" />
-    <Content Include="Resources\TrialPrintingRegistry.png" />
-    <Content Include="Resources\Vertical.png" />
-    <Content Include="Text\Ru\application.txt" />
-    <Content Include="Text\Ru\specification.txt" />
-    <Content Include="Text\Ru\name.txt" />
-    <Content Include="Text\Ru\main.txt" />
-    <Content Include="Text\Ru\engraving.txt" />
-    <Content Include="Text\Ru\printing.txt" />
-    <Content Include="Text\Ru\filter.txt" />
+    <Content Include="Resources\Image\Add.png" />
+    <Content Include="Resources\Image\ApplicationRegistry.png" />
+    <Content Include="Resources\Image\Cascade.png" />
+    <Content Include="Resources\Image\Clean.png" />
+    <Content Include="Resources\Image\Dell.png" />
+    <Content Include="Resources\Image\Edit.png" />
+    <Content Include="Resources\Image\EngravingForm.png" />
+    <Content Include="Resources\Image\EngravingRegistry.png" />
+    <Content Include="Resources\Image\Fill.png" />
+    <Content Include="Resources\Image\Filter.png" />
+    <Content Include="Resources\Image\Horizontal.png" />
+    <Content Include="Resources\Image\Open.png" />
+    <Content Include="Resources\Image\Print.png" />
+    <Content Include="Resources\Image\Save.png" />
+    <Content Include="Resources\Image\SpecificationForm.png" />
+    <Content Include="Resources\Image\SpecificationRegistry.png" />
+    <Content Include="Resources\Image\TrialPrintingForm.png" />
+    <Content Include="Resources\Image\TrialPrintingRegistry.png" />
+    <Content Include="Resources\Image\Vertical.png" />
+    <Content Include="Resources\Text\Ru\application.txt" />
+    <Content Include="Resources\Text\Ru\specification.txt" />
+    <Content Include="Resources\Text\Ru\name.txt" />
+    <Content Include="Resources\Text\Ru\main.txt" />
+    <Content Include="Resources\Text\Ru\engraving.txt" />
+    <Content Include="Resources\Text\Ru\printing.txt" />
+    <Content Include="Resources\Text\Ru\filter.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

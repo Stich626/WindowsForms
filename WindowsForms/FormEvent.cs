@@ -59,7 +59,7 @@ namespace WindowsForms
                     registry.filter.Visible = false;
                     registry.registry.Visible = true;
                     new MenuVisible(registry);
-                    new TextCreate(registry);
+                    new FormText(registry);
                 }
             }
             //if (sender is FilterEdit)

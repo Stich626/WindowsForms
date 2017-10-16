@@ -16,7 +16,7 @@ namespace WindowsForms
             //
             //язык приложения
             //
-            new TextType(Language.Ru);
+            new FormText(Language.Ru);
             //
             //создание формы
             //
@@ -40,11 +40,11 @@ namespace WindowsForms
             //
             //текста формы
             //
-            new TextCreate(form);
+            new FormText(form);
             //
             //данные в контролах
             //
-            new settingsData(form);
+            new ControlData(form);
             //
             //события контролов
             //

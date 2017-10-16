@@ -73,7 +73,7 @@ namespace WindowsForms
                     registry.registry.Visible = false;
                     registry.filter.Visible = true;
                     new MenuVisible(registry);
-                    new TextCreate(registry);
+                    new FormText(registry);
                 }
                 if (name == String.Format("{0}", MenuFile.add))
                     new Edit(registry, MenuFile.add).ShowDialog();
