@@ -44,16 +44,17 @@ namespace WindowsForms
             {
                 settings.left.Columns[0].HeaderText = TextType.name[11];
                 settings.left.RowCount = 3;
-                settings.left.Rows[i++].Cells[0].Value = TextType.specification[4];
+                settings.left.Rows[i++].Cells[0].Value = TextType.specification[23];
                 settings.left.Rows[i++].Cells[0].Value = TextType.specification[24];
-                settings.left.Rows[i++].Cells[0].Value = TextType.specification[25];
+                settings.left.Rows[i++].Cells[0].Value = TextType.specification[36];
             }
             if (settings.typeForm == TypeForm.engraving)
             {
                 settings.left.Columns[0].HeaderText = TextType.name[11];
-                settings.left.RowCount = 3;
-                settings.left.Rows[i++].Cells[0].Value = TextType.engraving[4];
-                settings.left.Rows[i++].Cells[0].Value = TextType.engraving[24];
+                settings.left.RowCount = 4;
+                settings.left.Rows[i++].Cells[0].Value = TextType.engraving[31];
+                settings.left.Rows[i++].Cells[0].Value = TextType.engraving[30];
+                settings.left.Rows[i++].Cells[0].Value = TextType.engraving[32];
                 settings.left.Rows[i++].Cells[0].Value = TextType.engraving[25];
             }
         }
@@ -90,22 +91,63 @@ namespace WindowsForms
                     case 1: table = SqlSpecification.SpecificationPrametryMachining.ToString(); break;
                     case 2: table = SqlSpecification.SpecificationRotationalSpeed.ToString(); break;
                 }
-                if (table == SqlSpecification.SpecificationParametersWorkpiece.ToString() ||
-                    table == SqlSpecification.SpecificationPrametryMachining.ToString())
+                if (table == SqlSpecification.SpecificationParametersWorkpiece.ToString())
                 {
-                    for (int i = 0; i < settings.right.Columns.Count; i++)
-                        if (i != 1)
-                            settings.right.Columns[i].Visible = false;
                     settings.right.DataSource = sqlQuery.GetArrayList(table);
+                    for (int i = 0; i < settings.right.Columns.Count; i++)
+                        if (i != 1 && i != 2 && i != 3 && i != 8 && i != 9)
+                            settings.right.Columns[i].Visible = false;
                     settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
+                    settings.right.Columns[2].HeaderText = TextType.specification[6];
+                    settings.right.Columns[3].HeaderText = TextType.specification[7];
+                    settings.right.Columns[8].HeaderText = TextType.specification[40];
+                    settings.right.Columns[9].HeaderText = TextType.specification[41];
+                }
+                if (table == SqlSpecification.SpecificationPrametryMachining.ToString())
+                {
+                    settings.right.DataSource = sqlQuery.GetArrayList(table);
+                    for (int i = 0; i < settings.right.Columns.Count; i++)
+                        if (i != 1 && i != 3 && i != 8 && i != 10 && i != 14)
+                            settings.right.Columns[i].Visible = false;
+                    settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
+                    settings.right.Columns[3].HeaderText = String.Format("{0} {1}",  TextType.specification[28], TextType.specification[25]);
+                    settings.right.Columns[8].HeaderText = String.Format("{0} {1}", TextType.specification[35], TextType.specification[26]);
+                    settings.right.Columns[10].HeaderText = TextType.specification[25];
+                    settings.right.Columns[14].HeaderText = TextType.specification[26];
                 }
                 if (table == SqlSpecification.SpecificationRotationalSpeed.ToString())
                 {
+                    settings.right.DataSource = sqlQuery.GetArrayList(table);
                     settings.right.Columns[0].Visible = false;
                     settings.right.Columns[1].HeaderText = TextType.specification[37];
-                    settings.right.Columns[2].HeaderText = TextType.specification[37];
-                    settings.right.Columns[3].HeaderText = TextType.specification[38];
+                    settings.right.Columns[2].HeaderText = TextType.specification[38];
+                    settings.right.Columns[3].HeaderText = TextType.specification[39];
+                }
+            }
+            if (settings.typeForm == TypeForm.engraving)
+            {
+                switch (settings.left.CurrentRow.Index)
+                {
+                    case 0: table = SqlEngraving.EngravingCode.ToString(); break;
+                    case 1: table = SqlEngraving.EngravingCompensation.ToString(); break;
+                    case 2: table = SqlEngraving.EngravingCutter.ToString(); break;
+                    case 3: table = SqlEngraving.EngravingTime.ToString(); break;
+                }
+
+                if (table == SqlEngraving.EngravingCompensation.ToString() ||
+                    table == SqlEngraving.EngravingCutter.ToString())
+                {
                     settings.right.DataSource = sqlQuery.GetArrayList(table);
+                    settings.right.Columns[0].Visible = false;
+                    settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
+                }
+                if (table == SqlEngraving.EngravingCompensation.ToString())
+                {
+
+                }
+                if (table == SqlEngraving.EngravingTime.ToString())
+                {
+
                 }
             }
         }
