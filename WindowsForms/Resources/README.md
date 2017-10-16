@@ -1,8 +1,8 @@
 # WindowsForms
 
-# Подключение базы данных (Database.mdf)
-Поставить точку перед mdf в файле WindowsForms\Resources\Databasemdf, а в классе SqlQuery изменить путь в переменной conect
+# Подключение базы данных (WindowsForms\Resources\Database.mdf)
+В классе SqlQuery изменить путь в переменной conect
 
-# Подключение картинок
+# Подключение текстов
 Скопировать папку Text из WindowsForms\Resources в WindowsForms\bin\Debug
 
