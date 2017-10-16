@@ -29,7 +29,7 @@ namespace WindowsForms
                 filter = arrEmty("filter");
                 main = arrEmty("main");
                 application = arrEmty("application");
-                engraving = arrEmty("specification");
+                engraving = arrEmty("engraving");
                 specification = arrEmty("specification");
                 printing = arrEmty("printing");
             }
@@ -37,16 +37,6 @@ namespace WindowsForms
             {
 
             }
-        }
-
-        private string[] arrEmty(string file)
-        {
-            string[] arr1 = File.ReadAllLines(String.Format("{0}{1}.txt", path, file));
-            string[] arr2 = new string[arr1.Length + 1];
-            arr2[0] = String.Empty;
-            for (int i = 1; i < arr2.Length; i++)
-                arr2[i] = arr1[i - 1];
-            return arr2;
         }
 
         public FormText(Form form)
@@ -66,6 +56,16 @@ namespace WindowsForms
                 if (document.typeForm == TypeForm.printing)
                     printingForm(document);
             }
+        }
+
+        private string[] arrEmty(string file)
+        {
+            string[] arr1 = File.ReadAllLines(String.Format("{0}{1}.txt", path, file));
+            string[] arr2 = new string[arr1.Length + 1];
+            arr2[0] = String.Empty;
+            for (int i = 1; i < arr2.Length; i++)
+                arr2[i] = arr1[i - 1];
+            return arr2;
         }
 
         private void textForm(Form form)

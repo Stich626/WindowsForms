@@ -30,6 +30,10 @@ namespace WindowsForms
             //  
             new ControlCreate(form);
             //
+            //события контролов
+            //
+            new ControlEvent(form);
+            //
             //размещение контролов
             //
             new PanelCreate(form);
@@ -42,13 +46,9 @@ namespace WindowsForms
             //
             new FormText(form);
             //
-            //данные в контролах
+            //данные формы
             //
             new FormData(form);
-            //
-            //события контролов
-            //
-            new ControlEvent(form);
         }
     }
     static class Program
