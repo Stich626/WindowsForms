@@ -266,27 +266,37 @@ namespace WindowsForms
             for (int i = 0; i < 20; i++)
                 form.name[i].Text = application[i + 1];
             for (int i = 0; i < 10; i++)
-                form.name[20 + i].Text = (String.Format("{1} {0}{2}", (i < 9) ? "0" : "", application[21], i + 1));
+                form.name[i + 20].Text = (String.Format("{1} {0}{2}", (i < 9) ? "0" : "", application[21], i + 1));
             for (int i = 0; i < 7; i++)
-                form.name[30 + i].Text = application[21 + i];
+                form.name[i + 30].Text = application[i + 22];
         }
 
         private void specificationForm(Document form)
         {
-            for (int i = 0; i < 26; i++)
+            for (int i = 0; i < 21; i++)
                 form.name[i].Text = specification[i + 1];
-            for (int i = 26; i < 31; i++)
-                form.name[i].Text = specification[i - 6];
+            form.name[21].Text = specification[1];
+            for (int i = 0; i < 4; i++)
+                form.name[i + 22].Text = specification[i + 22];
+            form.name[26].Text = specification[1];
+            for (int i = 0; i < 4; i++)
+                form.name[i + 27].Text = specification[i + 22];
         }
 
         private void engravingForm(Document form)
         {
-            for (int i = 0; i < 42; i++)
+            for (int i = 0; i < 25; i++)
                 form.name[i].Text = engraving[i + 4];
-            for (int i = 42; i < 64; i++)
-                form.name[i].Text = engraving[i - 15];
-            for (int i = 64; i < 69; i++)
-                form.name[i].Text = engraving[i - 19];
+            form.name[25].Text = engraving[4];
+            for (int i = 0; i < 16; i++)
+                form.name[i + 26].Text = engraving[i + 29];
+            form.name[42].Text = engraving[4];
+            for (int i = 0; i < 16; i++)
+                form.name[i + 43].Text = engraving[i + 29];
+            for (int i = 0; i < 5; i++)
+                form.name[i + 59].Text = engraving[i + 45];
+            for (int i = 0; i < 5; i++)
+                form.name[i + 64].Text = engraving[i + 45];
         }
 
         private void printingForm(Document form)

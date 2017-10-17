@@ -36,7 +36,7 @@ namespace WindowsForms
             //
             //размещение контролов
             //
-            new PanelCreate(form);
+            new ContriolInsert(form);
             //
             //события формы
             //
