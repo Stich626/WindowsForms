@@ -100,9 +100,9 @@ namespace WindowsForms
                 else
                     flagSize = true;
             }
-          
+
             if (form is Edit)
-                form.Size = new Size(mdiSize.Height / 2, mdiSize.Height / 2);              
+                form.MaximumSize = new Size(mdiSize.Height / 2, mdiSize.Height / 2);
         }
 
         private Size clientSize(Main form)

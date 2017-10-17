@@ -46,6 +46,7 @@ namespace WindowsForms
             {
                 form.MaximizeBox = false;
                 form.StartPosition = FormStartPosition.CenterScreen;
+                form.AutoSize = true;
             }
         }
     }
@@ -119,10 +120,14 @@ namespace WindowsForms
 
     class Edit : Form
     {
-        public List<Control> control = new List<Control>();
+        public List<Label> name = new List<Label>();
+        public List<Control> edit = new List<Control>();
+        public List<Button> button = new List<Button>();
+        MenuFile menu;
 
-        public Edit(Form form, MenuFile menu)
+        public Edit(Form form, MenuFile Menu)
         {
+            menu = Menu;
             new FormCreate(this);
         }
 

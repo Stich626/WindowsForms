@@ -12,16 +12,16 @@ namespace WindowsForms
 
     class FormText
     {
-        private static Language language = Language.Ru;
+        private static Language lang = Language.Ru;
         private static string path;
         public static string[] name, filter, main, application, engraving, specification, printing;
 
-        public FormText(Language Language)
+        public FormText(Language Lang)
         {
-            language = Language;
-            if (language == Language.Ru)
+            lang = Lang;
+            if (lang == Language.Ru)
                 path = "Text/Ru/";
-            if (language == Language.Ua)
+            if (lang == Language.Ua)
                 path = "Text/Ua/";
             try
             {
@@ -55,6 +55,11 @@ namespace WindowsForms
                     engravingForm(document);
                 if (document.typeForm == TypeForm.printing)
                     printingForm(document);
+            }
+            if (form is Edit)
+            {
+                if (FormType.mdiParent.ActiveMdiChild is Settings)
+                    editSettings((Edit)form, (Settings)FormType.mdiParent.ActiveMdiChild);
             }
         }
 
@@ -305,6 +310,12 @@ namespace WindowsForms
                 form.name[i].Text = printing[i + 5];
             form.name[49].Text = printing[27];
             form.name[50].Text = printing[27];
+        }
+
+        private void editSettings(Edit edit, Settings settings)
+        {
+            for (int i = 0; i < settings.right.ColumnCount - 1; i++)
+                edit.name[0].Text = settings.right.Columns[1].HeaderText;
         }
     }
 }

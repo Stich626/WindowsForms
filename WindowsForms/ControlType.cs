@@ -194,7 +194,7 @@ namespace WindowsForms
             return tableLayoutPanel;
         }
 
-        public void tableLayoutPanel(TableLayoutPanel tableLayoutPanel, int Column, int Row, object control, int index)
+        public void tableLayoutPanel(TableLayoutPanel tableLayoutPanel, int Column, int Row, object control)
         {
             if (control is Label)
                 tableLayoutPanel.Controls.Add((Label)control, Column, Row);

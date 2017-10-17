@@ -49,21 +49,21 @@ namespace WindowsForms
             //
             int index = 0;
                 for (int i = 0; i < tableLayoutPanel.RowCount; i++)
-                control.tableLayoutPanel(tableLayoutPanel, 0, i, form.name[index], index++);
+                control.tableLayoutPanel(tableLayoutPanel, 0, i, form.name[index++]);
             form.Controls.Add(tableLayoutPanel);
             //
             //размещение контролов save
             //
             index = 0;
             for (int i = 0; i < tableLayoutPanel.RowCount; i++)
-                control.tableLayoutPanel(tableLayoutPanel, 1, i, form.save[index], index++);
+                control.tableLayoutPanel(tableLayoutPanel, 1, i, form.save[index++]);
             form.Controls.Add(tableLayoutPanel);
             //
             //размещение контролов load
             //
             index = 0;
             for (int i = 0; i < tableLayoutPanel.RowCount; i++)
-                control.tableLayoutPanel(tableLayoutPanel, 2, i, form.load[index], index++);
+                control.tableLayoutPanel(tableLayoutPanel, 2, i, form.load[index++]);
             form.Controls.Add(tableLayoutPanel);
         }
 
@@ -82,27 +82,27 @@ namespace WindowsForms
             //                  
             int index = 0;
             for (int i = 0; i < tableLayoutPanel1.RowCount; i++)
-                control.tableLayoutPanel(tableLayoutPanel1, 0, i, form.name[index], index++);
+                control.tableLayoutPanel(tableLayoutPanel1, 0, i, form.name[index++]);
             for (int i = 0; i < tableLayoutPanel2.ColumnCount; i++)
-                control.tableLayoutPanel(tableLayoutPanel2, i, 0, form.name[index], index++);
+                control.tableLayoutPanel(tableLayoutPanel2, i, 0, form.name[index++]);
             //
             //размещение контролов save
             //
             index = 0;
             for (int i = 0; i < tableLayoutPanel1.RowCount; i++)
-                control.tableLayoutPanel(tableLayoutPanel1, 1, i, form.save[index], index++);
+                control.tableLayoutPanel(tableLayoutPanel1, 1, i, form.save[index++]);
             for (int i = 0; i < 5; i++)
                 for (int j = 1; j < tableLayoutPanel2.RowCount; j++)
-                    control.tableLayoutPanel(tableLayoutPanel2, i, j, form.save[index], index++);
+                    control.tableLayoutPanel(tableLayoutPanel2, i, j, form.save[index++]);
             //
             //размещение контролов load
             //
             index = 0;
             for (int i = 0; i < tableLayoutPanel1.RowCount; i++)
-                control.tableLayoutPanel(tableLayoutPanel1, 2, i, form.load[index], index++);
+                control.tableLayoutPanel(tableLayoutPanel1, 2, i, form.load[index++]);
             for (int i = 5; i < 10; i++)
                 for (int j = 1; j < tableLayoutPanel2.RowCount; j++)
-                    control.tableLayoutPanel(tableLayoutPanel2, i, j, form.load[index], index++);
+                    control.tableLayoutPanel(tableLayoutPanel2, i, j, form.load[index++]);
             form.Controls.Add(tableLayoutPanel3);
         }
 
@@ -135,73 +135,73 @@ namespace WindowsForms
             //   
             int index = 0;
             for (int i = 0; i < tableLayoutPanel1.RowCount; i++)
-                control.tableLayoutPanel(tableLayoutPanel1, 0, i, form.name[index], index++);
+                control.tableLayoutPanel(tableLayoutPanel1, 0, i, form.name[index++]);
             for (int i = 0; i < tableLayoutPanel2.ColumnCount; i++)
                 for (int j = 0; j < 2; j++)
                 {
                     if (i != 0)
-                        control.tableLayoutPanel(tableLayoutPanel2, i, j, form.name[index], index++);
+                        control.tableLayoutPanel(tableLayoutPanel2, i, j, form.name[index++]);
                     else if (j % 2 == 0)
-                        control.tableLayoutPanel(tableLayoutPanel2, i, j, form.name[index], index++);
+                        control.tableLayoutPanel(tableLayoutPanel2, i, j, form.name[index++]);
                 }
             for (int i = 0; i < tableLayoutPanel3.ColumnCount; i++)
                 for (int j = 0; j < 2; j++)
                 {
                     if (i != 0)
-                        control.tableLayoutPanel(tableLayoutPanel3, i, j, form.name[index], index++);
+                        control.tableLayoutPanel(tableLayoutPanel3, i, j, form.name[index++]);
                     else if (j % 2 == 0)
-                        control.tableLayoutPanel(tableLayoutPanel3, i, j, form.name[index], index++);
+                        control.tableLayoutPanel(tableLayoutPanel3, i, j, form.name[index++]);
                 }
             for (int i = 0; i < tableLayoutPanel4.RowCount; i++)
-                control.tableLayoutPanel(tableLayoutPanel4, 0, i, form.name[index], index++);
+                control.tableLayoutPanel(tableLayoutPanel4, 0, i, form.name[index++]);
             //
             //размещение контролов save
             //
             index = 0;
             for (int i = 0; i < tableLayoutPanel1.RowCount; i++)
-                control.tableLayoutPanel(tableLayoutPanel1, 1, i, form.save[index], index++);
+                control.tableLayoutPanel(tableLayoutPanel1, 1, i, form.save[index++]);
             for (int i = 0; i < tableLayoutPanel2.ColumnCount; i++)
                 for (int j = 22; j < tableLayoutPanel2.RowCount; j++)
                 {
                     if (i != 0)
-                        control.tableLayoutPanel(tableLayoutPanel2, i, j, form.save[index], index++);
+                        control.tableLayoutPanel(tableLayoutPanel2, i, j, form.save[index++]);
                     else if (j % 2 == 0)
-                        control.tableLayoutPanel(tableLayoutPanel2, i, j, form.save[index], index++);
+                        control.tableLayoutPanel(tableLayoutPanel2, i, j, form.save[index++]);
                 }
             for (int i = 0; i < tableLayoutPanel3.ColumnCount; i++)
                 for (int j = 12; j < tableLayoutPanel3.RowCount; j++)
                 {
                     if (i != 0)
-                        control.tableLayoutPanel(tableLayoutPanel3, i, j, form.save[index], index++);
+                        control.tableLayoutPanel(tableLayoutPanel3, i, j, form.save[index++]);
                     else if (j % 2 == 0)
-                        control.tableLayoutPanel(tableLayoutPanel3, i, j, form.save[index], index++);
+                        control.tableLayoutPanel(tableLayoutPanel3, i, j, form.save[index++]);
                 }
             for (int i = 5; i < tableLayoutPanel4.RowCount; i++)
-                control.tableLayoutPanel(tableLayoutPanel4, 1, i, form.save[index], index++);
+                control.tableLayoutPanel(tableLayoutPanel4, 1, i, form.save[index++]);
             //
             //размещение контролов load
             //
             index = 0;
             for (int i = 0; i < tableLayoutPanel1.RowCount; i++)
-                control.tableLayoutPanel(tableLayoutPanel1, 2, i, form.load[index], index++);
+                control.tableLayoutPanel(tableLayoutPanel1, 2, i, form.load[index++]);
             for (int i = 0; i < tableLayoutPanel2.ColumnCount; i++)
                 for (int j = 2; j < 22; j++)
                 {
                     if (i != 0)
-                        control.tableLayoutPanel(tableLayoutPanel2, i, j, form.load[index], index++);
+                        control.tableLayoutPanel(tableLayoutPanel2, i, j, form.load[index++]);
                     else if (j % 2 == 0)
-                        control.tableLayoutPanel(tableLayoutPanel2, i, j, form.load[index], index++);
+                        control.tableLayoutPanel(tableLayoutPanel2, i, j, form.load[index++]);
                 }
             for (int i = 0; i < tableLayoutPanel3.ColumnCount; i++)
                 for (int j = 2; j < 12; j++)
                 {
                     if (i != 0)
-                        control.tableLayoutPanel(tableLayoutPanel3, i, j, form.load[index], index++);
+                        control.tableLayoutPanel(tableLayoutPanel3, i, j, form.load[index++]);
                     else if (j % 2 == 0)
-                        control.tableLayoutPanel(tableLayoutPanel3, i, j, form.load[index], index++);
+                        control.tableLayoutPanel(tableLayoutPanel3, i, j, form.load[index++]);
                 }
             for (int i = 0; i < 5; i++)
-                control.tableLayoutPanel(tableLayoutPanel4, 1, i, form.load[index], index++);
+                control.tableLayoutPanel(tableLayoutPanel4, 1, i, form.load[index++]);
             form.Controls.Add(tabControl);
         }
 
@@ -245,39 +245,39 @@ namespace WindowsForms
             ControlType control = new ControlType();
             int index = 0;
             for (int i = 0; i < tableLayoutPanel1.RowCount; i++)
-                this.control.tableLayoutPanel(tableLayoutPanel1, 0, i, form.name[index], index++);
-            this.control.tableLayoutPanel(tableLayoutPanel2, 0, 1, control.label(form.name[index], DockStyle.Bottom), index++);
+                this.control.tableLayoutPanel(tableLayoutPanel1, 0, i, form.name[index++]);
+            this.control.tableLayoutPanel(tableLayoutPanel2, 0, 1, control.label(form.name[index++], DockStyle.Bottom));
             for (int j = 1; j < tableLayoutPanel2.RowCount; j++)
-                this.control.tableLayoutPanel(tableLayoutPanel2, 1, j, form.name[index], index++);
-            this.control.tableLayoutPanel(tableLayoutPanel3, 0, 1, control.label(form.name[index], DockStyle.Bottom), index++);
-            this.control.tableLayoutPanel(tableLayoutPanel4, 0, 1, control.label(form.name[index], DockStyle.Bottom), index++);
+                this.control.tableLayoutPanel(tableLayoutPanel2, 1, j, form.name[index++]);
+            this.control.tableLayoutPanel(tableLayoutPanel3, 0, 1, control.label(form.name[index++], DockStyle.Bottom));
+            this.control.tableLayoutPanel(tableLayoutPanel4, 0, 1, control.label(form.name[index++], DockStyle.Bottom));
             //
             //размещение контролов save
             //
             index = 0;
             for (int j = 0; j < tableLayoutPanel1.RowCount; j++)
-                this.control.tableLayoutPanel(tableLayoutPanel1, 1, j, form.save[index], index++);
+                this.control.tableLayoutPanel(tableLayoutPanel1, 1, j, form.save[index++]);
             for (int j = 2; j < tableLayoutPanel2.RowCount - 3; j++)
-                this.control.tableLayoutPanel(tableLayoutPanel2, 0, j, form.save[index], index++);
+                this.control.tableLayoutPanel(tableLayoutPanel2, 0, j, form.save[index++]);
             for (int i = 2; i < tableLayoutPanel2.ColumnCount; i++)
                 for (int j = 0; j < tableLayoutPanel2.RowCount; j++)
-                    this.control.tableLayoutPanel(tableLayoutPanel2, i, j, form.save[index], index++);
+                    this.control.tableLayoutPanel(tableLayoutPanel2, i, j, form.save[index++]);
             //
             //размещение контролов load
             //
             index = 0;
             for (int j = 0; j < tableLayoutPanel1.RowCount; j++)
-                this.control.tableLayoutPanel(tableLayoutPanel1, 2, j, form.load[index], index++);
+                this.control.tableLayoutPanel(tableLayoutPanel1, 2, j, form.load[index++]);
             for (int j = 2; j < tableLayoutPanel3.RowCount - 3; j++)
-                this.control.tableLayoutPanel(tableLayoutPanel3, 0, j, form.load[index], index++);
+                this.control.tableLayoutPanel(tableLayoutPanel3, 0, j, form.load[index++]);
             for (int i = 1; i < tableLayoutPanel3.ColumnCount; i++)
                 for (int j = 0; j < tableLayoutPanel3.RowCount; j++)
-                    this.control.tableLayoutPanel(tableLayoutPanel3, i, j, form.load[index], index++);
+                    this.control.tableLayoutPanel(tableLayoutPanel3, i, j, form.load[index++]);
             for (int j = 2; j < tableLayoutPanel4.RowCount - 3; j++)
-                this.control.tableLayoutPanel(tableLayoutPanel4, 0, j, form.load[index], index++);
+                this.control.tableLayoutPanel(tableLayoutPanel4, 0, j, form.load[index++]);
             for (int i = 1; i < tableLayoutPanel4.ColumnCount; i++)
                 for (int j = 0; j < tableLayoutPanel4.RowCount; j++)
-                    this.control.tableLayoutPanel(tableLayoutPanel4, i, j, form.load[index], index++);
+                    this.control.tableLayoutPanel(tableLayoutPanel4, i, j, form.load[index++]);
             form.Controls.Add(tabControl1);    
         }
 
@@ -292,22 +292,18 @@ namespace WindowsForms
 
         private void edit(Edit form)
         {
-            int[] Column = { 50, 50 };
-            TableLayoutPanel tableLayoutPanel = control.tableLayoutPanel(Column, 4);
-            //
-            //размещение заголовков
-            //
-            int index = 0;
-            for (int i = 0; i < tableLayoutPanel.RowCount; i++)
-                control.tableLayoutPanel(tableLayoutPanel, 0, i, form.control[index], index++);
-            form.Controls.Add(tableLayoutPanel);
-            //
-            //размещение контролов filter
-            //
-            index = 0;
-            //for (int i = 0; i < tableLayoutPanel.RowCount; i++)
-            //    panel.tableLayoutPanel(tableLayoutPanel, 1, i, form.save[index], index++);
-            //form.Controls.Add(tableLayoutPanel);
+            if (FormType.mdiParent.ActiveMdiChild is Settings)
+            {
+                //int index = 0;
+                TableLayoutPanel tableLayoutPanel = control.tableLayoutPanel(2, 0);
+                for (int i = 0; i < form.name.Count; i++)
+                    control.tableLayoutPanel(tableLayoutPanel, 0, i, form.name[i]);
+                for (int i = 0; i < form.edit.Count; i++)
+                    control.tableLayoutPanel(tableLayoutPanel, 1, i, form.edit[i]);
+                form.Controls.Add(tableLayoutPanel);
+                control.tableLayoutPanel(tableLayoutPanel, 0, tableLayoutPanel.RowCount, form.button[0]);
+                control.tableLayoutPanel(tableLayoutPanel, 1, tableLayoutPanel.RowCount, form.button[1]);
+            }
         }
     }
 }

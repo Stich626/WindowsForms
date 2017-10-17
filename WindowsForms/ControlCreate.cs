@@ -245,11 +245,19 @@ namespace WindowsForms
             form.right = control.dataGridView();
         }
 
-        private void edit(Edit form)
+        private void edit(Edit edit)
         {
-            int number = 0;
-            for (int i = 0; i < 4; i++)
-                form.control.Add(control.checkBox(number++));
+            //int number = 0;
+            if (FormType.mdiParent.ActiveMdiChild is Settings)
+            {
+                Settings settings = (Settings)FormType.mdiParent.ActiveMdiChild;
+                for (int i = 0; i < settings.right.ColumnCount - 1; i++)
+                    edit.name.Add(control.label(1));
+                for (int i = 0; i < settings.right.ColumnCount - 1; i++)
+                    edit.edit.Add(control.textBox(1, false));
+                edit.button.Add(control.button(1));
+                edit.button.Add(control.button(2));
+            }
         }
     }
 }
