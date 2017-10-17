@@ -52,9 +52,9 @@ namespace WindowsForms
             {
                 settings.left.Columns[0].HeaderText = FormText.name[13];
                 settings.left.RowCount = 4;
-                settings.left.Rows[i++].Cells[0].Value = FormText.engraving[32];
                 settings.left.Rows[i++].Cells[0].Value = FormText.engraving[31];
-                settings.left.Rows[i++].Cells[0].Value = FormText.engraving[33];
+                settings.left.Rows[i++].Cells[0].Value = FormText.engraving[30];
+                settings.left.Rows[i++].Cells[0].Value = FormText.engraving[32];
                 settings.left.Rows[i++].Cells[0].Value = FormText.engraving[26];
             }
         }
@@ -146,16 +146,18 @@ namespace WindowsForms
                     settings.right.DataSource = sqlQuery.GetArrayList(table);
                     settings.right.Columns[0].Visible = false;
                     settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
-                    //settings.right.Columns[2].HeaderText = FormText.engraving[37];
-                    //settings.right.Columns[3].HeaderText = FormText.engraving[38];
-                    //settings.right.Columns[4].HeaderText = FormText.engraving[39];
-                    //settings.right.Columns[5].HeaderText = FormText.engraving[37];
-                    //settings.right.Columns[6].HeaderText = FormText.engraving[38];
-                    //settings.right.Columns[7].HeaderText = FormText.engraving[39];
+                    for(int i = 0; i < 5; i++)
+                        settings.right.Columns[i + 2].HeaderText = FormText.engraving[i + 33];
+                    settings.right.Columns[7].HeaderText = FormText.engraving[39];
                 }
                 if (table == SqlEngraving.EngravingTime.ToString())
                 {
-
+                    settings.right.DataSource = sqlQuery.GetArrayList(table);
+                    settings.right.Columns[0].Visible = false;
+                    settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
+                    settings.right.Columns[2].HeaderText = FormText.engraving[50];
+                    settings.right.Columns[3].HeaderText = FormText.engraving[2];
+                    settings.right.Columns[4].HeaderText = FormText.engraving[3];
                 }
             }
         }
