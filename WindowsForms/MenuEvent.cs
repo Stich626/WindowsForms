@@ -61,14 +61,24 @@ namespace WindowsForms
                 settings(TypeForm.engraving);
             if (name == String.Format("{0}{1}", TypeForm.printing, MenuBar.settings))
                 settings(TypeForm.printing);
+            if (FormType.mdiParent.ActiveMdiChild is Settings)
+            {
+                Settings settings = FormType.mdiParent.ActiveMdiChild as Settings;
+                if (name == String.Format("{0}", MenuFile.add))
+                    new Edit(settings, MenuFile.add).ShowDialog();
+                if (name == String.Format("{0}", MenuFile.clean))
+                    new Edit(settings, MenuFile.clean).ShowDialog();
+                if (name == String.Format("{0}", MenuFile.edit))
+                    new Edit(settings, MenuFile.edit).ShowDialog();
+            }
             if (FormType.mdiParent.ActiveMdiChild is Registry)
             {
-                //
-                //видимость контролов
-                //
                 Registry registry = FormType.mdiParent.ActiveMdiChild as Registry;
                 if (name == String.Format("{0}", MenuFile.filter))
                 {
+                    //
+                    //видимость контролов
+                    //
                     registry.filterOn = true;
                     registry.registry.Visible = false;
                     registry.filter.Visible = true;

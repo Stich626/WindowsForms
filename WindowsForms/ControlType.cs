@@ -128,6 +128,8 @@ namespace WindowsForms
         {
             DataGridView gridView = dataGridView();
             gridView.ColumnCount = column;
+            for(int i = 0; i < column; i++ )
+                gridView.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             return gridView;
         }
 

@@ -26,7 +26,7 @@ namespace WindowsForms
             int i = 0;
             if (settings.typeForm == TypeForm.application)
             {
-                settings.left.Columns[0].HeaderText = FormText.name[12];
+                settings.left.Columns[0].HeaderText = FormText.name[11];
                 settings.left.RowCount = 11;
                 settings.left.Rows[i++].Cells[0].Value = FormText.application[3];
                 settings.left.Rows[i++].Cells[0].Value = FormText.application[5];
@@ -42,7 +42,7 @@ namespace WindowsForms
             }
             if (settings.typeForm == TypeForm.specification)
             {
-                settings.left.Columns[0].HeaderText = FormText.name[13];
+                settings.left.Columns[0].HeaderText = FormText.name[12];
                 settings.left.RowCount = 3;
                 settings.left.Rows[i++].Cells[0].Value = FormText.specification[24];
                 settings.left.Rows[i++].Cells[0].Value = FormText.specification[25];
@@ -56,6 +56,18 @@ namespace WindowsForms
                 settings.left.Rows[i++].Cells[0].Value = FormText.engraving[30];
                 settings.left.Rows[i++].Cells[0].Value = FormText.engraving[32];
                 settings.left.Rows[i++].Cells[0].Value = FormText.engraving[26];
+            }
+            if (settings.typeForm == TypeForm.printing)
+            {
+                settings.left.Columns[0].HeaderText = FormText.name[14];
+                settings.left.RowCount = 7;
+                settings.left.Rows[i++].Cells[0].Value = FormText.printing[1];
+                settings.left.Rows[i++].Cells[0].Value = FormText.printing[14];
+                settings.left.Rows[i++].Cells[0].Value = FormText.printing[27];
+                settings.left.Rows[i++].Cells[0].Value = FormText.printing[2];
+                settings.left.Rows[i++].Cells[0].Value = FormText.printing[24];
+                settings.left.Rows[i++].Cells[0].Value = FormText.printing[18];
+                settings.left.Rows[i++].Cells[0].Value = FormText.printing[22];
             }
         }
 
@@ -146,7 +158,8 @@ namespace WindowsForms
                     settings.right.DataSource = sqlQuery.GetArrayList(table);
                     settings.right.Columns[0].Visible = false;
                     settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
-                    for(int i = 0; i < 5; i++)
+                    settings.right.Columns[1].Width = 200;
+                    for (int i = 0; i < 5; i++)
                         settings.right.Columns[i + 2].HeaderText = FormText.engraving[i + 33];
                     settings.right.Columns[7].HeaderText = FormText.engraving[39];
                 }
@@ -158,6 +171,80 @@ namespace WindowsForms
                     settings.right.Columns[2].HeaderText = FormText.engraving[50];
                     settings.right.Columns[3].HeaderText = FormText.engraving[2];
                     settings.right.Columns[4].HeaderText = FormText.engraving[3];
+                }
+            }
+            if (settings.typeForm == TypeForm.printing)
+            {
+                switch (settings.left.CurrentRow.Index)
+                {
+                    case 0: table = SqlPrinting.TrialPrintingAngle.ToString(); break;
+                    case 1: table = SqlPrinting.TrialPrintingMaterial.ToString(); break;
+                    case 2: table = SqlPrinting.TrialPrintingPaint.ToString(); break;
+                    case 3: table = SqlPrinting.TrialPrintingPantone.ToString(); break;
+                    case 4: table = SqlPrinting.TrialPrintingPrintOptions.ToString(); break;
+                    case 5: table = SqlPrinting.TrialPrintingPrintSettings.ToString(); break;
+                    case 6: table = SqlPrinting.TrialPrintingTime.ToString(); break;
+                }
+                if (table == SqlPrinting.TrialPrintingAngle.ToString())
+                {
+                    settings.right.DataSource = sqlQuery.GetArrayList(table);
+                    settings.right.Columns[0].Visible = false;
+                    settings.right.Columns[1].HeaderText = FormText.specification[38];
+                    settings.right.Columns[2].HeaderText = FormText.printing[17];
+                    settings.right.Columns[3].HeaderText = FormText.printing[16];
+                }
+                if (table == SqlPrinting.TrialPrintingMaterial.ToString())
+                {
+                    settings.right.DataSource = sqlQuery.GetArrayList(table);
+                    settings.right.Columns[0].Visible = false;
+                    settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
+                    settings.right.Columns[2].HeaderText = FormText.printing[15];
+                }
+                if (table == SqlPrinting.TrialPrintingPaint.ToString())
+                {
+                    settings.right.DataSource = sqlQuery.GetArrayList(table);
+                    settings.right.Columns[0].Visible = false;
+                    settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
+                    settings.right.Columns[2].HeaderText = FormText.printing[28];
+                    settings.right.Columns[3].HeaderText = FormText.printing[8];
+                    settings.right.Columns[4].HeaderText = FormText.printing[54];
+                    settings.right.Columns[5].HeaderText = FormText.printing[25];
+                }
+                if (table == SqlPrinting.TrialPrintingPantone.ToString())
+                {
+                    settings.right.DataSource = sqlQuery.GetArrayList(table);
+                    settings.right.Columns[0].Visible = false;
+                    settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
+                    settings.right.Columns[1].Width = 200;
+                    for (int i = 0; i < 18; i++)
+                    {
+                        settings.right.Columns[i + 2].HeaderText = System.Text.RegularExpressions.Regex.Replace(FormText.printing[i + 29], @"(\w)", "$1" + Environment.NewLine).Trim();
+                        settings.right.Columns[i + 2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+                }
+                if (table == SqlPrinting.TrialPrintingPrintOptions.ToString())
+                {
+                    settings.right.DataSource = sqlQuery.GetArrayList(table);
+                    for (int i = 0; i < settings.right.ColumnCount; i++)
+                        if(i != 1)
+                            settings.right.Columns[i].Visible = false;
+                    settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
+                }
+                if (table == SqlPrinting.TrialPrintingPrintSettings.ToString())
+                {
+                    settings.right.DataSource = sqlQuery.GetArrayList(table);
+                    settings.right.Columns[0].Visible = false;
+                    settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
+                    settings.right.Columns[2].HeaderText = FormText.printing[19];
+                    settings.right.Columns[3].HeaderText = FormText.printing[21];
+                    settings.right.Columns[4].HeaderText = FormText.printing[20];
+                }
+                if (table == SqlPrinting.TrialPrintingTime.ToString())
+                {
+                    settings.right.DataSource = sqlQuery.GetArrayList(table);
+                    settings.right.Columns[0].Visible = false;
+                    settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
+                    settings.right.Columns[2].HeaderText = FormText.printing[23];
                 }
             }
         }
