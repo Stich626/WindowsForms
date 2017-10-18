@@ -24,11 +24,10 @@ namespace WindowsForms
         public FormType(Form form)
         {
             form.SuspendLayout();
-            form.AutoScaleDimensions = new SizeF(8F, 16F);
-            form.AutoScaleMode = AutoScaleMode.Font;
-            form.AutoScroll = true;
-            form.ResumeLayout(false);
-            form.Padding = new Padding(0);
+            //form.AutoScaleDimensions = new SizeF(8F, 16F);
+            //form.AutoScaleMode = AutoScaleMode.Font;
+
+
             if (form is Main)
             {
                 form.IsMdiContainer = true;
@@ -41,13 +40,21 @@ namespace WindowsForms
                 form.MdiParent = mdiParent;
                 form.MaximizeBox = false;
                 form.StartPosition = FormStartPosition.Manual;
+                form.Padding = new Padding(0);
+                form.AutoScroll = true;
             }
             if (form is Edit)
             {
                 form.MaximizeBox = false;
                 form.StartPosition = FormStartPosition.CenterScreen;
-                form.AutoSize = true;
+                form.AutoSize = false;
+                //form.AutoScroll = false;
+                form.Padding = new Padding(6);
+                form.FormBorderStyle = FormBorderStyle.FixedDialog;
+                form.MaximizeBox = false;
+                form.MinimizeBox = false;
             }
+            form.ResumeLayout(false);
         }
     }
 

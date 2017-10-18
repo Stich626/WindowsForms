@@ -14,10 +14,11 @@ namespace WindowsForms
         public Button button(AnchorStyles anchor, string name)
         {
             Button button = new Button();
-            button.Size = new Size(90, 30);
-            button.Margin = new Padding(1, 10, 1, 10);
+            button.Size = new Size(80, 30);
+            button.Margin = new Padding(3, 3, 3, 3);
             //button.Dock = DockStyle.Fill;
-            button.Anchor = anchor;
+            button.Anchor = anchor | AnchorStyles.Bottom;
+            //button.Anchor = anchor;
             button.Text = name;
             //button.Name = String.Format("button{0}", number);
             button.UseVisualStyleBackColor = true;
@@ -183,7 +184,7 @@ namespace WindowsForms
                 tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel.RowCount = row + 1;
             for (int i = 0; i < tableLayoutPanel.RowCount; i++)
-                tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize, 50F));
+                tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             return tableLayoutPanel;
         }
 
