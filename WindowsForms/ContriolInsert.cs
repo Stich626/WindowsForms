@@ -42,8 +42,8 @@ namespace WindowsForms
 
         private void application(Document form)
         {
-            int[] Column = { 50, 50, 50 };
-            TableLayoutPanel tableLayoutPanel = control.tableLayoutPanel(Column, 37);
+            int[] column = { 50, 50, 50 };
+            TableLayoutPanel tableLayoutPanel = control.tableLayoutPanel(column, 37);
             //
             //размещение заголовков
             //
@@ -69,12 +69,12 @@ namespace WindowsForms
 
         private void specification(Document form)
         {
-            int[] Column1 = { 50, 50, 50 };
-            TableLayoutPanel tableLayoutPanel1 = control.tableLayoutPanel(Column1, 21);     
-            int[] Column2 = { 1, 3, 2, 2, 4, 1, 3, 2, 2, 4 };
-            TableLayoutPanel tableLayoutPanel2 = control.tableLayoutPanel(Column2, 11);
-            int[] Row = { 22, 11 };
-            TableLayoutPanel tableLayoutPanel3 = control.tableLayoutPanel(1, Row);
+            int[] column1 = { 50, 50, 50 };
+            TableLayoutPanel tableLayoutPanel1 = control.tableLayoutPanel(column1, 21);     
+            int[] column2 = { 1, 3, 2, 2, 4, 1, 3, 2, 2, 4 };
+            TableLayoutPanel tableLayoutPanel2 = control.tableLayoutPanel(column2, 11);
+            int[] row = { 22, 11 };
+            TableLayoutPanel tableLayoutPanel3 = control.tableLayoutPanel(1, row);
             tableLayoutPanel3.Controls.Add(tableLayoutPanel1, 0, 0);
             tableLayoutPanel3.Controls.Add(tableLayoutPanel2, 0, 1);
             //
@@ -108,16 +108,16 @@ namespace WindowsForms
 
         private void engraving(Document form)
         {                   
-            int[] Column1 = { 50, 50, 50 };
-            TableLayoutPanel tableLayoutPanel1 = control.tableLayoutPanel(Column1, 25);
-            int[] Column2 = { 1, 5, 4, 2, 2, 2, 2, 2, 2 };
-            TableLayoutPanel tableLayoutPanel2 = control.tableLayoutPanel(Column2, 42);
-            int[] Column3 = Column2;
-            TableLayoutPanel tableLayoutPanel3 = control.tableLayoutPanel(Column3, 22);
-            int[] Column4 = { 1, 4 };
-            TableLayoutPanel tableLayoutPanel4 = control.tableLayoutPanel(Column4, 10);
-            int[] Row = { 22, 20 };
-            TableLayoutPanel tableLayoutPanel5 = control.tableLayoutPanel(1, Row);
+            int[] column1 = { 50, 50, 50 };
+            TableLayoutPanel tableLayoutPanel1 = control.tableLayoutPanel(column1, 25);
+            int[] column2 = { 1, 5, 4, 2, 2, 2, 2, 2, 2 };
+            TableLayoutPanel tableLayoutPanel2 = control.tableLayoutPanel(column2, 42);
+            int[] column3 = column2;
+            TableLayoutPanel tableLayoutPanel3 = control.tableLayoutPanel(column3, 22);
+            int[] column4 = { 1, 4 };
+            TableLayoutPanel tableLayoutPanel4 = control.tableLayoutPanel(column4, 10);
+            int[] row = { 22, 20 };
+            TableLayoutPanel tableLayoutPanel5 = control.tableLayoutPanel(1, row);
             tableLayoutPanel5.Controls.Add(tableLayoutPanel3, 0, 0);
             tableLayoutPanel5.Controls.Add(tableLayoutPanel4, 0, 1);
             TabControl tabControl = control.tabControl();
@@ -207,22 +207,22 @@ namespace WindowsForms
 
         private void printing(Document form)
         {
-            int[] Column1 = { 50, 50, 50 };
-            TableLayoutPanel tableLayoutPanel1 = this.control.tableLayoutPanel(Column1, 22);
-            int[] Column2 = { 3, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-            TableLayoutPanel tableLayoutPanel2 = this.control.tableLayoutPanel(Column2, 27);
+            int[] column1 = { 50, 50, 50 };
+            TableLayoutPanel tableLayoutPanel1 = this.control.tableLayoutPanel(column1, 22);
+            int[] column2 = { 3, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+            TableLayoutPanel tableLayoutPanel2 = this.control.tableLayoutPanel(column2, 27);
             tableLayoutPanel2.RowStyles.Insert(1, new RowStyle(SizeType.Percent, 380));
-            int[] Column3 = { 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-            TableLayoutPanel tableLayoutPanel3 = this.control.tableLayoutPanel(Column3, 27);
+            int[] column3 = { 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+            TableLayoutPanel tableLayoutPanel3 = this.control.tableLayoutPanel(column3, 27);
             tableLayoutPanel3.RowStyles.Insert(1, new RowStyle(SizeType.Percent, 380));
-            int[] Column4 = Column3;
-            TableLayoutPanel tableLayoutPanel4 = this.control.tableLayoutPanel(Column4, 27);
+            int[] column4 = column3;
+            TableLayoutPanel tableLayoutPanel4 = this.control.tableLayoutPanel(column4, 27);
             tableLayoutPanel4.RowStyles.Insert(1, new RowStyle(SizeType.Percent, 380));
-            int[] Row5 = { 8, 230, 2 };
-            TableLayoutPanel tableLayoutPanel5 = this.control.tableLayoutPanel(1, Row5);
+            int[] row5 = { 8, 230, 2 };
+            TableLayoutPanel tableLayoutPanel5 = this.control.tableLayoutPanel(1, row5);
             tableLayoutPanel5.Controls.Add(tableLayoutPanel2, 0, 1);
-            int[] Column6 = { 17, 14 };
-            TableLayoutPanel tableLayoutPanel6 = this.control.tableLayoutPanel(Column6, 1);
+            int[] column6 = { 17, 14 };
+            TableLayoutPanel tableLayoutPanel6 = this.control.tableLayoutPanel(column6, 1);
             tableLayoutPanel6.Controls.Add(tableLayoutPanel5, 0, 0);
             TabControl tabControl2 = this.control.tabControl();
             tableLayoutPanel6.Controls.Add(tabControl2, 1, 0);
@@ -283,8 +283,8 @@ namespace WindowsForms
 
         private void settings(Settings form)
         {
-            int[] Column = { 50, 50 };
-            TableLayoutPanel tableLayoutPanel = control.tableLayoutPanel(Column, 1);
+            int[] column = { 50, 50 };
+            TableLayoutPanel tableLayoutPanel = control.tableLayoutPanel(column, 1);
             tableLayoutPanel.Controls.Add(form.left, 0, 0);
             tableLayoutPanel.Controls.Add(form.right, 1, 0);
             form.Controls.Add(tableLayoutPanel);
@@ -295,14 +295,16 @@ namespace WindowsForms
             if (FormType.mdiParent.ActiveMdiChild is Settings)
             {
                 //int index = 0;
-                TableLayoutPanel tableLayoutPanel = control.tableLayoutPanel(2, 0);
+                int[] column = { 50, 50 };
+                TableLayoutPanel tableLayoutPanel = control.tableLayoutPanel(2, 3);
+                tableLayoutPanel.Padding = new Padding(10, 10, 10, 10);
                 for (int i = 0; i < form.name.Count; i++)
-                    control.tableLayoutPanel(tableLayoutPanel, 0, i, form.name[i]);
+                    tableLayoutPanel.Controls.Add(form.name[i], 0, i);
                 for (int i = 0; i < form.edit.Count; i++)
-                    control.tableLayoutPanel(tableLayoutPanel, 1, i, form.edit[i]);
+                    tableLayoutPanel.Controls.Add(form.edit[i], 1, i);
                 form.Controls.Add(tableLayoutPanel);
-                control.tableLayoutPanel(tableLayoutPanel, 0, tableLayoutPanel.RowCount, form.button[0]);
-                control.tableLayoutPanel(tableLayoutPanel, 1, tableLayoutPanel.RowCount, form.button[1]);
+                tableLayoutPanel.Controls.Add(form.button[0], 0, tableLayoutPanel.RowCount - 2);
+                tableLayoutPanel.Controls.Add(form.button[1], 1, tableLayoutPanel.RowCount - 2);
             }
         }
     }

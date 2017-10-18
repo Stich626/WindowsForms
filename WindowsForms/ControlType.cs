@@ -11,21 +11,17 @@ namespace WindowsForms
 {
     class ControlType
     {
-        public Button button(int number)
+        public Button button(AnchorStyles anchor, string name)
         {
             Button button = new Button();
-            button.Size = new Size(75, 23);
-            //button.Text = button.Name;
-            button.Name = String.Format("button{0}", number);
+            button.Size = new Size(90, 30);
+            button.Margin = new Padding(1, 10, 1, 10);
+            //button.Dock = DockStyle.Fill;
+            button.Anchor = anchor;
+            button.Text = name;
+            //button.Name = String.Format("button{0}", number);
             button.UseVisualStyleBackColor = true;
             return button;
-        }
-
-        private Control toolTip(Control control)
-        {
-            ToolTip toolTip = new ToolTip();
-            toolTip.SetToolTip(control, control.Name);
-            return control;
         }
 
         public RadioButton radioButton(int number)
@@ -83,13 +79,24 @@ namespace WindowsForms
             return (TextBox)toolTip(textBox);
         }
 
+        public TextBox textBox(int number)
+        {
+            TextBox textBox = new TextBox();
+            textBox.Name = String.Format("textBox{0}", number);
+            //textBox.Text = textBox.Name;
+            textBox.BorderStyle = BorderStyle.FixedSingle;
+            textBox.Margin = new Padding(3, 0, 3, 0);
+            textBox.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            return (TextBox)toolTip(textBox);
+        }
+
         public DateTimePicker dateTimePicker(int number)
         {
             DateTimePicker dateTimePicker = new DateTimePicker();
             dateTimePicker.Name = String.Format("dateTimePicker{0}", number);
             dateTimePicker.Format = DateTimePickerFormat.Custom;
             dateTimePicker.Margin = new Padding(0);
-            dateTimePicker.Dock = DockStyle.Fill; Panel panel = new Panel();
+            dateTimePicker.Dock = DockStyle.Fill;
             return (DateTimePicker)toolTip(dateTimePicker);
         }
 
@@ -211,19 +218,19 @@ namespace WindowsForms
             return panel;
         }
 
-        public Panel panel(TextBox textBox)
-        {
-            Panel panel = new Panel();
-            panel.Controls.Add(textBox);
-            panel.Anchor = (AnchorStyles.Left | AnchorStyles.Right);
-            panel.ClientSize = new Size(textBox.Size.Width, textBox.Size.Height + 4);
-            panel.BackColor = Color.White;
-            panel.BorderStyle = BorderStyle.FixedSingle;
-            panel.Margin = new Padding(1);
-            return panel;
-        }
+        //public Panel panel(TextBox textBox)
+        //{
+        //    Panel panel = new Panel();
+        //    panel.Controls.Add(textBox);
+        //    panel.Anchor = (AnchorStyles.Left | AnchorStyles.Right);
+        //    panel.ClientSize = new Size(textBox.Size.Width, textBox.Size.Height + 4);
+        //    panel.BackColor = Color.White;
+        //    panel.BorderStyle = BorderStyle.FixedSingle;
+        //    panel.Margin = new Padding(1);
+        //    return panel;
+        //}
 
-        private Panel panel(Control control)
+        public Panel panel(Control control)
         {
             Panel panel = new Panel();
             if (control is TextBox)
@@ -241,11 +248,18 @@ namespace WindowsForms
             tableLayoutPanel.Dock = DockStyle.Fill;
             tableLayoutPanel.RowCount = 3;
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel.RowStyles.Add(new RowStyle());
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel.Controls.Add(control, 0, 1);
             panel.Controls.Add(tableLayoutPanel);
             return panel;
+        }
+
+        private Control toolTip(Control control)
+        {
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(control, control.Name);
+            return control;
         }
     }   
 }

@@ -252,11 +252,11 @@ namespace WindowsForms
             {
                 Settings settings = (Settings)FormType.mdiParent.ActiveMdiChild;
                 for (int i = 0; i < settings.right.ColumnCount - 1; i++)
-                    edit.name.Add(control.label(1));
+                    edit.name.Add(control.label(0));
                 for (int i = 0; i < settings.right.ColumnCount - 1; i++)
-                    edit.edit.Add(control.textBox(1, false));
-                edit.button.Add(control.button(1));
-                edit.button.Add(control.button(2));
+                    edit.edit.Add(control.textBox(0));
+                edit.button.Add(control.button(AnchorStyles.Right, "Да"));
+                edit.button.Add(control.button(AnchorStyles.Left, "Нет"));
             }
         }
     }
