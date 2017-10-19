@@ -45,10 +45,9 @@ namespace WindowsForms
             }
             if (form is Edit)
             {
-                form.MaximizeBox = false;
                 form.StartPosition = FormStartPosition.CenterScreen;
-                form.AutoSize = false;
-                //form.AutoScroll = false;
+                //form.AutoSize = true;
+                form.AutoScroll = false;
                 form.Padding = new Padding(6);
                 form.FormBorderStyle = FormBorderStyle.FixedDialog;
                 form.MaximizeBox = false;
@@ -130,7 +129,7 @@ namespace WindowsForms
         public List<Label> name = new List<Label>();
         public List<Control> edit = new List<Control>();
         public List<Button> button = new List<Button>();
-        MenuFile menu;
+        public MenuFile menu;
 
         public Edit(Form form, MenuFile Menu)
         {

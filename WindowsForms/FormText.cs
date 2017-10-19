@@ -14,7 +14,7 @@ namespace WindowsForms
     {
         private static Language lang = Language.Ru;
         private static string path;
-        public static string[] name, filter, main, application, engraving, specification, printing;
+        public static string[] name, filter, main, application, engraving, specification, printing, edit;
 
         public FormText(Language Lang)
         {
@@ -32,6 +32,7 @@ namespace WindowsForms
                 engraving = arrEmty("engraving");
                 specification = arrEmty("specification");
                 printing = arrEmty("printing");
+                edit = arrEmty("edit");
             }
             catch
             {
@@ -312,10 +313,12 @@ namespace WindowsForms
             form.name[50].Text = printing[27];
         }
 
-        private void editSettings(Edit edit, Settings settings)
+        private void editSettings(Edit form, Settings settings)
         {
             for (int i = 0; i < settings.right.ColumnCount - 1; i++)
-                edit.name[0].Text = settings.right.Columns[1].HeaderText;
+                form.name[i].Text = settings.right.Columns[i + 1].HeaderText;
+            form.button[0].Text = edit[1];
+            form.button[1].Text = edit[2];
         }
     }
 }

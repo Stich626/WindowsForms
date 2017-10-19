@@ -11,15 +11,12 @@ namespace WindowsForms
 {
     class ControlType
     {
-        public Button button(AnchorStyles anchor, string name)
+        public Button button(AnchorStyles anchor)
         {
             Button button = new Button();
             button.Size = new Size(80, 30);
             button.Margin = new Padding(3, 3, 3, 3);
-            //button.Dock = DockStyle.Fill;
             button.Anchor = anchor | AnchorStyles.Bottom;
-            //button.Anchor = anchor;
-            button.Text = name;
             //button.Name = String.Format("button{0}", number);
             button.UseVisualStyleBackColor = true;
             return button;
@@ -218,18 +215,6 @@ namespace WindowsForms
             panel.Location = new Point(0, 0);
             return panel;
         }
-
-        //public Panel panel(TextBox textBox)
-        //{
-        //    Panel panel = new Panel();
-        //    panel.Controls.Add(textBox);
-        //    panel.Anchor = (AnchorStyles.Left | AnchorStyles.Right);
-        //    panel.ClientSize = new Size(textBox.Size.Width, textBox.Size.Height + 4);
-        //    panel.BackColor = Color.White;
-        //    panel.BorderStyle = BorderStyle.FixedSingle;
-        //    panel.Margin = new Padding(1);
-        //    return panel;
-        //}
 
         public Panel panel(Control control)
         {

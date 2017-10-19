@@ -131,6 +131,7 @@
     <Content Include="Resources\Image\TrialPrintingRegistry.png" />
     <Content Include="Resources\Image\Vertical.png" />
     <Content Include="Resources\Text\Ru\application.txt" />
+    <Content Include="Resources\Text\Ru\edit.txt" />
     <Content Include="Resources\Text\Ru\specification.txt" />
     <Content Include="Resources\Text\Ru\name.txt" />
     <Content Include="Resources\Text\Ru\main.txt" />

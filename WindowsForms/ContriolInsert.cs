@@ -295,27 +295,33 @@ namespace WindowsForms
             if (FormType.mdiParent.ActiveMdiChild is Settings)
             {
                 Settings settings = (Settings)FormType.mdiParent.ActiveMdiChild;
-                if (settings.typeForm == TypeForm.application)
-                {
-                    TableLayoutPanel tableLayoutPanel1 = control.tableLayoutPanel(1, 1);
-                    tableLayoutPanel1.AutoSize = true;
-                    TableLayoutPanel tableLayoutPanel2 = control.tableLayoutPanel(2, form.name.Count);
-                    tableLayoutPanel2.AutoSize = true;
-                    TableLayoutPanel tableLayoutPanel3 = control.tableLayoutPanel(form.button.Count, 0);
-                    tableLayoutPanel3.AutoSize = true;
-                    tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 0);
-                    tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 0, 1);
-                    for (int i = 0; i < form.name.Count; i++)
-                        tableLayoutPanel2.Controls.Add(form.name[i], 0, i);
-                    for (int i = 0; i < form.edit.Count; i++)
-                        tableLayoutPanel2.Controls.Add(form.edit[i], 1, i);
-                    tableLayoutPanel3.Controls.Add(form.button[0], 0, 0);
-                    tableLayoutPanel3.Controls.Add(form.button[1], 1, 0);
-                    form.Size = new Size(form.Size.Width, (form.Size.Height - form.ClientSize.Height) + (tableLayoutPanel1.Size.Height + form.Padding.Top + form.Padding.Left));
-                    form.MaximumSize = form.Size;
-                    form.MinimumSize = form.MaximumSize;
-                    form.Controls.Add(tableLayoutPanel1);
-                }
+                //if (settings.typeForm == TypeForm.application)
+                //{
+                TableLayoutPanel tableLayoutPanel1 = control.tableLayoutPanel(1, 1);
+                tableLayoutPanel1.AutoSize = true;
+                tableLayoutPanel1.AutoScroll = false;
+                tableLayoutPanel1.Dock = DockStyle.Top;
+                tableLayoutPanel1.BorderStyle = BorderStyle.FixedSingle;
+                TableLayoutPanel tableLayoutPanel2 = control.tableLayoutPanel(2, form.name.Count);
+                tableLayoutPanel2.AutoSize = true;
+                //tableLayoutPanel2.AutoScroll = false;
+                TableLayoutPanel tableLayoutPanel3 = control.tableLayoutPanel(form.button.Count, 0);
+                tableLayoutPanel3.AutoSize = true;
+                tableLayoutPanel3.AutoScroll = false;
+                tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 0);
+                tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 0, 1);
+                for (int i = 0; i < form.name.Count; i++)
+                    tableLayoutPanel2.Controls.Add(form.name[i], 0, i);
+                for (int i = 0; i < form.edit.Count; i++)
+                    tableLayoutPanel2.Controls.Add(form.edit[i], 1, i);
+                tableLayoutPanel3.Controls.Add(form.button[0], 0, 0);
+                tableLayoutPanel3.Controls.Add(form.button[1], 1, 0);
+                form.Controls.Add(tableLayoutPanel1);
+                form.Size = new Size(form.Size.Width, (form.Size.Height - form.ClientSize.Height) + (tableLayoutPanel1.Size.Height + form.Padding.Top + form.Padding.Left));
+                form.MaximumSize = form.Size;
+                form.MinimumSize = form.MaximumSize;
+
+                //}
             }
         }
     }

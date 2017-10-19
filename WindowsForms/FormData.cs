@@ -10,65 +10,15 @@ namespace WindowsForms
     class FormData
     {
         SqlQuery sqlQuery = new SqlQuery();
-        private Form form;
 
-        public FormData(Form Form)
+        public FormData(Form form)
         {
-            form = Form;
             //if (form is Registry)
             //   
             if (form is Settings)
                 settingsText((Settings)form);
-        }
-
-        private void settingsText(Settings settings)
-        {
-            int i = 0;
-            if (settings.typeForm == TypeForm.application)
-            {
-                settings.left.Columns[0].HeaderText = FormText.name[11];
-                settings.left.RowCount = 11;
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[3];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[5];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[6];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[9];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[10];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[11];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[12];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[19];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[20];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[26];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[24];
-            }
-            if (settings.typeForm == TypeForm.specification)
-            {
-                settings.left.Columns[0].HeaderText = FormText.name[12];
-                settings.left.RowCount = 3;
-                settings.left.Rows[i++].Cells[0].Value = FormText.specification[24];
-                settings.left.Rows[i++].Cells[0].Value = FormText.specification[25];
-                settings.left.Rows[i++].Cells[0].Value = FormText.specification[37];
-            }
-            if (settings.typeForm == TypeForm.engraving)
-            {
-                settings.left.Columns[0].HeaderText = FormText.name[13];
-                settings.left.RowCount = 4;
-                settings.left.Rows[i++].Cells[0].Value = FormText.engraving[31];
-                settings.left.Rows[i++].Cells[0].Value = FormText.engraving[30];
-                settings.left.Rows[i++].Cells[0].Value = FormText.engraving[32];
-                settings.left.Rows[i++].Cells[0].Value = FormText.engraving[26];
-            }
-            if (settings.typeForm == TypeForm.printing)
-            {
-                settings.left.Columns[0].HeaderText = FormText.name[14];
-                settings.left.RowCount = 7;
-                settings.left.Rows[i++].Cells[0].Value = FormText.printing[1];
-                settings.left.Rows[i++].Cells[0].Value = FormText.printing[14];
-                settings.left.Rows[i++].Cells[0].Value = FormText.printing[27];
-                settings.left.Rows[i++].Cells[0].Value = FormText.printing[2];
-                settings.left.Rows[i++].Cells[0].Value = FormText.printing[24];
-                settings.left.Rows[i++].Cells[0].Value = FormText.printing[18];
-                settings.left.Rows[i++].Cells[0].Value = FormText.printing[22];
-            }
+            if (form is Edit)
+                editText((Edit)form);
         }
 
         public FormData(Settings settings)
@@ -246,6 +196,68 @@ namespace WindowsForms
                     settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
                     settings.right.Columns[2].HeaderText = FormText.printing[23];
                 }
+            }
+        }
+
+        private void editText(Edit edit)
+        {
+            if(edit.menu == MenuFile.edit)
+            {
+
+            }
+            if (edit.menu == MenuFile.clean)
+            {
+
+            }
+        }
+
+        private void settingsText(Settings settings)
+        {
+            int i = 0;
+            if (settings.typeForm == TypeForm.application)
+            {
+                settings.left.Columns[0].HeaderText = FormText.name[11];
+                settings.left.RowCount = 11;
+                settings.left.Rows[i++].Cells[0].Value = FormText.application[3];
+                settings.left.Rows[i++].Cells[0].Value = FormText.application[5];
+                settings.left.Rows[i++].Cells[0].Value = FormText.application[6];
+                settings.left.Rows[i++].Cells[0].Value = FormText.application[9];
+                settings.left.Rows[i++].Cells[0].Value = FormText.application[10];
+                settings.left.Rows[i++].Cells[0].Value = FormText.application[11];
+                settings.left.Rows[i++].Cells[0].Value = FormText.application[12];
+                settings.left.Rows[i++].Cells[0].Value = FormText.application[19];
+                settings.left.Rows[i++].Cells[0].Value = FormText.application[20];
+                settings.left.Rows[i++].Cells[0].Value = FormText.application[26];
+                settings.left.Rows[i++].Cells[0].Value = FormText.application[24];
+            }
+            if (settings.typeForm == TypeForm.specification)
+            {
+                settings.left.Columns[0].HeaderText = FormText.name[12];
+                settings.left.RowCount = 3;
+                settings.left.Rows[i++].Cells[0].Value = FormText.specification[24];
+                settings.left.Rows[i++].Cells[0].Value = FormText.specification[25];
+                settings.left.Rows[i++].Cells[0].Value = FormText.specification[37];
+            }
+            if (settings.typeForm == TypeForm.engraving)
+            {
+                settings.left.Columns[0].HeaderText = FormText.name[13];
+                settings.left.RowCount = 4;
+                settings.left.Rows[i++].Cells[0].Value = FormText.engraving[31];
+                settings.left.Rows[i++].Cells[0].Value = FormText.engraving[30];
+                settings.left.Rows[i++].Cells[0].Value = FormText.engraving[32];
+                settings.left.Rows[i++].Cells[0].Value = FormText.engraving[26];
+            }
+            if (settings.typeForm == TypeForm.printing)
+            {
+                settings.left.Columns[0].HeaderText = FormText.name[14];
+                settings.left.RowCount = 7;
+                settings.left.Rows[i++].Cells[0].Value = FormText.printing[1];
+                settings.left.Rows[i++].Cells[0].Value = FormText.printing[14];
+                settings.left.Rows[i++].Cells[0].Value = FormText.printing[27];
+                settings.left.Rows[i++].Cells[0].Value = FormText.printing[2];
+                settings.left.Rows[i++].Cells[0].Value = FormText.printing[24];
+                settings.left.Rows[i++].Cells[0].Value = FormText.printing[18];
+                settings.left.Rows[i++].Cells[0].Value = FormText.printing[22];
             }
         }
     }

@@ -255,8 +255,8 @@ namespace WindowsForms
                     edit.name.Add(control.label(0));
                 for (int i = 0; i < settings.right.ColumnCount - 1; i++)
                     edit.edit.Add(control.textBox(0));
-                edit.button.Add(control.button(AnchorStyles.Right, "Да"));
-                edit.button.Add(control.button(AnchorStyles.Left, "Нет"));
+                edit.button.Add(control.button(AnchorStyles.Right));
+                edit.button.Add(control.button(AnchorStyles.Left));
             }
         }
     }
