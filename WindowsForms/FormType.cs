@@ -24,9 +24,9 @@ namespace WindowsForms
         public FormType(Form form)
         {
             form.SuspendLayout();
+
             //form.AutoScaleDimensions = new SizeF(8F, 16F);
             //form.AutoScaleMode = AutoScaleMode.Font;
-
 
             if (form is Main)
             {
@@ -46,7 +46,6 @@ namespace WindowsForms
             if (form is Edit)
             {
                 form.StartPosition = FormStartPosition.CenterScreen;
-                //form.AutoSize = true;
                 form.AutoScroll = false;
                 form.Padding = new Padding(6);
                 form.FormBorderStyle = FormBorderStyle.FixedDialog;

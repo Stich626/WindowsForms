@@ -83,7 +83,7 @@ namespace WindowsForms
             textBox.Name = String.Format("textBox{0}", number);
             //textBox.Text = textBox.Name;
             textBox.BorderStyle = BorderStyle.FixedSingle;
-            textBox.Margin = new Padding(3, 0, 3, 0);
+            textBox.Margin = new Padding(3, 2, 3, 1);
             textBox.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             return (TextBox)toolTip(textBox);
         }

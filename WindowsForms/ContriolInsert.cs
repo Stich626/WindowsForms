@@ -295,16 +295,12 @@ namespace WindowsForms
             if (FormType.mdiParent.ActiveMdiChild is Settings)
             {
                 Settings settings = (Settings)FormType.mdiParent.ActiveMdiChild;
-                //if (settings.typeForm == TypeForm.application)
-                //{
                 TableLayoutPanel tableLayoutPanel1 = control.tableLayoutPanel(1, 1);
                 tableLayoutPanel1.AutoSize = true;
                 tableLayoutPanel1.AutoScroll = false;
                 tableLayoutPanel1.Dock = DockStyle.Top;
-                tableLayoutPanel1.BorderStyle = BorderStyle.FixedSingle;
                 TableLayoutPanel tableLayoutPanel2 = control.tableLayoutPanel(2, form.name.Count);
                 tableLayoutPanel2.AutoSize = true;
-                //tableLayoutPanel2.AutoScroll = false;
                 TableLayoutPanel tableLayoutPanel3 = control.tableLayoutPanel(form.button.Count, 0);
                 tableLayoutPanel3.AutoSize = true;
                 tableLayoutPanel3.AutoScroll = false;
@@ -317,11 +313,13 @@ namespace WindowsForms
                 tableLayoutPanel3.Controls.Add(form.button[0], 0, 0);
                 tableLayoutPanel3.Controls.Add(form.button[1], 1, 0);
                 form.Controls.Add(tableLayoutPanel1);
-                form.Size = new Size(form.Size.Width, (form.Size.Height - form.ClientSize.Height) + (tableLayoutPanel1.Size.Height + form.Padding.Top + form.Padding.Left));
+                //
+                //размеры и прокрутка формы
+                //
+                tableLayoutPanel2.MaximumSize = new Size(tableLayoutPanel2.Size.Width, (form.ClientSize.Height - tableLayoutPanel3.Size.Height - (form.Padding.Top + form.Padding.Left)));
+                form.Size = new Size(form.Size.Width, (form.Size.Height - form.ClientSize.Height) + (tableLayoutPanel1.Size.Height + form.Padding.Top + form.Padding.Left));                
                 form.MaximumSize = form.Size;
                 form.MinimumSize = form.MaximumSize;
-
-                //}
             }
         }
     }

@@ -16,9 +16,9 @@ namespace WindowsForms
             //if (form is Registry)
             //   
             if (form is Settings)
-                settingsText((Settings)form);
+                settingsData((Settings)form);
             if (form is Edit)
-                editText((Edit)form);
+                editData((Edit)form);
         }
 
         public FormData(Settings settings)
@@ -197,21 +197,25 @@ namespace WindowsForms
                     settings.right.Columns[2].HeaderText = FormText.printing[23];
                 }
             }
+            settings.right.CurrentCell = settings.right[1, 0];
         }
 
-        private void editText(Edit edit)
+        private void editData(Edit edit)
         {
-            if(edit.menu == MenuFile.edit)
+            if (FormType.mdiParent.ActiveMdiChild is Settings)
             {
-
-            }
-            if (edit.menu == MenuFile.clean)
-            {
-
+                Settings settings = FormType.mdiParent.ActiveMdiChild as Settings;
+                for (int i = 0; i < settings.right.ColumnCount - 1; i++)
+                {
+                    if (edit.menu != MenuFile.add)
+                        edit.edit[i].Text = settings.right[i + 1, settings.right.CurrentRow.Index].Value.ToString();
+                    if (edit.menu == MenuFile.clean)
+                        edit.edit[i].Enabled = false;
+                }
             }
         }
 
-        private void settingsText(Settings settings)
+        private void settingsData(Settings settings)
         {
             int i = 0;
             if (settings.typeForm == TypeForm.application)
