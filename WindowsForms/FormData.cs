@@ -13,8 +13,8 @@ namespace WindowsForms
 
         public FormData(Form form)
         {
-            //if (form is Registry)
-            //   
+            if (form is Registry)
+                registryData((Registry)form);
             if (form is Settings)
                 settingsData((Settings)form);
             if (form is Edit)
@@ -200,6 +200,18 @@ namespace WindowsForms
             settings.right.CurrentCell = settings.right[1, 0];
         }
 
+        private void registryData(Registry registry)
+        {
+            if (registry.typeForm == TypeForm.application)
+                registry.registry.DataSource = sqlQuery.GetArrayList(SqlApplication.ApplicationRegister.ToString());
+            if (registry.typeForm == TypeForm.specification)
+                registry.registry.DataSource = sqlQuery.GetArrayList(SqlSpecification.SpecificationRegistry.ToString());
+            if (registry.typeForm == TypeForm.engraving)
+                registry.registry.DataSource = sqlQuery.GetArrayList(SqlEngraving.EngravingRegister.ToString());
+            if (registry.typeForm == TypeForm.printing)
+                registry.registry.DataSource = sqlQuery.GetArrayList(SqlPrinting.TrialPrintingRegister.ToString());          
+        }
+
         private void editData(Edit edit)
         {
             if (FormType.mdiParent.ActiveMdiChild is Settings)
@@ -212,6 +224,10 @@ namespace WindowsForms
                     if (edit.menu == MenuFile.clean)
                         edit.edit[i].Enabled = false;
                 }
+            }
+            if (FormType.mdiParent.ActiveMdiChild is Registry)
+            {
+
             }
         }
 

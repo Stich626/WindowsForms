@@ -58,10 +58,7 @@ namespace WindowsForms
                     printingForm(document);
             }
             if (form is Edit)
-            {
-                if (FormType.mdiParent.ActiveMdiChild is Settings)
-                    editSettings((Edit)form, (Settings)FormType.mdiParent.ActiveMdiChild);
-            }
+                editForm((Edit)form);
         }
 
         private string[] arrEmty(string file)
@@ -313,10 +310,25 @@ namespace WindowsForms
             form.name[50].Text = printing[27];
         }
 
-        private void editSettings(Edit form, Settings settings)
+        private void filterForm(Registry form)
         {
-            for (int i = 0; i < settings.right.ColumnCount - 1; i++)
-                form.name[i].Text = settings.right.Columns[i + 1].HeaderText;
+
+        }
+
+        private void editForm(Edit form)
+        {
+            if (FormType.mdiParent.ActiveMdiChild is Settings)
+            {
+                Settings settings = FormType.mdiParent.ActiveMdiChild as Settings;
+                for (int i = 0; i < settings.right.ColumnCount - 1; i++)
+                    form.name[i].Text = settings.right.Columns[i + 1].HeaderText;
+            }
+            if (FormType.mdiParent.ActiveMdiChild is Registry)
+            {
+                Registry registry = FormType.mdiParent.ActiveMdiChild as Registry;
+                for (int i = 0; i < registry.filter.ColumnCount - 1; i++)
+                    form.name[i].Text = registry.filter.Columns[i + 1].HeaderText;
+            }
             form.button[0].Text = edit[1];
             form.button[1].Text = edit[2];
         }

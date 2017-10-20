@@ -232,7 +232,7 @@ namespace WindowsForms
 
         private void registry(Registry form)
         {
-            form.filter = control.dataGridView();
+            form.filter = control.dataGridView(5);
             form.filter.Visible = false;
             form.registry = control.dataGridView();
             form.Controls.Add(form.registry);
@@ -247,17 +247,27 @@ namespace WindowsForms
 
         private void edit(Edit edit)
         {
-            //int number = 0;
+            int number = 0;
             if (FormType.mdiParent.ActiveMdiChild is Settings)
             {
                 Settings settings = (Settings)FormType.mdiParent.ActiveMdiChild;
                 for (int i = 0; i < settings.right.ColumnCount - 1; i++)
-                    edit.name.Add(control.label(0));
+                    edit.name.Add(control.label(number++));
+                number = 0;
                 for (int i = 0; i < settings.right.ColumnCount - 1; i++)
-                    edit.edit.Add(control.textBox(0));
-                edit.button.Add(control.button(AnchorStyles.Right));
-                edit.button.Add(control.button(AnchorStyles.Left));
+                    edit.edit.Add(control.textBox(number++));
             }
+            if (FormType.mdiParent.ActiveMdiChild is Registry)
+            {
+                Registry registry = (Registry)FormType.mdiParent.ActiveMdiChild;
+                for (int i = 0; i < 5; i++)
+                    edit.name.Add(control.label(number++));
+                number = 0;
+                for (int i = 0; i < 5; i++)
+                    edit.edit.Add(control.textBox(number++));
+            }
+            edit.button.Add(control.button(AnchorStyles.Right));
+            edit.button.Add(control.button(AnchorStyles.Left));
         }
     }
 }
