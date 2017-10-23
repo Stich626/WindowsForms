@@ -34,7 +34,7 @@ namespace WindowsForms
                 settings(form as Settings);
             if (form is Edit)
                 edit(form as Edit);
-        } 
+        }
 
         private void application(Document form)
         {
@@ -236,7 +236,7 @@ namespace WindowsForms
             form.filter.Visible = false;
             form.registry = control.dataGridView();
             form.Controls.Add(form.registry);
-            form.Controls.Add(form.filter);          
+            form.Controls.Add(form.filter);
         }
 
         private void settings(Settings form)
@@ -263,8 +263,13 @@ namespace WindowsForms
                 for (int i = 0; i < 5; i++)
                     edit.name.Add(control.label(number++));
                 number = 0;
-                for (int i = 0; i < 5; i++)
-                    edit.edit.Add(control.textBox(number++));
+                for (int i = 0; i < 4; i++)
+                {
+                    ComboBox comboBox = control.comboBox(number++);
+                    comboBox.Margin = new Padding(3, 1, 3, 1);
+                    edit.edit.Add(comboBox);
+                }
+                edit.edit.Add(control.textBox(number++));
             }
             edit.button.Add(control.button(AnchorStyles.Right));
             edit.button.Add(control.button(AnchorStyles.Left));

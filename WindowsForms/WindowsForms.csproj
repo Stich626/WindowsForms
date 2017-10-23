@@ -64,6 +64,7 @@
     <Compile Include="ContriolEvent.cs" />
     <Compile Include="FormInspector.cs" />
     <Compile Include="ContriolInsert.cs" />
+    <Compile Include="FormLogic.cs" />
     <Compile Include="MenuInsert.cs" />
     <Compile Include="MenuType.cs" />
     <Compile Include="MenuEvent.cs" />

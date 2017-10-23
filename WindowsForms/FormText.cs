@@ -25,14 +25,14 @@ namespace WindowsForms
                 path = "Text/Ua/";
             try
             {
-                name = arrEmty("name");
-                filter = arrEmty("filter");
+                name = arrEmty("name");                
                 main = arrEmty("main");
                 application = arrEmty("application");
                 engraving = arrEmty("engraving");
                 specification = arrEmty("specification");
                 printing = arrEmty("printing");
                 edit = arrEmty("edit");
+                filter = File.ReadAllLines(String.Format("{0}filter.txt", path));
             }
             catch
             {
@@ -326,8 +326,8 @@ namespace WindowsForms
             if (FormType.mdiParent.ActiveMdiChild is Registry)
             {
                 Registry registry = FormType.mdiParent.ActiveMdiChild as Registry;
-                for (int i = 0; i < registry.filter.ColumnCount - 1; i++)
-                    form.name[i].Text = registry.filter.Columns[i + 1].HeaderText;
+                for (int i = 0; i < 5; i++)
+                    form.name[i].Text = filter[i];
             }
             form.button[0].Text = edit[1];
             form.button[1].Text = edit[2];

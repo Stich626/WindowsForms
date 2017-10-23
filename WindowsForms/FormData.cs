@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -227,7 +228,24 @@ namespace WindowsForms
             }
             if (FormType.mdiParent.ActiveMdiChild is Registry)
             {
+                Registry registry = FormType.mdiParent.ActiveMdiChild as Registry;
+                ArrayList arrayList = new ArrayList();
+                ComboBox ComboBox = (ComboBox)edit.edit[0];
+                for (int i = 0; i < registry.registry.ColumnCount; i++)
+                    arrayList.Add(registry.registry.Columns[i].HeaderText);
+                ComboBox.DataSource = arrayList;
 
+                //for (int i = 0; i < 5; i++)
+                //{
+                //    if (edit.menu != MenuFile.add)
+                //    {
+                //        new FormLogic(edit);
+                //        edit.edit[i].Text = registry.filter[i + 1, registry.filter.CurrentRow.Index].Value.ToString();
+
+                    //    }
+                    //    if (edit.menu == MenuFile.clean)
+                    //        edit.edit[i].Enabled = false;
+                    //}
             }
         }
 
