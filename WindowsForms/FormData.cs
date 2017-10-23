@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -201,6 +202,17 @@ namespace WindowsForms
             settings.right.CurrentCell = settings.right[1, 0];
         }
 
+        public FormData(Edit edit)
+        {
+            Registry registry = FormType.mdiParent.ActiveMdiChild as Registry;
+            ArrayList arrayList = new ArrayList();
+            ComboBox comboBox = (ComboBox)edit.edit[2];
+            for (int i = 0; i < registry.registry.RowCount; i++)
+                arrayList.Add(registry.registry[edit.edit[0].Text, i].Value);
+            var list = arrayList.ToArray().Distinct().ToList();
+            comboBox.DataSource = list;
+        }
+
         private void registryData(Registry registry)
         {
             if (registry.typeForm == TypeForm.application)
@@ -215,7 +227,7 @@ namespace WindowsForms
 
         private void editData(Edit edit)
         {
-            if (FormType.mdiParent.ActiveMdiChild is Settings)
+            if (edit.bar == MenuBar.settings)
             {
                 Settings settings = FormType.mdiParent.ActiveMdiChild as Settings;
                 for (int i = 0; i < settings.right.ColumnCount - 1; i++)
@@ -226,26 +238,21 @@ namespace WindowsForms
                         edit.edit[i].Enabled = false;
                 }
             }
-            if (FormType.mdiParent.ActiveMdiChild is Registry)
+            if (edit.bar == MenuBar.registry)
             {
                 Registry registry = FormType.mdiParent.ActiveMdiChild as Registry;
                 ArrayList arrayList = new ArrayList();
-                ComboBox ComboBox = (ComboBox)edit.edit[0];
+                ComboBox comboBox = (ComboBox)edit.edit[0];
                 for (int i = 0; i < registry.registry.ColumnCount; i++)
                     arrayList.Add(registry.registry.Columns[i].HeaderText);
-                ComboBox.DataSource = arrayList;
-
-                //for (int i = 0; i < 5; i++)
-                //{
-                //    if (edit.menu != MenuFile.add)
-                //    {
-                //        new FormLogic(edit);
-                //        edit.edit[i].Text = registry.filter[i + 1, registry.filter.CurrentRow.Index].Value.ToString();
-
-                    //    }
-                    //    if (edit.menu == MenuFile.clean)
-                    //        edit.edit[i].Enabled = false;
-                    //}
+                comboBox.DataSource = arrayList;
+                for (int i = 0; i < 5; i++)
+                {
+                    //if (edit.menu != MenuFile.add)
+                    //    edit.edit[i].Text = registry.filter[i + 1, registry.filter.CurrentRow.Index].Value.ToString();
+                    //if (edit.menu == MenuFile.clean)
+                    //    edit.edit[i].Enabled = false;
+                }
             }
         }
 

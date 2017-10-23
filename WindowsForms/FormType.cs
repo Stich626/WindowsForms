@@ -24,10 +24,6 @@ namespace WindowsForms
         public FormType(Form form)
         {
             form.SuspendLayout();
-
-            //form.AutoScaleDimensions = new SizeF(8F, 16F);
-            //form.AutoScaleMode = AutoScaleMode.Font;
-
             if (form is Main)
             {
                 form.IsMdiContainer = true;
@@ -128,10 +124,12 @@ namespace WindowsForms
         public List<Label> name = new List<Label>();
         public List<Control> edit = new List<Control>();
         public List<Button> button = new List<Button>();
+        public MenuBar bar;
         public MenuFile menu;
 
-        public Edit(Form form, MenuFile Menu)
+        public Edit(MenuBar Bar, MenuFile Menu)
         {
+            bar = Bar;
             menu = Menu;
             new FormCreate(this);
         }

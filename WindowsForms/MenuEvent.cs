@@ -63,13 +63,13 @@ namespace WindowsForms
                 settings(TypeForm.printing);
             if (FormType.mdiParent.ActiveMdiChild is Settings)
             {
-                Settings settings = FormType.mdiParent.ActiveMdiChild as Settings;
+                //Settings settings = FormType.mdiParent.ActiveMdiChild as Settings;
                 if (name == String.Format("{0}", MenuFile.add))
-                    new Edit(settings, MenuFile.add).ShowDialog();
+                    new Edit(MenuBar.settings, MenuFile.add).ShowDialog();
                 if (name == String.Format("{0}", MenuFile.clean))
-                    new Edit(settings, MenuFile.clean).ShowDialog();
+                    new Edit(MenuBar.settings, MenuFile.clean).ShowDialog();
                 if (name == String.Format("{0}", MenuFile.edit))
-                    new Edit(settings, MenuFile.edit).ShowDialog();
+                    new Edit(MenuBar.settings, MenuFile.edit).ShowDialog();
             }
             if (FormType.mdiParent.ActiveMdiChild is Registry)
             {
@@ -86,11 +86,11 @@ namespace WindowsForms
                     new FormText(registry);
                 }
                 if (name == String.Format("{0}", MenuFile.add))
-                    new Edit(registry, MenuFile.add).ShowDialog();
+                    new Edit(MenuBar.registry, MenuFile.add).ShowDialog();
                 if (name == String.Format("{0}", MenuFile.clean))
-                    new Edit(registry, MenuFile.clean).ShowDialog();
+                    new Edit(MenuBar.registry, MenuFile.clean).ShowDialog();
                 if (name == String.Format("{0}", MenuFile.edit))
-                    new Edit(registry, MenuFile.edit).ShowDialog();
+                    new Edit(MenuBar.registry, MenuFile.edit).ShowDialog();
             }
             //
             //расположение форм
