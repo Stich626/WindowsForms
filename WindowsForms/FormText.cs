@@ -25,13 +25,14 @@ namespace WindowsForms
                 path = "Text/Ua/";
             try
             {
-                name = arrEmty("name");                
-                main = arrEmty("main");
-                application = arrEmty("application");
-                engraving = arrEmty("engraving");
-                specification = arrEmty("specification");
-                printing = arrEmty("printing");
-                edit = arrEmty("edit");
+                DataType data = new DataType();
+                name = data.arrEmty("name", path);                
+                main = data.arrEmty("main", path);
+                application = data.arrEmty("application", path);
+                engraving = data.arrEmty("engraving", path);
+                specification = data.arrEmty("specification", path);
+                printing = data.arrEmty("printing", path);
+                edit = data.arrEmty("edit", path);
                 filter = File.ReadAllLines(String.Format("{0}filter.txt", path));
             }
             catch
@@ -59,16 +60,6 @@ namespace WindowsForms
             }
             if (form is Edit)
                 editForm((Edit)form);
-        }
-
-        private string[] arrEmty(string file)
-        {
-            string[] arr1 = File.ReadAllLines(String.Format("{0}{1}.txt", path, file));
-            string[] arr2 = new string[arr1.Length + 1];
-            arr2[0] = String.Empty;
-            for (int i = 1; i < arr2.Length; i++)
-                arr2[i] = arr1[i - 1];
-            return arr2;
         }
 
         private void textForm(Form form)
@@ -317,15 +308,14 @@ namespace WindowsForms
 
         private void editForm(Edit form)
         {
-            if (FormType.mdiParent.ActiveMdiChild is Settings)
+            if (form.bar == MenuBar.settings)
             {
                 Settings settings = FormType.mdiParent.ActiveMdiChild as Settings;
                 for (int i = 0; i < settings.right.ColumnCount - 1; i++)
                     form.name[i].Text = settings.right.Columns[i + 1].HeaderText;
             }
-            if (FormType.mdiParent.ActiveMdiChild is Registry)
+            if (form.bar == MenuBar.registry)
             {
-                Registry registry = FormType.mdiParent.ActiveMdiChild as Registry;
                 for (int i = 0; i < 5; i++)
                     form.name[i].Text = filter[i];
             }
