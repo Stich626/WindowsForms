@@ -48,7 +48,7 @@ namespace WindowsForms
             //
             //данные формы
             //
-            new FormData(form);
+            new DataForm(form);
         }
     }
     static class Program

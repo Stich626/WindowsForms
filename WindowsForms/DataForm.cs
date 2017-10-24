@@ -9,12 +9,12 @@ using System.Windows.Forms;
 
 namespace WindowsForms
 {
-    class FormData
+    class DataForm
     {
         DataSql sql = new DataSql();
         DataType type = new DataType();
 
-        public FormData(Form form)
+        public DataForm(Form form)
         {
             if (form is Registry)
                 registryData((Registry)form);
@@ -24,7 +24,7 @@ namespace WindowsForms
                 editData((Edit)form);
         }
 
-        public FormData(Settings settings)
+        public DataForm(Settings settings)
         {
             settings.right.DataSource = null;
             string table = String.Empty;
@@ -203,14 +203,22 @@ namespace WindowsForms
             settings.right.CurrentCell = settings.right[1, 0];
         }
 
-        public FormData(Edit edit)
+        public DataForm(Edit edit)
         {
             Registry registry = FormType.mdiParent.ActiveMdiChild as Registry;
-            ArrayList arrayList2 = new ArrayList();
-            ComboBox comboBox2 = (ComboBox)edit.edit[2];
+            ArrayList arrayList = new ArrayList();
             for (int i = 0; i < registry.registry.RowCount; i++)
-                arrayList2.Add(registry.registry[edit.edit[0].Text, i].Value);
-            type.comboBox(comboBox2, arrayList2);
+                arrayList.Add(registry.registry[edit.edit[0].Text, i].Value);
+            type.comboBoxDistinct((ComboBox)edit.edit[2], arrayList);
+            arrayList = new ArrayList();
+            arrayList.Add(FormText.edit[0]);
+            arrayList.Add(FormText.edit[3]);
+            type.comboBox((ComboBox)edit.edit[1], arrayList);
+            arrayList = new ArrayList();
+            arrayList.Add(FormText.edit[0]);
+            arrayList.Add(FormText.edit[4]);
+            arrayList.Add(FormText.edit[5]);
+            type.comboBox((ComboBox)edit.edit[3], arrayList);
         }
 
         private void registryData(Registry registry)
@@ -242,17 +250,16 @@ namespace WindowsForms
             {
                 Registry registry = FormType.mdiParent.ActiveMdiChild as Registry;
                 ArrayList arrayList = new ArrayList();
-                ComboBox comboBox = (ComboBox)edit.edit[0];
                 for (int i = 0; i < registry.registry.ColumnCount; i++)
                     arrayList.Add(registry.registry.Columns[i].HeaderText);
-                comboBox.DataSource = arrayList;
-                for (int i = 0; i < 5; i++)
-                {
+                type.comboBox((ComboBox)edit.edit[0], arrayList);
+                //for (int i = 0; i < 5; i++)
+                //{
                     //if (edit.menu != MenuFile.add)
                     //    edit.edit[i].Text = registry.filter[i + 1, registry.filter.CurrentRow.Index].Value.ToString();
                     //if (edit.menu == MenuFile.clean)
                     //    edit.edit[i].Enabled = false;
-                }
+                //}
             }
         }
 

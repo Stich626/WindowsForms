@@ -61,7 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataType.cs" />
-    <Compile Include="FormData.cs" />
+    <Compile Include="DataForm.cs" />
     <Compile Include="ContriolEvent.cs" />
     <Compile Include="FormInspector.cs" />
     <Compile Include="ContriolInsert.cs" />

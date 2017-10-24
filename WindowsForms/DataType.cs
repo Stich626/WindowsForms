@@ -21,11 +21,16 @@ namespace WindowsForms
             return arr2;
         }
 
-        public void comboBox(ComboBox comboBox, ArrayList arr)
+        public void comboBoxDistinct(ComboBox comboBox, ArrayList arrayList)
         {
-            var list = arr.ToArray().Distinct().ToList();
-            comboBox.DataSource = list;
+            var varList = arrayList.ToArray().Distinct().ToList();
+            comboBox.DataSource = varList;
             comboBox.Text = String.Empty;
+        }
+
+        public void comboBox(ComboBox comboBox, ArrayList arrayList)
+        {
+            comboBox.DataSource = arrayList;
         }
     }
 }

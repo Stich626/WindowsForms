@@ -33,13 +33,13 @@ namespace WindowsForms
         private void dataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (settings != null)
-                new FormData(settings);
+                new DataForm(settings);
         }
 
         private void comboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if(edit != null)
-                new FormData(edit);
+                new DataForm(edit);
         }
     }
 }
