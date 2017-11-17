@@ -230,7 +230,10 @@ namespace WindowsForms
             if (registry.typeForm == TypeForm.engraving)
                 registry.registry.DataSource = sql.GetArrayList(SqlEngraving.EngravingRegister.ToString());
             if (registry.typeForm == TypeForm.printing)
-                registry.registry.DataSource = sql.GetArrayList(SqlPrinting.TrialPrintingRegister.ToString());          
+                registry.registry.DataSource = sql.GetArrayList(SqlPrinting.TrialPrintingRegister.ToString());
+            registry.filter.RowCount = registry.registry.ColumnCount;
+            for (int i = 0; i < registry.registry.ColumnCount; i++)
+                registry.filter[0, i].Value = registry.registry.Columns[i].HeaderText;
         }
 
         private void editData(Edit edit)

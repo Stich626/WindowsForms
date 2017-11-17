@@ -232,7 +232,7 @@ namespace WindowsForms
 
         private void registry(Registry form)
         {
-            form.filter = control.dataGridView(5);
+            form.filter = control.dataGridView(5, 0);
             form.filter.Visible = false;
             form.registry = control.dataGridView();
             form.Controls.Add(form.registry);
@@ -241,7 +241,7 @@ namespace WindowsForms
 
         private void settings(Settings form)
         {
-            form.left = control.dataGridView(1);            
+            form.left = control.dataGridView(1, 0);            
             form.right = control.dataGridView();
         }
 

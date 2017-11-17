@@ -311,16 +311,24 @@ namespace WindowsForms
             if (form.bar == MenuBar.settings)
             {
                 Settings settings = FormType.mdiParent.ActiveMdiChild as Settings;
-                for (int i = 0; i < settings.right.ColumnCount - 1; i++)
-                    form.name[i].Text = settings.right.Columns[i + 1].HeaderText;
+                if (settings.left.CurrentCell.Value.ToString() != printing[2])
+                {
+                    for (int i = 0; i < settings.right.ColumnCount - 1; i++)
+                        form.name[i].Text = settings.right.Columns[i + 1].HeaderText;
+                }
+                else
+                {
+                    for (int i = 0; i < settings.right.ColumnCount - 1; i++)
+                        form.name[i].Text = settings.right.Columns[i + 1].HeaderText.Replace(Environment.NewLine, "");
+                }
+                if (form.bar == MenuBar.registry)
+                {
+                    for (int i = 0; i < 5; i++)
+                        form.name[i].Text = filter[i];
+                }
+                form.button[0].Text = edit[1];
+                form.button[1].Text = edit[2];
             }
-            if (form.bar == MenuBar.registry)
-            {
-                for (int i = 0; i < 5; i++)
-                    form.name[i].Text = filter[i];
-            }
-            form.button[0].Text = edit[1];
-            form.button[1].Text = edit[2];
         }
     }
 }
