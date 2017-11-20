@@ -231,9 +231,7 @@ namespace WindowsForms
                 registry.registry.DataSource = sql.GetArrayList(SqlEngraving.EngravingRegister.ToString());
             if (registry.typeForm == TypeForm.printing)
                 registry.registry.DataSource = sql.GetArrayList(SqlPrinting.TrialPrintingRegister.ToString());
-            registry.filter.RowCount = registry.registry.ColumnCount;
-            for (int i = 0; i < registry.registry.ColumnCount; i++)
-                registry.filter[0, i].Value = registry.registry.Columns[i].HeaderText;
+            new FormText(registry);
         }
 
         private void editData(Edit edit)
@@ -259,7 +257,7 @@ namespace WindowsForms
                 //for (int i = 0; i < 5; i++)
                 //{
                     //if (edit.menu != MenuFile.add)
-                    //    edit.edit[i].Text = registry.filter[i + 1, registry.filter.CurrentRow.Index].Value.ToString();
+                    //    edit.edit[i].Text = FormText.filter[i];
                     //if (edit.menu == MenuFile.clean)
                     //    edit.edit[i].Enabled = false;
                 //}

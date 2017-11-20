@@ -26,7 +26,7 @@ namespace WindowsForms
             try
             {
                 DataType data = new DataType();
-                name = data.arrEmty("name", path);                
+                name = data.arrEmty("name", path);
                 main = data.arrEmty("main", path);
                 application = data.arrEmty("application", path);
                 engraving = data.arrEmty("engraving", path);
@@ -62,6 +62,35 @@ namespace WindowsForms
                 editForm((Edit)form);
         }
 
+        public FormText(Registry form)
+        {
+            if (form.typeForm == TypeForm.application)
+            {
+                for (int i = 1; i < application.Length; i++)
+                    form.registry.Columns[i - 1].HeaderText = application[i];
+            }
+            if (form.typeForm == TypeForm.specification)
+            {
+                for (int i = 1; i < specification.Length; i++)
+                    form.registry.Columns[i - 1].HeaderText = specification[i];
+            }
+            if (form.typeForm == TypeForm.engraving)
+            {
+                for (int i = 1; i < engraving.Length; i++)
+                    form.registry.Columns[i - 1].HeaderText = engraving[i];
+            }
+            if (form.typeForm == TypeForm.printing)
+            {
+                for (int i = 1; i < printing.Length; i++)
+                    form.registry.Columns[i - 1].HeaderText = printing[i];
+            }
+            form.filter.RowCount = form.registry.ColumnCount;
+            for (int i = 0; i < form.registry.ColumnCount; i++)
+                form.filter[0, i].Value = form.registry.Columns[i].HeaderText;
+            for (int i = 0; i < form.filter.ColumnCount; i++)
+                form.filter.Columns[i].HeaderText = filter[i];
+        }
+
         private void textForm(Form form)
         {
             if (form is Main)
@@ -93,7 +122,7 @@ namespace WindowsForms
                     if (registry.typeForm == TypeForm.engraving)
                         registry.Text = name[17];
                     if (registry.typeForm == TypeForm.printing)
-                        registry.Text = name[18];
+                        registry.Text = name[18];                   
                 }
                 else
                 {
@@ -105,6 +134,16 @@ namespace WindowsForms
                         registry.Text = name[8];
                     if (registry.typeForm == TypeForm.printing)
                         registry.Text = name[9];
+                }               
+                //
+                //названия колонок фильтра реестра
+                //
+                {
+                    registry.filter.RowCount = registry.registry.ColumnCount;
+                    for (int i = 0; i < registry.registry.ColumnCount; i++)
+                        registry.filter[0, i].Value = registry.registry.Columns[i].HeaderText;
+                    for (int i = 0; i < registry.filter.ColumnCount; i++)
+                        registry.filter.Columns[i].HeaderText = filter[i];
                 }
             }
             if (form is Settings)
@@ -301,11 +340,6 @@ namespace WindowsForms
             form.name[50].Text = printing[27];
         }
 
-        private void filterForm(Registry form)
-        {
-
-        }
-
         private void editForm(Edit form)
         {
             if (form.bar == MenuBar.settings)
@@ -321,14 +355,14 @@ namespace WindowsForms
                     for (int i = 0; i < settings.right.ColumnCount - 1; i++)
                         form.name[i].Text = settings.right.Columns[i + 1].HeaderText.Replace(Environment.NewLine, "");
                 }
-                if (form.bar == MenuBar.registry)
-                {
-                    for (int i = 0; i < 5; i++)
-                        form.name[i].Text = filter[i];
-                }
-                form.button[0].Text = edit[1];
-                form.button[1].Text = edit[2];
             }
+            if (form.bar == MenuBar.registry)
+            {
+                for (int i = 0; i < 5; i++)
+                    form.name[i].Text = filter[i];
+            }
+            form.button[0].Text = edit[1];
+            form.button[1].Text = edit[2];
         }
     }
 }
