@@ -263,7 +263,10 @@ namespace WindowsForms
                 for (int i = 0; i < 5; i++)
                     edit.name.Add(control.label(number++));
                 number = 0;
-                for (int i = 0; i < 4; i++)
+                Label label = control.label(number++);
+                label.Margin = new Padding(3, 1, 3, 1);
+                edit.edit.Add(label);
+                for (int i = 0; i < 3; i++)
                 {
                     ComboBox comboBox = control.comboBox(number++);
                     comboBox.Margin = new Padding(3, 1, 3, 1);

@@ -24,10 +24,16 @@ namespace WindowsForms
                 edit = form as Edit;
                 if (edit.bar == MenuBar.registry)
                 {
-                    ComboBox comboBox = (ComboBox)edit.edit[0];
-                    comboBox.SelectionChangeCommitted += new EventHandler(comboBox_SelectionChangeCommitted);
+                    Label label = (Label)edit.edit[0];
+                    //comboBox.SelectionChangeCommitted += new EventHandler(comboBox_SelectionChangeCommitted);
                 }
+                edit.button[1].Click += new EventHandler(buttonLeft_Click);
             }
+        }
+
+        private void buttonLeft_Click(object sender, EventArgs e)
+        {
+            edit.Close();
         }
 
         private void dataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -36,10 +42,10 @@ namespace WindowsForms
                 new DataForm(settings);
         }
 
-        private void comboBox_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if(edit != null)
-                new DataForm(edit);
-        }
+        //private void comboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        //{
+        //    if(edit != null)
+        //        new DataForm(edit);
+        //}
     }
 }

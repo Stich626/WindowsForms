@@ -250,17 +250,15 @@ namespace WindowsForms
             if (edit.bar == MenuBar.registry)
             {
                 Registry registry = FormType.mdiParent.ActiveMdiChild as Registry;
-                ArrayList arrayList = new ArrayList();
-                for (int i = 0; i < registry.registry.ColumnCount; i++)
-                    arrayList.Add(registry.registry.Columns[i].HeaderText);
-                type.comboBox((ComboBox)edit.edit[0], arrayList);
-                //for (int i = 0; i < 5; i++)
-                //{
-                    //if (edit.menu != MenuFile.add)
-                    //    edit.edit[i].Text = FormText.filter[i];
-                    //if (edit.menu == MenuFile.clean)
-                    //    edit.edit[i].Enabled = false;
-                //}
+                Label label = (Label)edit.edit[0];  
+                label.Text = (String)registry.filter.CurrentRow.Cells[0].Value;
+                for (int i = 1; i < 4; i++)
+                {
+                    if (edit.menu != MenuFile.add)
+                        edit.edit[i].Text = (String)registry.filter.CurrentRow.Cells[0].Value;
+                    if (edit.menu == MenuFile.clean)
+                        edit.edit[i].Enabled = false;
+                }
             }
         }
 
