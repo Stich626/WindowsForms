@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ using System.Windows.Forms;
 
 namespace WindowsForms
 {
-    class DataType
+    class ControlData
     {
         public string[] arrEmty(string file, string path)
         {
@@ -31,6 +32,13 @@ namespace WindowsForms
         public void comboBox(ComboBox comboBox, ArrayList arrayList)
         {
             comboBox.DataSource = arrayList;
+        }
+
+        public void comboBox(ComboBox comboBox, DataGridView dataGridView, string Column)
+        {
+            ArrayList arrayList = (ArrayList)dataGridView.DataSource;
+            comboBox.DataSource = arrayList;
+            comboBox.DisplayMember = Column;
         }
     }
 }

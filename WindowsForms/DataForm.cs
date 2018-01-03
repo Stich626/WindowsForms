@@ -12,7 +12,7 @@ namespace WindowsForms
     class DataForm
     {
         DataSql sql = new DataSql();
-        DataType type = new DataType();
+        ControlData type = new ControlData();
 
         public DataForm(Form form)
         {
@@ -75,7 +75,7 @@ namespace WindowsForms
                         if (i != 1 && i != 3 && i != 8 && i != 10 && i != 14)
                             settings.right.Columns[i].Visible = false;
                     settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
-                    settings.right.Columns[3].HeaderText = String.Format("{0} {1}",  FormText.specification[29], FormText.specification[26]);
+                    settings.right.Columns[3].HeaderText = String.Format("{0} {1}", FormText.specification[29], FormText.specification[26]);
                     settings.right.Columns[8].HeaderText = String.Format("{0} {1}", FormText.specification[36], FormText.specification[27]);
                     settings.right.Columns[10].HeaderText = FormText.specification[26];
                     settings.right.Columns[14].HeaderText = FormText.specification[27];
@@ -179,7 +179,7 @@ namespace WindowsForms
                 {
                     settings.right.DataSource = sql.GetArrayList(table);
                     for (int i = 0; i < settings.right.ColumnCount; i++)
-                        if(i != 1)
+                        if (i != 1)
                             settings.right.Columns[i].Visible = false;
                     settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
                 }
@@ -203,24 +203,6 @@ namespace WindowsForms
             settings.right.CurrentCell = settings.right[1, 0];
         }
 
-        public DataForm(Edit edit)
-        {
-            Registry registry = FormType.mdiParent.ActiveMdiChild as Registry;
-            ArrayList arrayList = new ArrayList();
-            for (int i = 0; i < registry.registry.RowCount; i++)
-                arrayList.Add(registry.registry[edit.edit[0].Text, i].Value);
-            type.comboBoxDistinct((ComboBox)edit.edit[2], arrayList);
-            arrayList = new ArrayList();
-            arrayList.Add(FormText.edit[0]);
-            arrayList.Add(FormText.edit[3]);
-            type.comboBox((ComboBox)edit.edit[1], arrayList);
-            arrayList = new ArrayList();
-            arrayList.Add(FormText.edit[0]);
-            arrayList.Add(FormText.edit[4]);
-            arrayList.Add(FormText.edit[5]);
-            type.comboBox((ComboBox)edit.edit[3], arrayList);
-        }
-
         private void registryData(Registry registry)
         {
             if (registry.typeForm == TypeForm.application)
@@ -232,34 +214,6 @@ namespace WindowsForms
             if (registry.typeForm == TypeForm.printing)
                 registry.registry.DataSource = sql.GetArrayList(SqlPrinting.TrialPrintingRegister.ToString());
             new FormText(registry);
-        }
-
-        private void editData(Edit edit)
-        {
-            if (edit.bar == MenuBar.settings)
-            {
-                Settings settings = FormType.mdiParent.ActiveMdiChild as Settings;
-                for (int i = 0; i < settings.right.ColumnCount - 1; i++)
-                {
-                    if (edit.menu != MenuFile.add)
-                        edit.edit[i].Text = settings.right[i + 1, settings.right.CurrentRow.Index].Value.ToString();
-                    if (edit.menu == MenuFile.clean)
-                        edit.edit[i].Enabled = false;
-                }
-            }
-            if (edit.bar == MenuBar.registry)
-            {
-                Registry registry = FormType.mdiParent.ActiveMdiChild as Registry;
-                Label label = (Label)edit.edit[0];  
-                label.Text = (String)registry.filter.CurrentRow.Cells[0].Value;
-                for (int i = 1; i < 4; i++)
-                {
-                    if (edit.menu != MenuFile.add)
-                        edit.edit[i].Text = (String)registry.filter.CurrentRow.Cells[0].Value;
-                    if (edit.menu == MenuFile.clean)
-                        edit.edit[i].Enabled = false;
-                }
-            }
         }
 
         private void settingsData(Settings settings)
@@ -309,6 +263,47 @@ namespace WindowsForms
                 settings.left.Rows[i++].Cells[0].Value = FormText.printing[24];
                 settings.left.Rows[i++].Cells[0].Value = FormText.printing[18];
                 settings.left.Rows[i++].Cells[0].Value = FormText.printing[22];
+            }
+        }
+
+        private void editData(Edit edit)
+        {
+            if (edit.bar == MenuBar.settings)
+            {
+                Settings settings = FormType.mdiParent.ActiveMdiChild as Settings;
+                for (int i = 0; i < settings.right.ColumnCount - 1; i++)
+                {
+                    if (edit.menu != MenuFile.add)
+                        edit.edit[i].Text = settings.right[i + 1, settings.right.CurrentRow.Index].Value.ToString();
+                    if (edit.menu == MenuFile.clean)
+                        edit.edit[i].Enabled = false;
+                }
+            }
+            if (edit.bar == MenuBar.registry)
+            {
+                Registry registry = FormType.mdiParent.ActiveMdiChild as Registry;
+                Label label = (Label)edit.edit[0];
+                label.Text = (String)registry.filter.CurrentRow.Cells[0].Value;
+                for (int i = 1; i < 4; i++)
+                {
+                    if (edit.menu != MenuFile.add)
+                        edit.edit[i].Text = (String)registry.filter.CurrentRow.Cells[0].Value;
+                    if (edit.menu == MenuFile.clean)
+                        edit.edit[i].Enabled = false;
+                }
+                ArrayList arrayList = new ArrayList();
+                type.comboBox((ComboBox)edit.edit[2], registry.registry, label.Text); 
+                arrayList = new ArrayList();
+                arrayList.Add(FormText.edit[0]);
+                arrayList.Add(FormText.edit[3]);
+                type.comboBox((ComboBox)edit.edit[1], arrayList);
+                arrayList = new ArrayList();
+                arrayList.Add(FormText.edit[0]);
+                arrayList.Add(FormText.edit[4]);
+                arrayList.Add(FormText.edit[5]);
+                type.comboBox((ComboBox)edit.edit[3], arrayList);
+
+
             }
         }
     }

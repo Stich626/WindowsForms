@@ -25,7 +25,7 @@ namespace WindowsForms
                 path = "Text/Ua/";
             try
             {
-                DataType data = new DataType();
+                ControlData data = new ControlData();
                 name = data.arrEmty("name", path);
                 main = data.arrEmty("main", path);
                 application = data.arrEmty("application", path);
