@@ -12,7 +12,6 @@ namespace WindowsForms
     class DataForm
     {
         DataSql sql = new DataSql();
-        ControlData type = new ControlData();
 
         public DataForm(Form form)
         {
@@ -291,17 +290,27 @@ namespace WindowsForms
                     if (edit.menu == MenuFile.clean)
                         edit.edit[i].Enabled = false;
                 }
+                string table = String.Empty;
+                string column = String.Format("Column{0}", registry.filter.CurrentRow.Index + 1);
+                switch (registry.typeForm)
+                {
+                    case TypeForm.application: table = SqlApplication.ApplicationRegister.ToString(); break;
+                    case TypeForm.specification: table = SqlSpecification.SpecificationRegistry.ToString(); break;
+                    case TypeForm.engraving: table = SqlEngraving.EngravingRegister.ToString(); break;
+                    case TypeForm.printing: table = SqlPrinting.TrialPrintingRegister.ToString(); break;
+                }
+
+                edit.edit[2] as ComboBox;
+                data.comboBoxDistinct((ComboBox)edit.edit[2], sql.GetArrayList(table, column));
                 ArrayList arrayList = new ArrayList();
-                type.comboBox((ComboBox)edit.edit[2], registry.registry, label.Text); 
-                arrayList = new ArrayList();
                 arrayList.Add(FormText.edit[0]);
                 arrayList.Add(FormText.edit[3]);
-                type.comboBox((ComboBox)edit.edit[1], arrayList);
+                data.comboBoxDistinct((ComboBox)edit.edit[1], arrayList);
                 arrayList = new ArrayList();
                 arrayList.Add(FormText.edit[0]);
                 arrayList.Add(FormText.edit[4]);
                 arrayList.Add(FormText.edit[5]);
-                type.comboBox((ComboBox)edit.edit[3], arrayList);
+                data.comboBoxDistinct((ComboBox)edit.edit[3], arrayList);
 
 
             }

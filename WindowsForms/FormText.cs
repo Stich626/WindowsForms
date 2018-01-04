@@ -26,13 +26,13 @@ namespace WindowsForms
             try
             {
                 ControlData data = new ControlData();
-                name = data.arrEmty("name", path);
-                main = data.arrEmty("main", path);
-                application = data.arrEmty("application", path);
-                engraving = data.arrEmty("engraving", path);
-                specification = data.arrEmty("specification", path);
-                printing = data.arrEmty("printing", path);
-                edit = data.arrEmty("edit", path);
+                name = arrEmty("name", path);
+                main = arrEmty("main", path);
+                application = arrEmty("application", path);
+                engraving = arrEmty("engraving", path);
+                specification = arrEmty("specification", path);
+                printing = arrEmty("printing", path);
+                edit = arrEmty("edit", path);
                 filter = File.ReadAllLines(String.Format("{0}filter.txt", path));
             }
             catch
@@ -363,6 +363,16 @@ namespace WindowsForms
             }
             form.button[0].Text = edit[1];
             form.button[1].Text = edit[2];
+        }
+
+        private string[] arrEmty(string file, string path)
+        {
+            string[] arr1 = File.ReadAllLines(String.Format("{0}{1}.txt", path, file));
+            string[] arr2 = new string[arr1.Length + 1];
+            arr2[0] = String.Empty;
+            for (int i = 1; i < arr2.Length; i++)
+                arr2[i] = arr1[i - 1];
+            return arr2;
         }
     }
 }
