@@ -299,20 +299,16 @@ namespace WindowsForms
                     case TypeForm.engraving: table = SqlEngraving.EngravingRegister.ToString(); break;
                     case TypeForm.printing: table = SqlPrinting.TrialPrintingRegister.ToString(); break;
                 }
-
-                edit.edit[2] as ComboBox;
-                data.comboBoxDistinct((ComboBox)edit.edit[2], sql.GetArrayList(table, column));
+                ControlData.comboBox((ComboBox)edit.edit[2], sql.GetDataTable(table, column), column);
                 ArrayList arrayList = new ArrayList();
                 arrayList.Add(FormText.edit[0]);
                 arrayList.Add(FormText.edit[3]);
-                data.comboBoxDistinct((ComboBox)edit.edit[1], arrayList);
+                ControlData.comboBox((ComboBox)edit.edit[1], arrayList);
                 arrayList = new ArrayList();
                 arrayList.Add(FormText.edit[0]);
                 arrayList.Add(FormText.edit[4]);
                 arrayList.Add(FormText.edit[5]);
-                data.comboBoxDistinct((ComboBox)edit.edit[3], arrayList);
-
-
+                ControlData.comboBox((ComboBox)edit.edit[3], arrayList);
             }
         }
     }

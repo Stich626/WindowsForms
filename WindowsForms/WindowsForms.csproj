@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlData.cs" />
     <Compile Include="DataForm.cs" />
     <Compile Include="ContriolEvent.cs" />
     <Compile Include="FormInspector.cs" />

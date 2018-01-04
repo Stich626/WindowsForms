@@ -34,18 +34,16 @@ namespace WindowsForms
             return arrayList;
         }
 
-        public ArrayList GetArrayList(string table, string column)
+        public DataTable GetDataTable(string table, string column)
         {
-            ArrayList arrayList = new ArrayList();
             string command = String.Format("SELECT DISTINCT [{0}] FROM [{1}] ORDER BY [{0}]", column, table);
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlConnection.Open();
-            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader(CommandBehavior.CloseConnection);
-            if (sqlDataReader.HasRows)
-                foreach (DbDataRecord result in sqlDataReader)
-                    arrayList.Add(result);
+            DataTable dataTable = new DataTable();
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(dataTable);
             sqlConnection.Close();
-            return arrayList;
+            return dataTable;
         }
     }
 }
