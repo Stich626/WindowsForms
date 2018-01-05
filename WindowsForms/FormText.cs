@@ -342,7 +342,7 @@ namespace WindowsForms
 
         private void editForm(Edit form)
         {
-            if (form.bar == MenuBar.settings)
+            if (form.form is Settings)
             {
                 Settings settings = FormType.mdiParent.ActiveMdiChild as Settings;
                 if (settings.left.CurrentCell.Value.ToString() != printing[2])
@@ -356,7 +356,7 @@ namespace WindowsForms
                         form.name[i].Text = settings.right.Columns[i + 1].HeaderText.Replace(Environment.NewLine, "");
                 }
             }
-            if (form.bar == MenuBar.registry)
+            if (form.form is Registry)
             {
                 for (int i = 0; i < 5; i++)
                     form.name[i].Text = filter[i];

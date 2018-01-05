@@ -61,7 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControlData.cs" />
-    <Compile Include="DataForm.cs" />
+    <Compile Include="FormData.cs" />
     <Compile Include="ContriolEvent.cs" />
     <Compile Include="FormInspector.cs" />
     <Compile Include="ContriolInsert.cs" />
@@ -74,7 +74,7 @@
     <Compile Include="FormType.cs" />
     <Compile Include="ControlType.cs" />
     <Compile Include="FormSize.cs" />
-    <Compile Include="DataSql.cs" />
+    <Compile Include="SqlData.cs" />
     <Compile Include="FormCreate.cs" />
     <Compile Include="ControlCreate.cs" />
     <Compile Include="FormEvent.cs" />

@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace WindowsForms
 {
-    class DataForm
+    class FormData
     {
-        DataSql sql = new DataSql();
+        SqlData sql = new SqlData();
 
-        public DataForm(Form form)
+        public FormData(Form form)
         {
             if (form is Registry)
                 registryData((Registry)form);
@@ -23,7 +23,22 @@ namespace WindowsForms
                 editData((Edit)form);
         }
 
-        public DataForm(Settings settings)
+        public FormData(Edit edit)
+        {
+            if (edit.form is Registry)
+            {
+                Registry registry = (Registry)edit.form;
+                for (int i = 1; i < 5; i++)
+                {
+                    if (edit.menu != MenuFile.clean)
+                        registry.filter[i, registry.filter.CurrentRow.Index].Value = edit.edit[i].Text;
+                    else
+                        registry.filter[i, registry.filter.CurrentRow.Index].Value = String.Empty;
+                }
+            }
+        }
+
+        public FormData(Settings settings)
         {
             settings.right.DataSource = null;
             string table = String.Empty;
@@ -267,7 +282,7 @@ namespace WindowsForms
 
         private void editData(Edit edit)
         {
-            if (edit.bar == MenuBar.settings)
+            if (edit.form is Settings)
             {
                 Settings settings = FormType.mdiParent.ActiveMdiChild as Settings;
                 for (int i = 0; i < settings.right.ColumnCount - 1; i++)
@@ -278,18 +293,18 @@ namespace WindowsForms
                         edit.edit[i].Enabled = false;
                 }
             }
-            if (edit.bar == MenuBar.registry)
+            if (edit.form is Registry)
             {
                 Registry registry = FormType.mdiParent.ActiveMdiChild as Registry;
                 Label label = (Label)edit.edit[0];
                 label.Text = (String)registry.filter.CurrentRow.Cells[0].Value;
                 for (int i = 1; i < 4; i++)
-                {
-                    if (edit.menu != MenuFile.add)
+                //{
+                //    if (edit.menu == MenuFile.edit)
                         edit.edit[i].Text = (String)registry.filter.CurrentRow.Cells[0].Value;
-                    if (edit.menu == MenuFile.clean)
-                        edit.edit[i].Enabled = false;
-                }
+                //    if (edit.menu == MenuFile.clean)
+                //        edit.edit[i].Enabled = false;
+                //}
                 string table = String.Empty;
                 string column = String.Format("Column{0}", registry.filter.CurrentRow.Index + 1);
                 switch (registry.typeForm)

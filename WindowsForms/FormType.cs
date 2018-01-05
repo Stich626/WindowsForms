@@ -124,12 +124,12 @@ namespace WindowsForms
         public List<Label> name = new List<Label>();
         public List<Control> edit = new List<Control>();
         public List<Button> button = new List<Button>();
-        public MenuBar bar;
         public MenuFile menu;
+        public Form form;
 
-        public Edit(MenuBar Bar, MenuFile Menu)
+        public Edit(Form Form, MenuFile Menu)
         {
-            bar = Bar;
+            form = Form;
             menu = Menu;
             new FormCreate(this);
         }

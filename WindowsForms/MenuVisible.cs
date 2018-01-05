@@ -60,7 +60,9 @@ namespace WindowsForms
                             FormType.mdiParent.item[i].Name == MenuFile.fill.ToString() ||
                             FormType.mdiParent.item[i].Name == MenuFile.delete.ToString() ||
                             FormType.mdiParent.item[i].Name == MenuFile.filter.ToString() ||
-                            FormType.mdiParent.item[i].Name == MenuFile.open.ToString())
+                            FormType.mdiParent.item[i].Name == MenuFile.open.ToString() ||
+                            FormType.mdiParent.item[i].Name == MenuFile.add.ToString() ||
+                            FormType.mdiParent.item[i].Name == MenuFile.clean.ToString())
                             FormType.mdiParent.item[i].Visible = false;
                         else
                             FormType.mdiParent.item[i].Visible = true;
@@ -70,9 +72,7 @@ namespace WindowsForms
                         if (FormType.mdiParent.item[i].Name == MenuFile.save.ToString() ||
                             FormType.mdiParent.item[i].Name == MenuFile.print.ToString() ||
                             FormType.mdiParent.item[i].Name == MenuFile.fill.ToString() ||
-                            FormType.mdiParent.item[i].Name == MenuFile.add.ToString() ||
-                            FormType.mdiParent.item[i].Name == MenuFile.edit.ToString() ||
-                            FormType.mdiParent.item[i].Name == MenuFile.clean.ToString())
+                            FormType.mdiParent.item[i].Name == MenuFile.add.ToString())
                             FormType.mdiParent.item[i].Visible = false;
                         else
                             FormType.mdiParent.item[i].Visible = true;
@@ -130,7 +130,9 @@ namespace WindowsForms
                             FormType.mdiParent.button[i].Name == MenuFile.fill.ToString() ||
                             FormType.mdiParent.button[i].Name == MenuFile.delete.ToString() ||
                             FormType.mdiParent.button[i].Name == MenuFile.filter.ToString() ||
-                            FormType.mdiParent.button[i].Name == MenuFile.open.ToString())
+                            FormType.mdiParent.button[i].Name == MenuFile.open.ToString() ||
+                            FormType.mdiParent.button[i].Name == MenuFile.add.ToString() ||
+                            FormType.mdiParent.button[i].Name == MenuFile.clean.ToString())
                             FormType.mdiParent.button[i].Enabled = false;
                         else
                             FormType.mdiParent.button[i].Enabled = true;
@@ -140,9 +142,7 @@ namespace WindowsForms
                         if (FormType.mdiParent.button[i].Name == MenuFile.save.ToString() ||
                             FormType.mdiParent.button[i].Name == MenuFile.print.ToString() ||
                             FormType.mdiParent.button[i].Name == MenuFile.fill.ToString() ||
-                            FormType.mdiParent.button[i].Name == MenuFile.add.ToString() ||
-                            FormType.mdiParent.button[i].Name == MenuFile.edit.ToString() ||
-                            FormType.mdiParent.button[i].Name == MenuFile.clean.ToString())
+                            FormType.mdiParent.button[i].Name == MenuFile.edit.ToString())
                             FormType.mdiParent.button[i].Enabled = false;
                         else
                             FormType.mdiParent.button[i].Enabled = true;
