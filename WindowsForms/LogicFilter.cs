@@ -8,5 +8,9 @@ namespace WindowsForms
 {
     class LogicFilter
     {
+        public LogicFilter (Registry form)
+        {
+
+        }
     }
 }

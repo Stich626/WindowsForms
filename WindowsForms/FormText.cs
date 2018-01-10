@@ -64,11 +64,24 @@ namespace WindowsForms
 
         public FormText(Registry form)
         {
+            //
+            //
+            //
             if (form.typeForm == TypeForm.application)
             {
-                for (int i = 1; i < application.Length; i++)
-                    form.registry.Columns[i - 1].HeaderText = application[i];
+                for (int i = 0; i < 37; i++)
+                {
+                    if(i < application.LongLength - 1)
+                        form.registry.Columns[i].HeaderText = application[i + 1];
+                    //if (form.filter[0, i - 1].Value.ToString() == edit[3])
+                    //    form.registry.Columns[i].Visible = false;
+                    //else
+                    //    form.registry.Columns[i].Visible = true;
+                }
             }
+            //
+            //
+            //
             if (form.typeForm == TypeForm.specification)
             {
                 for (int i = 1; i < specification.Length; i++)

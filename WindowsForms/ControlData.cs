@@ -20,20 +20,22 @@ namespace WindowsForms
         public static void comboBox(ComboBox comboBox, string item)
         {
             comboBox.Items.Add(item);
+            comboBox.SelectedIndex = 0;
         }
 
         public static void comboBox(ComboBox comboBox, DataTable dataTable, string column)
         {
             bool flag = false;
             for (int i = 0; i < dataTable.Rows.Count; i++)
-                if (dataTable.Rows[i].ToString() == String.Empty)
+            {
+                if(dataTable.Rows[i].ToString() == String.Empty)
                     flag = true;
-
-            DataRow workRow = dataTable.NewRow();
-
-
+            }
+            if (!flag)
+                dataTable.Rows.InsertAt(dataTable.NewRow(), 0);    
             comboBox.DataSource = dataTable;
             comboBox.DisplayMember = column;
+            comboBox.SelectedIndex = 0;
         }
     }
 }

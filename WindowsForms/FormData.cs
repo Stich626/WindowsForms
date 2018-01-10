@@ -294,42 +294,7 @@ namespace WindowsForms
                 }
             }
             if (edit.form is Registry)
-            {
-                //comboBox1.FindString("NAMEOTDEL")
-
-                //comboBox.Text = label.Text;
-
-                //ComboBox comboBox1 = (ComboBox)edit.edit[1];
-                //comboBox1.SelectedItem = (String)registry.filter.CurrentRow.Cells[1].ToString();
-                //ComboBox comboBox2 = (ComboBox)edit.edit[2];
-                //comboBox2.Items.Add(String.Empty);
-                //comboBox2.SelectedItem = (String)registry.filter.CurrentRow.Cells[2].ToString();
-                //ComboBox comboBox3 = (ComboBox)edit.edit[3];
-                //comboBox3.SelectedItem = (String)registry.filter.CurrentRow.Cells[3].ToString();
-
-
-                //TextBox textBox4 = (TextBox)edit.edit[4];
-                //textBox4.Text = (String)registry.filter.CurrentRow.Cells[4].Value;
-
-                //label = (Label)edit.edit[0];
-                //label.Text = (String)registry.filter.CurrentRow.Cells[0].Value;
-                //ComboBox comboBox = new ComboBox();
-                //for (int i = 1; i < 4; i++)
-                //{
-                //    comboBox = (ComboBox)edit.edit[i];
-                //    comboBox.SelectedText = (String)registry.filter.CurrentRow.Cells[i].Value;
-                //}
-                //edit.edit[4].Text = (String)registry.filter.CurrentRow.Cells[4].Value;
-
-
-                //for (int i = 1; i < 5; i++)
-                //{
-                //    if (edit.menu == MenuFile.edit)
-                //edit.edit[i].Text = (String)registry.filter.CurrentRow.Cells[i].Value;
-                //    if (edit.menu == MenuFile.clean)
-                //        edit.edit[i].Enabled = false;
-                //}
-
+            {              
                 Registry registry = FormType.mdiParent.ActiveMdiChild as Registry;
                 string table = String.Empty;
                 string column = String.Format("Column{0}", registry.filter.CurrentRow.Index + 1);
@@ -355,6 +320,8 @@ namespace WindowsForms
                     }
                     else
                         edit.edit[i].Text = (String)registry.filter.CurrentRow.Cells[i].Value;
+                    if (edit.menu == MenuFile.clean)
+                        edit.edit[i].Enabled = false;
                 }
             }
         }
