@@ -109,13 +109,15 @@ namespace WindowsForms
             return (ComboBox)toolTip(comboBox);
         }
 
-        public DataGridView dataGridView()
+        public DataGridView dataGridView(bool autoColumn)
         {
             DataGridView dataGridView = new DataGridView();
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            if(autoColumn)
+                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            else
+                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.BorderStyle = BorderStyle.None;
-            //dataGridView.ColumnHeadersVisible = false;
             dataGridView.RowHeadersVisible = false;
             dataGridView.Margin = new Padding(6);
             dataGridView.Dock = DockStyle.Fill;
@@ -129,14 +131,13 @@ namespace WindowsForms
             return dataGridView;
         }
 
-        public DataGridView dataGridView(int column, int row)
+        public DataGridView dataGridView(DataGridView gridView, int column, int row)
         {
-            DataGridView gridView = dataGridView();
             gridView.ColumnCount = column;
             gridView.RowCount = row;
             for (int i = 0; i < column; i++ )
                 gridView.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-                return gridView;
+            return gridView;
         }
 
         public TabPage tabPage(string name)

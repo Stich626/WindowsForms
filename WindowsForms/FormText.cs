@@ -102,6 +102,11 @@ namespace WindowsForms
                 form.filter[0, i].Value = form.registry.Columns[i].HeaderText;
             for (int i = 0; i < form.filter.ColumnCount; i++)
                 form.filter.Columns[i].HeaderText = filter[i];
+            //
+            //фильтр по умолчанию
+            //
+            form.filter[1, 0].Value = edit[3];
+            form.filter[1, 3].Value = edit[3];
         }
 
         private void textForm(Form form)

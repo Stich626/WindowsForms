@@ -40,6 +40,8 @@ namespace WindowsForms
                 new MenuVisible(FormType.mdiParent.ActiveMdiChild);
             if (sender is Edit)
                 new MenuVisible((Edit)sender);
+            if (sender is Registry)
+                new FormLogic((Registry)sender);
         }
 
         private void activated(object sender, EventArgs e)
@@ -55,6 +57,7 @@ namespace WindowsForms
                 if (registry.filterOn)
                 {
                     e.Cancel = true;
+                    new FormLogic(registry);
                     registry.filterOn = false;
                     registry.filter.Visible = false;
                     registry.registry.Visible = true;

@@ -8,9 +8,15 @@ namespace WindowsForms
 {
     class FormLogic
     {
-        public FormLogic(Edit form)
+        public FormLogic(Registry form)
         {
-
+            for (int i = 0; i < form.registry.ColumnCount; i++)
+            {
+                if ((String)form.filter[1, i].Value == FormText.edit[3])
+                    form.registry.Columns[i].Visible = true;
+                else
+                    form.registry.Columns[i].Visible = false;
+            }
         }
     }
 }
