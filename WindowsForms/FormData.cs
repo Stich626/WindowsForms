@@ -11,8 +11,6 @@ namespace WindowsForms
 {
     class FormData
     {
-        SqlData sql = new SqlData();
-
         public FormData(Form form)
         {
             if (form is Registry)
@@ -58,7 +56,7 @@ namespace WindowsForms
                     case 9: table = SqlApplication.ApplicationContactsKontinent.ToString(); break;
                     case 10: table = SqlApplication.ApplicationContactCustomers.ToString(); break;
                 }
-                settings.right.DataSource = sql.GetArrayList(table);
+                settings.right.DataSource = SqlData.GetArrayList(table);
                 settings.right.Columns[0].Visible = false;
                 settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
             }
@@ -72,7 +70,7 @@ namespace WindowsForms
                 }
                 if (table == SqlSpecification.SpecificationParametersWorkpiece.ToString())
                 {
-                    settings.right.DataSource = sql.GetArrayList(table);
+                    settings.right.DataSource = SqlData.GetArrayList(table);
                     for (int i = 0; i < settings.right.Columns.Count; i++)
                         if (i != 1 && i != 2 && i != 3 && i != 8 && i != 9)
                             settings.right.Columns[i].Visible = false;
@@ -84,7 +82,7 @@ namespace WindowsForms
                 }
                 if (table == SqlSpecification.SpecificationPrametryMachining.ToString())
                 {
-                    settings.right.DataSource = sql.GetArrayList(table);
+                    settings.right.DataSource = SqlData.GetArrayList(table);
                     for (int i = 0; i < settings.right.Columns.Count; i++)
                         if (i != 1 && i != 3 && i != 8 && i != 10 && i != 14)
                             settings.right.Columns[i].Visible = false;
@@ -96,7 +94,7 @@ namespace WindowsForms
                 }
                 if (table == SqlSpecification.SpecificationRotationalSpeed.ToString())
                 {
-                    settings.right.DataSource = sql.GetArrayList(table);
+                    settings.right.DataSource = SqlData.GetArrayList(table);
                     settings.right.Columns[0].Visible = false;
                     settings.right.Columns[1].HeaderText = FormText.specification[38];
                     settings.right.Columns[2].HeaderText = FormText.specification[39];
@@ -116,13 +114,13 @@ namespace WindowsForms
                 if (table == SqlEngraving.EngravingCompensation.ToString() ||
                     table == SqlEngraving.EngravingCutter.ToString())
                 {
-                    settings.right.DataSource = sql.GetArrayList(table);
+                    settings.right.DataSource = SqlData.GetArrayList(table);
                     settings.right.Columns[0].Visible = false;
                     settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
                 }
                 if (table == SqlEngraving.EngravingCode.ToString())
                 {
-                    settings.right.DataSource = sql.GetArrayList(table);
+                    settings.right.DataSource = SqlData.GetArrayList(table);
                     settings.right.Columns[0].Visible = false;
                     settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
                     settings.right.Columns[1].Width = 200;
@@ -132,7 +130,7 @@ namespace WindowsForms
                 }
                 if (table == SqlEngraving.EngravingTime.ToString())
                 {
-                    settings.right.DataSource = sql.GetArrayList(table);
+                    settings.right.DataSource = SqlData.GetArrayList(table);
                     settings.right.Columns[0].Visible = false;
                     settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
                     settings.right.Columns[2].HeaderText = FormText.engraving[50];
@@ -154,7 +152,7 @@ namespace WindowsForms
                 }
                 if (table == SqlPrinting.TrialPrintingAngle.ToString())
                 {
-                    settings.right.DataSource = sql.GetArrayList(table);
+                    settings.right.DataSource = SqlData.GetArrayList(table);
                     settings.right.Columns[0].Visible = false;
                     settings.right.Columns[1].HeaderText = FormText.specification[38];
                     settings.right.Columns[2].HeaderText = FormText.printing[17];
@@ -162,14 +160,14 @@ namespace WindowsForms
                 }
                 if (table == SqlPrinting.TrialPrintingMaterial.ToString())
                 {
-                    settings.right.DataSource = sql.GetArrayList(table);
+                    settings.right.DataSource = SqlData.GetArrayList(table);
                     settings.right.Columns[0].Visible = false;
                     settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
                     settings.right.Columns[2].HeaderText = FormText.printing[15];
                 }
                 if (table == SqlPrinting.TrialPrintingPaint.ToString())
                 {
-                    settings.right.DataSource = sql.GetArrayList(table);
+                    settings.right.DataSource = SqlData.GetArrayList(table);
                     settings.right.Columns[0].Visible = false;
                     settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
                     settings.right.Columns[2].HeaderText = FormText.printing[28];
@@ -179,7 +177,7 @@ namespace WindowsForms
                 }
                 if (table == SqlPrinting.TrialPrintingPantone.ToString())
                 {
-                    settings.right.DataSource = sql.GetArrayList(table);
+                    settings.right.DataSource = SqlData.GetArrayList(table);
                     settings.right.Columns[0].Visible = false;
                     settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
                     settings.right.Columns[1].Width = 200;
@@ -191,7 +189,7 @@ namespace WindowsForms
                 }
                 if (table == SqlPrinting.TrialPrintingPrintOptions.ToString())
                 {
-                    settings.right.DataSource = sql.GetArrayList(table);
+                    settings.right.DataSource = SqlData.GetArrayList(table);
                     for (int i = 0; i < settings.right.ColumnCount; i++)
                         if (i != 1)
                             settings.right.Columns[i].Visible = false;
@@ -199,7 +197,7 @@ namespace WindowsForms
                 }
                 if (table == SqlPrinting.TrialPrintingPrintSettings.ToString())
                 {
-                    settings.right.DataSource = sql.GetArrayList(table);
+                    settings.right.DataSource = SqlData.GetArrayList(table);
                     settings.right.Columns[0].Visible = false;
                     settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
                     settings.right.Columns[2].HeaderText = FormText.printing[19];
@@ -208,7 +206,7 @@ namespace WindowsForms
                 }
                 if (table == SqlPrinting.TrialPrintingTime.ToString())
                 {
-                    settings.right.DataSource = sql.GetArrayList(table);
+                    settings.right.DataSource = SqlData.GetArrayList(table);
                     settings.right.Columns[0].Visible = false;
                     settings.right.Columns[1].HeaderText = (string)settings.left.CurrentRow.Cells[0].Value;
                     settings.right.Columns[2].HeaderText = FormText.printing[23];
@@ -220,13 +218,13 @@ namespace WindowsForms
         private void registryData(Registry registry)
         {
             if (registry.typeForm == TypeForm.application)
-                registry.registry.DataSource = sql.GetArrayList(SqlApplication.ApplicationRegister.ToString());
+                registry.registry.DataSource = SqlData.GetArrayList(SqlApplication.ApplicationRegister.ToString());
             if (registry.typeForm == TypeForm.specification)
-                registry.registry.DataSource = sql.GetArrayList(SqlSpecification.SpecificationRegistry.ToString());
+                registry.registry.DataSource = SqlData.GetArrayList(SqlSpecification.SpecificationRegistry.ToString());
             if (registry.typeForm == TypeForm.engraving)
-                registry.registry.DataSource = sql.GetArrayList(SqlEngraving.EngravingRegister.ToString());
+                registry.registry.DataSource = SqlData.GetArrayList(SqlEngraving.EngravingRegister.ToString());
             if (registry.typeForm == TypeForm.printing)
-                registry.registry.DataSource = sql.GetArrayList(SqlPrinting.TrialPrintingRegister.ToString());
+                registry.registry.DataSource = SqlData.GetArrayList(SqlPrinting.TrialPrintingRegister.ToString());
             new FormText(registry);
         }
 
@@ -307,7 +305,7 @@ namespace WindowsForms
                 }
                 ControlData.comboBox((ComboBox)edit.edit[1], FormText.edit[0]);
                 ControlData.comboBox((ComboBox)edit.edit[1], FormText.edit[3]);
-                ControlData.comboBox((ComboBox)edit.edit[2], sql.GetDataTable(table, column), column);
+                ControlData.comboBox((ComboBox)edit.edit[2], SqlData.GetDataTable(table, column), column);
                 ControlData.comboBox((ComboBox)edit.edit[3], FormText.edit[0]);
                 ControlData.comboBox((ComboBox)edit.edit[3], FormText.edit[4]);
                 ControlData.comboBox((ComboBox)edit.edit[3], FormText.edit[5]);

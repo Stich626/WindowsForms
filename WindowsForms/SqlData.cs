@@ -18,9 +18,9 @@ namespace WindowsForms
     class SqlData
     {
         private static string conect = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\stich.CONTINENT\Source\Repos\WindowsForms\WindowsForms\Resources\Database.mdf;Integrated Security=True";
-        private SqlConnection sqlConnection = new SqlConnection(conect);
+        private static SqlConnection sqlConnection = new SqlConnection(conect);
 
-        public ArrayList GetArrayList(string table)
+        public static ArrayList GetArrayList(string table)
         {
             ArrayList arrayList = new ArrayList();
             string command = String.Format("SELECT * FROM[{0}] ORDER BY[Column1] DESC", table);
@@ -34,7 +34,34 @@ namespace WindowsForms
             return arrayList;
         }
 
-        public DataTable GetDataTable(string table, string column)
+        public static ArrayList GetArrayList(string table, int[] order_by)
+        {
+            ArrayList arrayList = new ArrayList();
+            string command = String.Empty;
+            SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
+            if (order_by != null)
+            {
+                command = String.Format("SELECT * FROM {0} ORDER BY", table);
+                for (int i = 0; i < order_by.Length; i++)
+                {
+                    if (order_by[i] == 0)
+                        command = String.Format("{0} [Column{1}]", command, order_by[i]);
+                    else
+                        command = String.Format("{0}, [Column{1}]", command, order_by[i]);
+                }
+            }
+            else
+                command = String.Format("SELECT * FROM[{0}] ORDER BY[Column1] DESC", table);
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            if (sqlDataReader.HasRows)
+                foreach (DbDataRecord result in sqlDataReader)
+                    arrayList.Add(result);
+            sqlConnection.Close();
+            return arrayList;
+        }
+
+        public static DataTable GetDataTable(string table, string column)
         {
             string command = String.Format("SELECT DISTINCT [{0}] FROM [{1}] ORDER BY [{0}]", column, table);
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
