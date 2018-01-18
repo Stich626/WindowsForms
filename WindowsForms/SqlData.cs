@@ -34,24 +34,28 @@ namespace WindowsForms
             return arrayList;
         }
 
-        public static ArrayList GetArrayList(string table, int[] order_by)
+        public static ArrayList GetArrayList(string table, List<int> column)
         {
             ArrayList arrayList = new ArrayList();
             string command = String.Empty;
-            SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
-            if (order_by != null)
+            if (column.Count != 0)
             {
                 command = String.Format("SELECT * FROM {0} ORDER BY", table);
-                for (int i = 0; i < order_by.Length; i++)
+                for (int i = 0; i < column.Count; i++)
                 {
-                    if (order_by[i] == 0)
-                        command = String.Format("{0} [Column{1}]", command, order_by[i]);
+                    if (i == 0)
+                        command = String.Format("{0} [Column{1}]", command, column[i] + 1);
                     else
-                        command = String.Format("{0}, [Column{1}]", command, order_by[i]);
+                        command = String.Format("{0}, [Column{1}]", command, column[i] + 1);
                 }
             }
             else
                 command = String.Format("SELECT * FROM[{0}] ORDER BY[Column1] DESC", table);
+
+            command = String.Format("{0};", command);
+            //string temp = command;
+
+            SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlConnection.Open();
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader(CommandBehavior.CloseConnection);
             if (sqlDataReader.HasRows)

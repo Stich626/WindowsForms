@@ -57,12 +57,12 @@ namespace WindowsForms
                 if (registry.filterOn)
                 {
                     e.Cancel = true;
-                    new FormLogic(registry);
                     registry.filterOn = false;
                     registry.filter.Visible = false;
                     registry.registry.Visible = true;
                     new MenuVisible(registry);
                     new FormText(registry);
+                    new FormLogic(registry);
                 }
             }
             //if (sender is FilterEdit)
