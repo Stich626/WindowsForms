@@ -43,273 +43,275 @@ namespace WindowsForms
 
         public FormText(Form form)
         {
-            textForm(form);
             if (form is Main)
-                mainForm((Main)form);
+                formText((Main)form);
             if (form is Document)
-            {
-                Document document = form as Document;
-                if (document.typeForm == TypeForm.application)
-                    applicationForm(document);
-                if (document.typeForm == TypeForm.specification)
-                    specificationForm(document);
-                if (document.typeForm == TypeForm.engraving)
-                    engravingForm(document);
-                if (document.typeForm == TypeForm.printing)
-                    printingForm(document);
-            }
+                formText((Document)form);
+            if (form is Registry)
+                formText((Registry)form);
+            if (form is Settings)
+                formText((Settings)form);
             if (form is Edit)
-                editForm((Edit)form);
+                formText((Edit)form);
         }
 
-        public FormText(Registry form)
+        private void formText(Main main)
         {
-            //
-            //
-            //
-            if (form.typeForm == TypeForm.application)
+            main.Text = name[1];
+            for (int i = 0; i < main.item.Count; i++)
             {
-                for (int i = 0; i < 37; i++)
-                {
-                    if(i < application.LongLength - 1)
-                        form.registry.Columns[i].HeaderText = application[i + 1];
-                    //if (form.filter[0, i - 1].Value.ToString() == edit[3])
-                    //    form.registry.Columns[i].Visible = false;
-                    //else
-                    //    form.registry.Columns[i].Visible = true;
-                }
+                if (main.item[i].Name == MenuBar.file.ToString())
+                    main.item[i].Text = FormText.main[1];
+                if (main.item[i].Name == MenuBar.document.ToString())
+                    main.item[i].Text = FormText.main[2];
+                if (main.item[i].Name == MenuBar.registry.ToString())
+                    main.item[i].Text = FormText.main[3];
+                if (main.item[i].Name == MenuBar.view.ToString())
+                    main.item[i].Text = FormText.main[4];
+                if (main.item[i].Name == MenuBar.settings.ToString())
+                    main.item[i].Text = FormText.main[5];
+                if (main.item[i].Name == MenuBar.window.ToString())
+                    main.item[i].Text = FormText.main[6];
+                if (main.item[i].Name == MenuView.vertically.ToString())
+                    main.item[i].Text = FormText.main[7];
+                if (main.item[i].Name == MenuView.cascade.ToString())
+                    main.item[i].Text = FormText.main[8];
+                if (main.item[i].Name == MenuView.horizontally.ToString())
+                    main.item[i].Text = FormText.main[9];
+                if (main.item[i].Name == MenuFile.save.ToString())
+                    main.item[i].Text = FormText.main[10];
+                if (main.item[i].Name == MenuFile.print.ToString())
+                    main.item[i].Text = FormText.main[11];
+                if (main.item[i].Name == MenuFile.fill.ToString())
+                    main.item[i].Text = FormText.main[12];
+                if (main.item[i].Name == MenuFile.delete.ToString())
+                    main.item[i].Text = FormText.main[13];
+                if (main.item[i].Name == MenuFile.filter.ToString())
+                    main.item[i].Text = FormText.main[14];
+                if (main.item[i].Name == MenuFile.open.ToString())
+                    main.item[i].Text = FormText.main[15];
+                if (main.item[i].Name == MenuFile.add.ToString())
+                    main.item[i].Text = FormText.main[16];
+                if (main.item[i].Name == MenuFile.edit.ToString())
+                    main.item[i].Text = FormText.main[17];
+                if (main.item[i].Name == MenuFile.clean.ToString())
+                    main.item[i].Text = FormText.main[18];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.application, MenuBar.document))
+                    main.item[i].Text = name[2];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.specification, MenuBar.document))
+                    main.item[i].Text = name[3];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.engraving, MenuBar.document))
+                    main.item[i].Text = name[4];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.printing, MenuBar.document))
+                    main.item[i].Text = name[5];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.application, MenuBar.registry))
+                    main.item[i].Text = name[6];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.specification, MenuBar.registry))
+                    main.item[i].Text = name[7];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.engraving, MenuBar.registry))
+                    main.item[i].Text = name[8];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.printing, MenuBar.registry))
+                    main.item[i].Text = name[9];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.main, MenuBar.settings))
+                    main.item[i].Text = name[10];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.application, MenuBar.settings))
+                    main.item[i].Text = name[11];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.specification, MenuBar.settings))
+                    main.item[i].Text = name[12];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.engraving, MenuBar.settings))
+                    main.item[i].Text = name[13];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.printing, MenuBar.settings))
+                    main.item[i].Text = name[14];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.application, MenuFile.filter))
+                    main.item[i].Text = name[15];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.specification, MenuFile.filter))
+                    main.item[i].Text = name[16];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.engraving, MenuFile.filter))
+                    main.item[i].Text = name[17];
+                if (main.item[i].Name == String.Format("{0}{1}", TypeForm.printing, MenuFile.filter))
+                    main.item[i].Text = name[18];
+            }
+            for (int i = 0; i < main.button.Count; i++)
+            {
+                if (main.button[i].Name == MenuBar.file.ToString())
+                    main.button[i].Text = FormText.main[1];
+                if (main.button[i].Name == MenuBar.document.ToString())
+                    main.button[i].Text = FormText.main[2];
+                if (main.button[i].Name == MenuBar.registry.ToString())
+                    main.button[i].Text = FormText.main[3];
+                if (main.button[i].Name == MenuBar.view.ToString())
+                    main.button[i].Text = FormText.main[4];
+                if (main.button[i].Name == MenuBar.settings.ToString())
+                    main.button[i].Text = FormText.main[5];
+                if (main.button[i].Name == MenuBar.window.ToString())
+                    main.button[i].Text = FormText.main[6];
+                if (main.button[i].Name == MenuView.vertically.ToString())
+                    main.button[i].Text = FormText.main[7];
+                if (main.button[i].Name == MenuView.cascade.ToString())
+                    main.button[i].Text = FormText.main[8];
+                if (main.button[i].Name == MenuView.horizontally.ToString())
+                    main.button[i].Text = FormText.main[9];
+                if (main.button[i].Name == MenuFile.save.ToString())
+                    main.button[i].Text = FormText.main[10];
+                if (main.button[i].Name == MenuFile.print.ToString())
+                    main.button[i].Text = FormText.main[11];
+                if (main.button[i].Name == MenuFile.fill.ToString())
+                    main.button[i].Text = FormText.main[12];
+                if (main.button[i].Name == MenuFile.delete.ToString())
+                    main.button[i].Text = FormText.main[13];
+                if (main.button[i].Name == MenuFile.filter.ToString())
+                    main.button[i].Text = FormText.main[14];
+                if (main.button[i].Name == MenuFile.open.ToString())
+                    main.button[i].Text = FormText.main[15];
+                if (main.button[i].Name == MenuFile.add.ToString())
+                    main.button[i].Text = FormText.main[16];
+                if (main.button[i].Name == MenuFile.edit.ToString())
+                    main.button[i].Text = FormText.main[17];
+                if (main.button[i].Name == MenuFile.clean.ToString())
+                    main.button[i].Text = FormText.main[18];
+                if (main.button[i].Name == String.Format("{0}{1}", TypeForm.application, MenuBar.document))
+                    main.button[i].Text = name[2];
+                if (main.button[i].Name == String.Format("{0}{1}", TypeForm.specification, MenuBar.document))
+                    main.button[i].Text = name[3];
+                if (main.button[i].Name == String.Format("{0}{1}", TypeForm.engraving, MenuBar.document))
+                    main.button[i].Text = name[4];
+                if (main.button[i].Name == String.Format("{0}{1}", TypeForm.printing, MenuBar.document))
+                    main.button[i].Text = name[5];
+                if (main.button[i].Name == String.Format("{0}{1}", TypeForm.application, MenuBar.registry))
+                    main.button[i].Text = name[6];
+                if (main.button[i].Name == String.Format("{0}{1}", TypeForm.specification, MenuBar.registry))
+                    main.button[i].Text = name[7];
+                if (main.button[i].Name == String.Format("{0}{1}", TypeForm.engraving, MenuBar.registry))
+                    main.button[i].Text = name[8];
+                if (main.button[i].Name == String.Format("{0}{1}", TypeForm.printing, MenuBar.registry))
+                    main.button[i].Text = name[9];
+            }
+        }
+
+        private void formText(Document document)
+        {
+            if (document.typeForm == TypeForm.application)
+            {
+                applicationForm(document);
+                document.Text = name[2];
+            }
+            if (document.typeForm == TypeForm.specification)
+            {
+                specificationForm(document);
+                document.Text = name[3];
+            }
+            if (document.typeForm == TypeForm.engraving)
+            {
+                engravingForm(document);
+                document.Text = name[4];
+            }
+            if (document.typeForm == TypeForm.printing)
+            {
+                printingForm(document);
+                document.Text = name[5];
+            }
+        }
+
+        private void formText(Registry registry)
+        {
+            if (registry.filterOn)
+            {
+                if (registry.typeForm == TypeForm.application)
+                    registry.Text = name[15];
+                if (registry.typeForm == TypeForm.specification)
+                    registry.Text = name[16];
+                if (registry.typeForm == TypeForm.engraving)
+                    registry.Text = name[17];
+                if (registry.typeForm == TypeForm.printing)
+                    registry.Text = name[18];
+            }
+            else
+            {
+                if (registry.typeForm == TypeForm.application)
+                    registry.Text = name[6];
+                if (registry.typeForm == TypeForm.specification)
+                    registry.Text = name[7];
+                if (registry.typeForm == TypeForm.engraving)
+                    registry.Text = name[8];
+                if (registry.typeForm == TypeForm.printing)
+                    registry.Text = name[9];
             }
             //
+            //названия колонок фильтра реестра
             //
-            //
-            if (form.typeForm == TypeForm.specification)
             {
+                registry.filter.RowCount = registry.registry.ColumnCount;
+                for (int i = 0; i < registry.registry.ColumnCount; i++)
+                    registry.filter[0, i].Value = registry.registry.Columns[i].HeaderText;
+                for (int i = 0; i < registry.filter.ColumnCount; i++)
+                    registry.filter.Columns[i].HeaderText = filter[i];
+            }
+            //
+            //названия колонок реестра
+            //
+            if (registry.typeForm == TypeForm.application)
+                for (int i = 0; i < application.Length; i++)
+                    registry.registry.Columns[i].HeaderText = application[i];
+            if (registry.typeForm == TypeForm.specification)
                 for (int i = 1; i < specification.Length; i++)
-                    form.registry.Columns[i - 1].HeaderText = specification[i];
-            }
-            if (form.typeForm == TypeForm.engraving)
-            {
+                    registry.registry.Columns[i].HeaderText = specification[i];
+            if (registry.typeForm == TypeForm.engraving)
                 for (int i = 1; i < engraving.Length; i++)
-                    form.registry.Columns[i - 1].HeaderText = engraving[i];
-            }
-            if (form.typeForm == TypeForm.printing)
-            {
+                    registry.registry.Columns[i].HeaderText = engraving[i];
+            if (registry.typeForm == TypeForm.printing)
                 for (int i = 1; i < printing.Length; i++)
-                    form.registry.Columns[i - 1].HeaderText = printing[i];
-            }
-            form.filter.RowCount = form.registry.ColumnCount;
-            for (int i = 0; i < form.registry.ColumnCount; i++)
-                form.filter[0, i].Value = form.registry.Columns[i].HeaderText;
-            for (int i = 0; i < form.filter.ColumnCount; i++)
-                form.filter.Columns[i].HeaderText = filter[i];
+                    registry.registry.Columns[i].HeaderText = printing[i];
+
+
+            //registry.filter.RowCount = registry.registry.ColumnCount;
+            //for (int i = 0; i < registry.registry.ColumnCount; i++)
+            //    registry.filter[0, i].Value = registry.registry.Columns[i].HeaderText;
+            //for (int i = 0; i < registry.filter.ColumnCount; i++)
+            //    registry.filter.Columns[i].HeaderText = filter[i];
             //
             //фильтр по умолчанию
             //
-            form.filter[1, 0].Value = edit[3];
-            form.filter[1, 3].Value = edit[3];
+            registry.filter[1, 0].Value = edit[3];
+            registry.filter[1, 3].Value = edit[3];
         }
 
-        private void textForm(Form form)
+        private void formText(Settings settings)
         {
-            if (form is Main)
+            if (settings.typeForm == TypeForm.main)
+                settings.Text = name[10];
+            if (settings.typeForm == TypeForm.application)
+                settings.Text = name[11];
+            if (settings.typeForm == TypeForm.specification)
+                settings.Text = name[12];
+            if (settings.typeForm == TypeForm.engraving)
+                settings.Text = name[13];
+            if (settings.typeForm == TypeForm.printing)
+                settings.Text = name[14];
+        }
+
+        private void formText(Edit edit)
+        {
+            if (edit.form is Settings)
             {
-                Main main = (Main)form;
-                main.Text = name[1];
-            }
-            if (form is Document)
-            {
-                Document document = (Document)form;
-                if (document.typeForm == TypeForm.application)
-                    document.Text = name[2];
-                if (document.typeForm == TypeForm.specification)
-                    document.Text = name[3];
-                if (document.typeForm == TypeForm.engraving)
-                    document.Text = name[4];
-                if (document.typeForm == TypeForm.printing)
-                    document.Text = name[5];
-            }
-            if (form is Registry)
-            {
-                Registry registry = (Registry)form;
-                if (registry.filterOn)
+                Settings settings = FormType.mdiParent.ActiveMdiChild as Settings;
+                if (settings.left.CurrentCell.Value.ToString() != printing[2])
                 {
-                    if (registry.typeForm == TypeForm.application)
-                        registry.Text = name[15];
-                    if (registry.typeForm == TypeForm.specification)
-                        registry.Text = name[16];
-                    if (registry.typeForm == TypeForm.engraving)
-                        registry.Text = name[17];
-                    if (registry.typeForm == TypeForm.printing)
-                        registry.Text = name[18];                   
+                    for (int i = 0; i < settings.right.ColumnCount - 1; i++)
+                        edit.name[i].Text = settings.right.Columns[i + 1].HeaderText;
                 }
                 else
                 {
-                    if (registry.typeForm == TypeForm.application)
-                        registry.Text = name[6];
-                    if (registry.typeForm == TypeForm.specification)
-                        registry.Text = name[7];
-                    if (registry.typeForm == TypeForm.engraving)
-                        registry.Text = name[8];
-                    if (registry.typeForm == TypeForm.printing)
-                        registry.Text = name[9];
-                }               
-                //
-                //названия колонок фильтра реестра
-                //
-                {
-                    registry.filter.RowCount = registry.registry.ColumnCount;
-                    for (int i = 0; i < registry.registry.ColumnCount; i++)
-                        registry.filter[0, i].Value = registry.registry.Columns[i].HeaderText;
-                    for (int i = 0; i < registry.filter.ColumnCount; i++)
-                        registry.filter.Columns[i].HeaderText = filter[i];
+                    for (int i = 0; i < settings.right.ColumnCount - 1; i++)
+                        edit.name[i].Text = settings.right.Columns[i + 1].HeaderText.Replace(Environment.NewLine, "");
                 }
             }
-            if (form is Settings)
+            if (edit.form is Registry)
             {
-                Settings settings = (Settings)form;
-                if (settings.typeForm == TypeForm.main)
-                    settings.Text = name[10];
-                if (settings.typeForm == TypeForm.application)
-                    settings.Text = name[11];
-                if (settings.typeForm == TypeForm.specification)
-                    settings.Text = name[12];
-                if (settings.typeForm == TypeForm.engraving)
-                    settings.Text = name[13];
-                if (settings.typeForm == TypeForm.printing)
-                    settings.Text = name[14];
+                for (int i = 0; i < 5; i++)
+                    edit.name[i].Text = filter[i];
             }
-        }
-
-        private void mainForm(Main form)
-        {
-            for (int i = 0; i < form.item.Count; i++)
-            {
-                if (form.item[i].Name == MenuBar.file.ToString())
-                    form.item[i].Text = main[1];
-                if (form.item[i].Name == MenuBar.document.ToString())
-                    form.item[i].Text = main[2];
-                if (form.item[i].Name == MenuBar.registry.ToString())
-                    form.item[i].Text = main[3];
-                if (form.item[i].Name == MenuBar.view.ToString())
-                    form.item[i].Text = main[4];
-                if (form.item[i].Name == MenuBar.settings.ToString())
-                    form.item[i].Text = main[5];
-                if (form.item[i].Name == MenuBar.window.ToString())
-                    form.item[i].Text = main[6];
-                if (form.item[i].Name == MenuView.vertically.ToString())
-                    form.item[i].Text = main[7];
-                if (form.item[i].Name == MenuView.cascade.ToString())
-                    form.item[i].Text = main[8];
-                if (form.item[i].Name == MenuView.horizontally.ToString())
-                    form.item[i].Text = main[9];
-                if (form.item[i].Name == MenuFile.save.ToString())
-                    form.item[i].Text = main[10];
-                if (form.item[i].Name == MenuFile.print.ToString())
-                    form.item[i].Text = main[11];
-                if (form.item[i].Name == MenuFile.fill.ToString())
-                    form.item[i].Text = main[12];
-                if (form.item[i].Name == MenuFile.delete.ToString())
-                    form.item[i].Text = main[13];
-                if (form.item[i].Name == MenuFile.filter.ToString())
-                    form.item[i].Text = main[14];
-                if (form.item[i].Name == MenuFile.open.ToString())
-                    form.item[i].Text = main[15];
-                if (form.item[i].Name == MenuFile.add.ToString())
-                    form.item[i].Text = main[16];
-                if (form.item[i].Name == MenuFile.edit.ToString())
-                    form.item[i].Text = main[17];
-                if (form.item[i].Name == MenuFile.clean.ToString())
-                    form.item[i].Text = main[18];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.application, MenuBar.document))
-                    form.item[i].Text = name[2];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.specification, MenuBar.document))
-                    form.item[i].Text = name[3];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.engraving, MenuBar.document))
-                    form.item[i].Text = name[4];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.printing, MenuBar.document))
-                    form.item[i].Text = name[5];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.application, MenuBar.registry))
-                    form.item[i].Text = name[6];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.specification, MenuBar.registry))
-                    form.item[i].Text = name[7];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.engraving, MenuBar.registry))
-                    form.item[i].Text = name[8];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.printing, MenuBar.registry))
-                    form.item[i].Text = name[9];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.main, MenuBar.settings))
-                    form.item[i].Text = name[10];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.application, MenuBar.settings))
-                    form.item[i].Text = name[11];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.specification, MenuBar.settings))
-                    form.item[i].Text = name[12];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.engraving, MenuBar.settings))
-                    form.item[i].Text = name[13];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.printing, MenuBar.settings))
-                    form.item[i].Text = name[14];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.application, MenuFile.filter))
-                    form.item[i].Text = name[15];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.specification, MenuFile.filter))
-                    form.item[i].Text = name[16];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.engraving, MenuFile.filter))
-                    form.item[i].Text = name[17];
-                if (form.item[i].Name == String.Format("{0}{1}", TypeForm.printing, MenuFile.filter))
-                    form.item[i].Text = name[18];
-            }
-            for (int i = 0; i < form.button.Count; i++)
-            {
-                if (form.button[i].Name == MenuBar.file.ToString())
-                    form.button[i].Text = main[1];
-                if (form.button[i].Name == MenuBar.document.ToString())
-                    form.button[i].Text = main[2];
-                if (form.button[i].Name == MenuBar.registry.ToString())
-                    form.button[i].Text = main[3];
-                if (form.button[i].Name == MenuBar.view.ToString())
-                    form.button[i].Text = main[4];
-                if (form.button[i].Name == MenuBar.settings.ToString())
-                    form.button[i].Text = main[5];
-                if (form.button[i].Name == MenuBar.window.ToString())
-                    form.button[i].Text = main[6];
-                if (form.button[i].Name == MenuView.vertically.ToString())
-                    form.button[i].Text = main[7];
-                if (form.button[i].Name == MenuView.cascade.ToString())
-                    form.button[i].Text = main[8];
-                if (form.button[i].Name == MenuView.horizontally.ToString())
-                    form.button[i].Text = main[9];
-                if (form.button[i].Name == MenuFile.save.ToString())
-                    form.button[i].Text = main[10];
-                if (form.button[i].Name == MenuFile.print.ToString())
-                    form.button[i].Text = main[11];
-                if (form.button[i].Name == MenuFile.fill.ToString())
-                    form.button[i].Text = main[12];
-                if (form.button[i].Name == MenuFile.delete.ToString())
-                    form.button[i].Text = main[13];
-                if (form.button[i].Name == MenuFile.filter.ToString())
-                    form.button[i].Text = main[14];
-                if (form.button[i].Name == MenuFile.open.ToString())
-                    form.button[i].Text = main[15];
-                if (form.button[i].Name == MenuFile.add.ToString())
-                    form.button[i].Text = main[16];
-                if (form.button[i].Name == MenuFile.edit.ToString())
-                    form.button[i].Text = main[17];
-                if (form.button[i].Name == MenuFile.clean.ToString())
-                    form.button[i].Text = main[18];
-                if (form.button[i].Name == String.Format("{0}{1}", TypeForm.application, MenuBar.document))
-                    form.button[i].Text = name[2];
-                if (form.button[i].Name == String.Format("{0}{1}", TypeForm.specification, MenuBar.document))
-                    form.button[i].Text = name[3];
-                if (form.button[i].Name == String.Format("{0}{1}", TypeForm.engraving, MenuBar.document))
-                    form.button[i].Text = name[4];
-                if (form.button[i].Name == String.Format("{0}{1}", TypeForm.printing, MenuBar.document))
-                    form.button[i].Text = name[5];
-                if (form.button[i].Name == String.Format("{0}{1}", TypeForm.application, MenuBar.registry))
-                    form.button[i].Text = name[6];
-                if (form.button[i].Name == String.Format("{0}{1}", TypeForm.specification, MenuBar.registry))
-                    form.button[i].Text = name[7];
-                if (form.button[i].Name == String.Format("{0}{1}", TypeForm.engraving, MenuBar.registry))
-                    form.button[i].Text = name[8];
-                if (form.button[i].Name == String.Format("{0}{1}", TypeForm.printing, MenuBar.registry))
-                    form.button[i].Text = name[9];
-            }
+            edit.button[0].Text = FormText.edit[1];
+            edit.button[1].Text = FormText.edit[2];
         }
 
         private void applicationForm(Document form)
@@ -356,31 +358,6 @@ namespace WindowsForms
                 form.name[i].Text = printing[i + 5];
             form.name[49].Text = printing[27];
             form.name[50].Text = printing[27];
-        }
-
-        private void editForm(Edit form)
-        {
-            if (form.form is Settings)
-            {
-                Settings settings = FormType.mdiParent.ActiveMdiChild as Settings;
-                if (settings.left.CurrentCell.Value.ToString() != printing[2])
-                {
-                    for (int i = 0; i < settings.right.ColumnCount - 1; i++)
-                        form.name[i].Text = settings.right.Columns[i + 1].HeaderText;
-                }
-                else
-                {
-                    for (int i = 0; i < settings.right.ColumnCount - 1; i++)
-                        form.name[i].Text = settings.right.Columns[i + 1].HeaderText.Replace(Environment.NewLine, "");
-                }
-            }
-            if (form.form is Registry)
-            {
-                for (int i = 0; i < 5; i++)
-                    form.name[i].Text = filter[i];
-            }
-            form.button[0].Text = edit[1];
-            form.button[1].Text = edit[2];
         }
 
         private string[] arrEmty(string file, string path)

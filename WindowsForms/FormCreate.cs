@@ -42,13 +42,13 @@ namespace WindowsForms
             //
             new FormEvent(form);
             //
-            //текста формы
-            //
-            new FormText(form);
-            //
             //данные формы
             //
             new FormData(form);
+            //
+            //текста формы
+            //
+            new FormText(form);
         }
     }
     static class Program

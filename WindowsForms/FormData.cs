@@ -14,29 +14,27 @@ namespace WindowsForms
         public FormData(Form form)
         {
             if (form is Registry)
-                registryData((Registry)form);
+                formData((Registry)form);
             if (form is Settings)
-                settingsData((Settings)form);
+                formData((Settings)form);
             if (form is Edit)
-                editData((Edit)form);
+                formData((Edit)form);
         }
 
-        public FormData(Edit edit)
+        private void formData(Registry registry)
         {
-            if (edit.form is Registry)
-            {
-                Registry registry = (Registry)edit.form;
-                for (int i = 1; i < 5; i++)
-                {
-                    if (edit.menu != MenuFile.clean)
-                        registry.filter[i, registry.filter.CurrentRow.Index].Value = edit.edit[i].Text;
-                    else
-                        registry.filter[i, registry.filter.CurrentRow.Index].Value = String.Empty;
-                }
-            }
+            if (registry.typeForm == TypeForm.application)
+                registry.registry.DataSource = SqlData.GetArrayList(SqlApplication.ApplicationRegister.ToString());
+            if (registry.typeForm == TypeForm.specification)
+                registry.registry.DataSource = SqlData.GetArrayList(SqlSpecification.SpecificationRegistry.ToString());
+            if (registry.typeForm == TypeForm.engraving)
+                registry.registry.DataSource = SqlData.GetArrayList(SqlEngraving.EngravingRegister.ToString());
+            if (registry.typeForm == TypeForm.printing)
+                registry.registry.DataSource = SqlData.GetArrayList(SqlPrinting.TrialPrintingRegister.ToString());
+            new FormText(registry);
         }
 
-        public FormData(Settings settings)
+        private void formData(Settings settings)
         {
             settings.right.DataSource = null;
             string table = String.Empty;
@@ -213,72 +211,56 @@ namespace WindowsForms
                 }
             }
             settings.right.CurrentCell = settings.right[1, 0];
-        }
 
-        private void registryData(Registry registry)
-        {
-            if (registry.typeForm == TypeForm.application)
-                registry.registry.DataSource = SqlData.GetArrayList(SqlApplication.ApplicationRegister.ToString());
-            if (registry.typeForm == TypeForm.specification)
-                registry.registry.DataSource = SqlData.GetArrayList(SqlSpecification.SpecificationRegistry.ToString());
-            if (registry.typeForm == TypeForm.engraving)
-                registry.registry.DataSource = SqlData.GetArrayList(SqlEngraving.EngravingRegister.ToString());
-            if (registry.typeForm == TypeForm.printing)
-                registry.registry.DataSource = SqlData.GetArrayList(SqlPrinting.TrialPrintingRegister.ToString());
-            new FormText(registry);
-        }
-
-        private void settingsData(Settings settings)
-        {
-            int i = 0;
+            int j = 0;
             if (settings.typeForm == TypeForm.application)
             {
                 settings.left.Columns[0].HeaderText = FormText.name[11];
                 settings.left.RowCount = 11;
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[3];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[5];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[6];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[9];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[10];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[11];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[12];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[19];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[20];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[26];
-                settings.left.Rows[i++].Cells[0].Value = FormText.application[24];
+                settings.left.Rows[j++].Cells[0].Value = FormText.application[3];
+                settings.left.Rows[j++].Cells[0].Value = FormText.application[5];
+                settings.left.Rows[j++].Cells[0].Value = FormText.application[6];
+                settings.left.Rows[j++].Cells[0].Value = FormText.application[9];
+                settings.left.Rows[j++].Cells[0].Value = FormText.application[10];
+                settings.left.Rows[j++].Cells[0].Value = FormText.application[11];
+                settings.left.Rows[j++].Cells[0].Value = FormText.application[12];
+                settings.left.Rows[j++].Cells[0].Value = FormText.application[19];
+                settings.left.Rows[j++].Cells[0].Value = FormText.application[20];
+                settings.left.Rows[j++].Cells[0].Value = FormText.application[26];
+                settings.left.Rows[j++].Cells[0].Value = FormText.application[24];
             }
             if (settings.typeForm == TypeForm.specification)
             {
                 settings.left.Columns[0].HeaderText = FormText.name[12];
                 settings.left.RowCount = 3;
-                settings.left.Rows[i++].Cells[0].Value = FormText.specification[24];
-                settings.left.Rows[i++].Cells[0].Value = FormText.specification[25];
-                settings.left.Rows[i++].Cells[0].Value = FormText.specification[37];
+                settings.left.Rows[j++].Cells[0].Value = FormText.specification[24];
+                settings.left.Rows[j++].Cells[0].Value = FormText.specification[25];
+                settings.left.Rows[j++].Cells[0].Value = FormText.specification[37];
             }
             if (settings.typeForm == TypeForm.engraving)
             {
                 settings.left.Columns[0].HeaderText = FormText.name[13];
                 settings.left.RowCount = 4;
-                settings.left.Rows[i++].Cells[0].Value = FormText.engraving[31];
-                settings.left.Rows[i++].Cells[0].Value = FormText.engraving[30];
-                settings.left.Rows[i++].Cells[0].Value = FormText.engraving[32];
-                settings.left.Rows[i++].Cells[0].Value = FormText.engraving[26];
+                settings.left.Rows[j++].Cells[0].Value = FormText.engraving[31];
+                settings.left.Rows[j++].Cells[0].Value = FormText.engraving[30];
+                settings.left.Rows[j++].Cells[0].Value = FormText.engraving[32];
+                settings.left.Rows[j++].Cells[0].Value = FormText.engraving[26];
             }
             if (settings.typeForm == TypeForm.printing)
             {
                 settings.left.Columns[0].HeaderText = FormText.name[14];
                 settings.left.RowCount = 7;
-                settings.left.Rows[i++].Cells[0].Value = FormText.printing[1];
-                settings.left.Rows[i++].Cells[0].Value = FormText.printing[14];
-                settings.left.Rows[i++].Cells[0].Value = FormText.printing[27];
-                settings.left.Rows[i++].Cells[0].Value = FormText.printing[2];
-                settings.left.Rows[i++].Cells[0].Value = FormText.printing[24];
-                settings.left.Rows[i++].Cells[0].Value = FormText.printing[18];
-                settings.left.Rows[i++].Cells[0].Value = FormText.printing[22];
+                settings.left.Rows[j++].Cells[0].Value = FormText.printing[1];
+                settings.left.Rows[j++].Cells[0].Value = FormText.printing[14];
+                settings.left.Rows[j++].Cells[0].Value = FormText.printing[27];
+                settings.left.Rows[j++].Cells[0].Value = FormText.printing[2];
+                settings.left.Rows[j++].Cells[0].Value = FormText.printing[24];
+                settings.left.Rows[j++].Cells[0].Value = FormText.printing[18];
+                settings.left.Rows[j++].Cells[0].Value = FormText.printing[22];
             }
         }
 
-        private void editData(Edit edit)
+        private void formData(Edit edit)
         {
             if (edit.form is Settings)
             {
@@ -292,7 +274,7 @@ namespace WindowsForms
                 }
             }
             if (edit.form is Registry)
-            {              
+            {
                 Registry registry = FormType.mdiParent.ActiveMdiChild as Registry;
                 string table = String.Empty;
                 string column = String.Format("Column{0}", registry.filter.CurrentRow.Index + 1);
@@ -320,6 +302,13 @@ namespace WindowsForms
                         edit.edit[i].Text = (String)registry.filter.CurrentRow.Cells[i].Value;
                     if (edit.menu == MenuFile.clean)
                         edit.edit[i].Enabled = false;
+                }
+                for (int i = 1; i < 5; i++)
+                {
+                    if (edit.menu != MenuFile.clean)
+                        registry.filter[i, registry.filter.CurrentRow.Index].Value = edit.edit[i].Text;
+                    else
+                        registry.filter[i, registry.filter.CurrentRow.Index].Value = String.Empty;
                 }
             }
         }

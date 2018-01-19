@@ -44,16 +44,26 @@ namespace WindowsForms
                 for (int i = 0; i < column.Count; i++)
                 {
                     if (i == 0)
-                        command = String.Format("{0} [Column{1}]", command, column[i] + 1);
+                    {
+                        if(column[i] + 1 > 0)
+                            command = String.Format("{0} [Column{1}] DESC", command, column[i] + 1);
+                        else
+                            command = String.Format("{0} [Column{1}]", command, -(column[i] + 1));
+                    }
                     else
-                        command = String.Format("{0}, [Column{1}]", command, column[i] + 1);
+                    {
+                        if (column[i] + 1 > 0)
+                            command = String.Format("{0}, [Column{1}] DESC", command, column[i] + 1);
+                        else
+                            command = String.Format("{0}, [Column{1}]", command, -(column[i] + 1));
+                    }
                 }
             }
             else
                 command = String.Format("SELECT * FROM[{0}] ORDER BY[Column1] DESC", table);
 
             command = String.Format("{0};", command);
-            //string temp = command;
+            string temp = command;
 
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlConnection.Open();
