@@ -21,40 +21,11 @@ namespace WindowsForms
                 formData((Edit)form);
         }
 
-        private void formData(Registry registry)
+        public FormData(Settings settings)
         {
-            string table = String.Empty;
-            switch (registry.typeForm)
-            {
-                case TypeForm.application: table = SqlApplication.ApplicationRegister.ToString(); break;
-                case TypeForm.specification: table = SqlSpecification.SpecificationRegistry.ToString(); break;
-                case TypeForm.engraving: table = SqlEngraving.EngravingRegister.ToString(); break;
-                case TypeForm.printing: table = SqlPrinting.TrialPrintingRegister.ToString(); break;
-            }
             //
-            //Сортировка
+            //привязка к спискам настроек
             //
-            List<int> column = new List<int>();
-            for (int i = 0; i < registry.filter.RowCount; i++)
-                if ((String)registry.filter[3, i].Value == FormText.edit[4])
-                    column.Add(i);
-            registry.registry.DataSource = null;
-            registry.registry.DataSource = SqlData.GetArrayList(table, column);
-            registry.filter.RowCount = registry.registry.ColumnCount;
-            //
-            //Видимость
-            //
-            for (int i = 0; i < registry.registry.ColumnCount; i++)
-            {
-                if ((String)registry.filter[1, i].Value == FormText.edit[3])
-                    registry.registry.Columns[i].Visible = true;
-                else
-                    registry.registry.Columns[i].Visible = false;
-            }
-        }
-
-        private void formData(Settings settings)
-        {
             settings.right.DataSource = null;
             string table = String.Empty;
             if (settings.typeForm == TypeForm.application)
@@ -230,7 +201,45 @@ namespace WindowsForms
                 }
             }
             settings.right.CurrentCell = settings.right[1, 0];
+        }
 
+        private void formData(Registry registry)
+        {
+            string table = String.Empty;
+            switch (registry.typeForm)
+            {
+                case TypeForm.application: table = SqlApplication.ApplicationRegister.ToString(); break;
+                case TypeForm.specification: table = SqlSpecification.SpecificationRegistry.ToString(); break;
+                case TypeForm.engraving: table = SqlEngraving.EngravingRegister.ToString(); break;
+                case TypeForm.printing: table = SqlPrinting.TrialPrintingRegister.ToString(); break;
+            }
+            //
+            //Сортировка
+            //
+            List<int> column = new List<int>();
+            for (int i = 0; i < registry.filter.RowCount; i++)
+                if ((String)registry.filter[3, i].Value == FormText.edit[4])
+                    column.Add(i);
+            registry.registry.DataSource = null;
+            registry.registry.DataSource = SqlData.GetArrayList(table, column);
+            registry.filter.RowCount = registry.registry.ColumnCount;
+            //
+            //Видимость
+            //
+            for (int i = 0; i < registry.registry.ColumnCount; i++)
+            {
+                if ((String)registry.filter[1, i].Value == FormText.edit[3])
+                    registry.registry.Columns[i].Visible = true;
+                else
+                    registry.registry.Columns[i].Visible = false;
+            }
+        }
+
+        private void formData(Settings settings)
+        {
+            //
+            //списки настроек
+            //
             int j = 0;
             if (settings.typeForm == TypeForm.application)
             {
@@ -276,7 +285,7 @@ namespace WindowsForms
                 settings.left.Rows[j++].Cells[0].Value = FormText.printing[24];
                 settings.left.Rows[j++].Cells[0].Value = FormText.printing[18];
                 settings.left.Rows[j++].Cells[0].Value = FormText.printing[22];
-            }
+            }            
         }
 
         private void formData(Edit edit)

@@ -10,10 +10,30 @@ namespace WindowsForms
 {
     class FormEvent
     {
+        private Settings settings = null;
+        private Edit edit = null;
+
         public FormEvent(Form form)
         {
             if (form is Main)
                 new MenuEvent((Main)form);
+            if (form is Settings)
+            {
+                settings = form as Settings;
+                settings = form as Settings;
+                settings.left.CellEnter += new DataGridViewCellEventHandler(dataGridView_CellEnter);
+            }
+            if (form is Edit)
+            {
+                edit = form as Edit;
+                //if (edit.bar == MenuBar.registry)
+                //{
+                //Label label = (Label)edit.edit[0];
+                //comboBox.SelectionChangeCommitted += new EventHandler(comboBox_SelectionChangeCommitted);
+                //}
+                edit.button[0].Click += new EventHandler(buttonRight_Click);
+                edit.button[1].Click += new EventHandler(buttonLeft_Click);
+            }
             form.Activated += new EventHandler(activated);
             form.FormClosing += new FormClosingEventHandler(closing);
             form.FormClosed += new FormClosedEventHandler(closed);
@@ -82,6 +102,23 @@ namespace WindowsForms
                     new FormText(registry);
                 }
             }
+        }
+
+        private void buttonLeft_Click(object sender, EventArgs e)
+        {
+            edit.Close();
+        }
+
+        private void buttonRight_Click(object sender, EventArgs e)
+        {
+            new FormData(edit);
+            edit.Close();
+        }
+
+        private void dataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (settings != null)
+                new FormData(settings);
         }
     }
 }

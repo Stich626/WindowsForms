@@ -30,10 +30,6 @@ namespace WindowsForms
             //  
             new ControlCreate(form);
             //
-            //события контролов
-            //
-            new ControlEvent(form);
-            //
             //размещение контролов
             //
             new ContriolInsert(form);
