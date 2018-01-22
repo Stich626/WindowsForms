@@ -237,42 +237,31 @@ namespace WindowsForms
                     registry.Text = name[9];
             }
             //
+            //названия колонок реестра
+            //
+            {
+                if (registry.typeForm == TypeForm.application)
+                    for (int i = 1; i < application.Length; i++)
+                        registry.registry.Columns[i - 1].HeaderText = application[i];
+                if (registry.typeForm == TypeForm.specification)
+                    for (int i = 1; i < specification.Length; i++)
+                        registry.registry.Columns[i - 1].HeaderText = specification[i];
+                if (registry.typeForm == TypeForm.engraving)
+                    for (int i = 1; i < engraving.Length; i++)
+                        registry.registry.Columns[i - 1].HeaderText = engraving[i];
+                if (registry.typeForm == TypeForm.printing)
+                    for (int i = 1; i < printing.Length; i++)
+                        registry.registry.Columns[i - 1].HeaderText = printing[i];
+            }
+            //
             //названия колонок фильтра реестра
             //
             {
-                registry.filter.RowCount = registry.registry.ColumnCount;
                 for (int i = 0; i < registry.registry.ColumnCount; i++)
                     registry.filter[0, i].Value = registry.registry.Columns[i].HeaderText;
                 for (int i = 0; i < registry.filter.ColumnCount; i++)
                     registry.filter.Columns[i].HeaderText = filter[i];
             }
-            //
-            //названия колонок реестра
-            //
-            if (registry.typeForm == TypeForm.application)
-                for (int i = 0; i < application.Length; i++)
-                    registry.registry.Columns[i].HeaderText = application[i];
-            if (registry.typeForm == TypeForm.specification)
-                for (int i = 1; i < specification.Length; i++)
-                    registry.registry.Columns[i].HeaderText = specification[i];
-            if (registry.typeForm == TypeForm.engraving)
-                for (int i = 1; i < engraving.Length; i++)
-                    registry.registry.Columns[i].HeaderText = engraving[i];
-            if (registry.typeForm == TypeForm.printing)
-                for (int i = 1; i < printing.Length; i++)
-                    registry.registry.Columns[i].HeaderText = printing[i];
-
-
-            //registry.filter.RowCount = registry.registry.ColumnCount;
-            //for (int i = 0; i < registry.registry.ColumnCount; i++)
-            //    registry.filter[0, i].Value = registry.registry.Columns[i].HeaderText;
-            //for (int i = 0; i < registry.filter.ColumnCount; i++)
-            //    registry.filter.Columns[i].HeaderText = filter[i];
-            //
-            //фильтр по умолчанию
-            //
-            registry.filter[1, 0].Value = edit[3];
-            registry.filter[1, 3].Value = edit[3];
         }
 
         private void formText(Settings settings)

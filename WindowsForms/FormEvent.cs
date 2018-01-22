@@ -19,6 +19,25 @@ namespace WindowsForms
             form.FormClosed += new FormClosedEventHandler(closed);
             form.VisibleChanged += new EventHandler(visibleChanged);
             form.Shown += new EventHandler(shown);
+            form.Load += new EventHandler(load);
+        }
+
+        private void load(object sender, EventArgs e)
+        {
+            if (sender is Registry)
+            {
+                //
+                //фильтр по умолчанию
+                //
+                Registry form = sender as Registry;
+                form.filter[1, 0].Value = FormText.edit[3];
+                form.filter[1, 3].Value = FormText.edit[3];
+                //
+                //применить фильтр по умолчанию
+                //
+                new FormData((Form)sender);
+                new FormText((Form)sender);
+            }
         }
 
         private void visibleChanged(object sender, EventArgs e)
@@ -40,8 +59,6 @@ namespace WindowsForms
                 new MenuVisible(FormType.mdiParent.ActiveMdiChild);
             if (sender is Edit)
                 new MenuVisible((Edit)sender);
-            if (sender is Registry)
-                new FormLogic((Registry)sender);
         }
 
         private void activated(object sender, EventArgs e)
@@ -61,16 +78,10 @@ namespace WindowsForms
                     registry.filter.Visible = false;
                     registry.registry.Visible = true;
                     new MenuVisible(registry);
+                    new FormData(registry);
                     new FormText(registry);
-                    new FormLogic(registry);
                 }
             }
-            //if (sender is FilterEdit)
-            //{
-            //    e.Cancel = true;
-            //    FilterEdit edit = sender as FilterEdit;
-            //    edit.Hide();
-            //}
         }
     }
 }

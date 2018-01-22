@@ -23,15 +23,34 @@ namespace WindowsForms
 
         private void formData(Registry registry)
         {
-            if (registry.typeForm == TypeForm.application)
-                registry.registry.DataSource = SqlData.GetArrayList(SqlApplication.ApplicationRegister.ToString());
-            if (registry.typeForm == TypeForm.specification)
-                registry.registry.DataSource = SqlData.GetArrayList(SqlSpecification.SpecificationRegistry.ToString());
-            if (registry.typeForm == TypeForm.engraving)
-                registry.registry.DataSource = SqlData.GetArrayList(SqlEngraving.EngravingRegister.ToString());
-            if (registry.typeForm == TypeForm.printing)
-                registry.registry.DataSource = SqlData.GetArrayList(SqlPrinting.TrialPrintingRegister.ToString());
-            new FormText(registry);
+            string table = String.Empty;
+            switch (registry.typeForm)
+            {
+                case TypeForm.application: table = SqlApplication.ApplicationRegister.ToString(); break;
+                case TypeForm.specification: table = SqlSpecification.SpecificationRegistry.ToString(); break;
+                case TypeForm.engraving: table = SqlEngraving.EngravingRegister.ToString(); break;
+                case TypeForm.printing: table = SqlPrinting.TrialPrintingRegister.ToString(); break;
+            }
+            //
+            //Сортировка
+            //
+            List<int> column = new List<int>();
+            for (int i = 0; i < registry.filter.RowCount; i++)
+                if ((String)registry.filter[3, i].Value == FormText.edit[4])
+                    column.Add(i);
+            registry.registry.DataSource = null;
+            registry.registry.DataSource = SqlData.GetArrayList(table, column);
+            registry.filter.RowCount = registry.registry.ColumnCount;
+            //
+            //Видимость
+            //
+            for (int i = 0; i < registry.registry.ColumnCount; i++)
+            {
+                if ((String)registry.filter[1, i].Value == FormText.edit[3])
+                    registry.registry.Columns[i].Visible = true;
+                else
+                    registry.registry.Columns[i].Visible = false;
+            }
         }
 
         private void formData(Settings settings)
