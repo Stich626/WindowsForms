@@ -10,8 +10,8 @@ namespace WindowsForms
 {
     class FormEvent
     {
-        private Settings settings = null;
-        private Edit edit = null;
+        private Settings settings;
+        private Edit edit;
 
         public FormEvent(Form form)
         {
@@ -20,26 +20,20 @@ namespace WindowsForms
             if (form is Settings)
             {
                 settings = form as Settings;
-                settings = form as Settings;
                 settings.left.CellEnter += new DataGridViewCellEventHandler(dataGridView_CellEnter);
             }
             if (form is Edit)
             {
                 edit = form as Edit;
-                //if (edit.bar == MenuBar.registry)
-                //{
-                //Label label = (Label)edit.edit[0];
-                //comboBox.SelectionChangeCommitted += new EventHandler(comboBox_SelectionChangeCommitted);
-                //}
                 edit.button[0].Click += new EventHandler(buttonRight_Click);
                 edit.button[1].Click += new EventHandler(buttonLeft_Click);
             }
+            form.Load += new EventHandler(load);
+            form.Shown += new EventHandler(shown);
             form.Activated += new EventHandler(activated);
+            form.VisibleChanged += new EventHandler(visible);
             form.FormClosing += new FormClosingEventHandler(closing);
             form.FormClosed += new FormClosedEventHandler(closed);
-            form.VisibleChanged += new EventHandler(visibleChanged);
-            form.Shown += new EventHandler(shown);
-            form.Load += new EventHandler(load);
         }
 
         private void load(object sender, EventArgs e)
@@ -49,9 +43,10 @@ namespace WindowsForms
                 //
                 //фильтр по умолчанию
                 //
-                Registry form = sender as Registry;
-                form.filter[1, 0].Value = FormText.edit[3];
-                form.filter[1, 3].Value = FormText.edit[3];
+                Registry registry = sender as Registry;
+                registry.filter[1, 0].Value = FormText.edit[3];
+                registry.filter[1, 3].Value = FormText.edit[3];
+                registry.filter[3, 0].Value = FormText.edit[5];
                 //
                 //применить фильтр по умолчанию
                 //
@@ -60,7 +55,7 @@ namespace WindowsForms
             }
         }
 
-        private void visibleChanged(object sender, EventArgs e)
+        private void visible(object sender, EventArgs e)
         {
             new MenuVisible(FormType.mdiParent.ActiveMdiChild);
         }

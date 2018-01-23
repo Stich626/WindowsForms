@@ -282,7 +282,7 @@ namespace WindowsForms
         {
             if (edit.form is Settings)
             {
-                Settings settings = FormType.mdiParent.ActiveMdiChild as Settings;
+                Settings settings = edit.form as Settings;
                 if (settings.left.CurrentCell.Value.ToString() != printing[2])
                 {
                     for (int i = 0; i < settings.right.ColumnCount - 1; i++)
