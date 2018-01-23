@@ -220,30 +220,37 @@ namespace WindowsForms
 
         private void formData(Registry registry)
         {
-            string table = String.Empty;
-            switch (registry.typeForm)
-            {
-                case TypeForm.application: table = SqlApplication.ApplicationRegister.ToString(); break;
-                case TypeForm.specification: table = SqlSpecification.SpecificationRegistry.ToString(); break;
-                case TypeForm.engraving: table = SqlEngraving.EngravingRegister.ToString(); break;
-                case TypeForm.printing: table = SqlPrinting.TrialPrintingRegister.ToString(); break;
-            }
             //
-            //Сортировка
+            //сортировка в реестре
             //
-            List<int> column = new List<int>();
-            for (int i = 0; i < registry.filter.RowCount; i++)
+            List<int> list1 = new List<int>();
+            for (int i = 1; i < registry.filter.RowCount + 1; i++)
             {
-                if ((String)registry.filter[3, i].Value == FormText.edit[4])
-                    column.Add(i);
-                if ((String)registry.filter[3, i].Value == FormText.edit[5])
-                    column.Add(-i);
+                if ((String)registry.filter[3, i - 1].Value == FormText.edit[4])
+                    list1.Add(-i);
+                if ((String)registry.filter[3, i - 1].Value == FormText.edit[5])
+                    list1.Add(i);
             }
             registry.registry.DataSource = null;
-            registry.registry.DataSource = SqlData.GetArrayList(table, column);
+            registry.registry.DataSource = SqlData.GetArrayList(registry, list1);
+            //
+            //фильтр реестра
+            //
+            List<int> list2 = new List<int>();
+            for (int i = 1; i < registry.filter.RowCount + 1; i++)
+                if ((String)registry.filter[3, i - 1].Value == FormText.edit[4])
+                    list1.Add(-i);
+            //
+            //содержит в реестре
+            //
+
+
+            //
+            //количество строк в фильтре
+            //
             registry.filter.RowCount = registry.registry.ColumnCount;
             //
-            //Видимость
+            //видимость колонок в реестре
             //
             for (int i = 0; i < registry.registry.ColumnCount; i++)
             {
@@ -323,18 +330,10 @@ namespace WindowsForms
             if (edit.form is Registry)
             {
                 Registry registry = edit.form as Registry;
-                string table = String.Empty;
                 string column = String.Format("Column{0}", registry.filter.CurrentRow.Index + 1);
-                switch (registry.typeForm)
-                {
-                    case TypeForm.application: table = SqlApplication.ApplicationRegister.ToString(); break;
-                    case TypeForm.specification: table = SqlSpecification.SpecificationRegistry.ToString(); break;
-                    case TypeForm.engraving: table = SqlEngraving.EngravingRegister.ToString(); break;
-                    case TypeForm.printing: table = SqlPrinting.TrialPrintingRegister.ToString(); break;
-                }
                 ControlData.comboBox((ComboBox)edit.edit[1], FormText.edit[0]);
                 ControlData.comboBox((ComboBox)edit.edit[1], FormText.edit[3]);
-                ControlData.comboBox((ComboBox)edit.edit[2], SqlData.GetDataTable(table, column), column);
+                ControlData.comboBox((ComboBox)edit.edit[2], SqlData.GetDataTable(registry, column), column);
                 ControlData.comboBox((ComboBox)edit.edit[3], FormText.edit[0]);
                 ControlData.comboBox((ComboBox)edit.edit[3], FormText.edit[4]);
                 ControlData.comboBox((ComboBox)edit.edit[3], FormText.edit[5]);

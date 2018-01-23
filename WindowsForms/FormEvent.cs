@@ -10,6 +10,9 @@ namespace WindowsForms
 {
     class FormEvent
     {
+        //
+        //ссылки на формы для событий контролов
+        //
         private Settings settings;
         private Edit edit;
 
@@ -57,17 +60,29 @@ namespace WindowsForms
 
         private void visible(object sender, EventArgs e)
         {
+            //
+            //видимость пунктов меню, включение и выключения кнопок панели управления
+            //
             new MenuVisible(FormType.mdiParent.ActiveMdiChild);
         }
 
         private void closed(object sender, FormClosedEventArgs e)
         {
+            //
+            //видимость пунктов меню, включение и выключения кнопок панели управления
+            //
             new MenuVisible(FormType.mdiParent);
         }
 
         private void shown(object sender, EventArgs e)
         {
+            //
+            //размер формы
+            //
             new FormSize(sender);
+            //
+            //видимость пунктов меню, включение и выключения кнопок панели управления
+            //
             if (sender is Main)
                 new MenuVisible(FormType.mdiParent);
             else
@@ -78,6 +93,9 @@ namespace WindowsForms
 
         private void activated(object sender, EventArgs e)
         {
+            //
+            //видимость пунктов меню, включение и выключения кнопок панели управления
+            //
             new MenuVisible(FormType.mdiParent.ActiveMdiChild);
         }
 
@@ -88,6 +106,9 @@ namespace WindowsForms
                 Registry registry = sender as Registry;
                 if (registry.filterOn)
                 {
+                    //
+                    //применение фильтра
+                    //
                     e.Cancel = true;
                     registry.filterOn = false;
                     registry.filter.Visible = false;
@@ -106,12 +127,18 @@ namespace WindowsForms
 
         private void buttonRight_Click(object sender, EventArgs e)
         {
+            //
+            //изменение фильтра
+            //
             new FormData(edit);
             edit.Close();
         }
 
         private void dataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            //
+            //отображение выбраных настроеек (правый dataGridView)
+            //
             if (settings != null)
                 new FormData(settings);
         }

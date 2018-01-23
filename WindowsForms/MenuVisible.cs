@@ -9,6 +9,9 @@ namespace WindowsForms
 {
     class MenuVisible
     {
+        //
+        //видимость пунктов меню, включение и выключения кнопок панели управления
+        //
         public MenuVisible(Form form)
         {
             if (form is Edit)

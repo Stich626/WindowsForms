@@ -14,6 +14,9 @@ namespace WindowsForms
         //расположение формы
         //
         private static MenuView viewSize = MenuView.cascade;
+        //
+        //раздление форм на левые и правые или верхние и нижние
+        //
         private static bool flagSize;
         //
         //минимальный размер
@@ -23,7 +26,9 @@ namespace WindowsForms
         //коректировка размера
         //
         private Size corSize = new Size(4, 8);
-
+        //
+        //размер формы
+        //
         public FormSize(object sender)
         {
             if (sender is Main)
