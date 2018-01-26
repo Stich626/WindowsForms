@@ -223,23 +223,23 @@ namespace WindowsForms
             //
             //сортировка в реестре
             //
-            List<int> list1 = new List<int>();
+            List<int> order_by = new List<int>();
             for (int i = 1; i < registry.filter.RowCount + 1; i++)
             {
                 if ((String)registry.filter[3, i - 1].Value == FormText.edit[4])
-                    list1.Add(-i);
+                    order_by.Add(-i);
                 if ((String)registry.filter[3, i - 1].Value == FormText.edit[5])
-                    list1.Add(i);
+                    order_by.Add(i);
             }
             registry.registry.DataSource = null;
-            registry.registry.DataSource = SqlData.GetArrayList(registry, list1);
+            registry.registry.DataSource = SqlData.GetArrayList(registry, null, null, order_by);
             //
             //фильтр реестра
             //
             List<int> list2 = new List<int>();
             for (int i = 1; i < registry.filter.RowCount + 1; i++)
                 if ((String)registry.filter[3, i - 1].Value == FormText.edit[4])
-                    list1.Add(-i);
+                    order_by.Add(-i);
             //
             //содержит в реестре
             //

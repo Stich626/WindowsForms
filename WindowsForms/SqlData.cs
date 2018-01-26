@@ -9,10 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//SELECT [Column1], [Column3]
+//FROM[ApplicationRegister]
+//WHERE[Column1] = '3580' AND[Column3] = 'ООО "Светпринт"'
+//ORDER BY[Column1] DESC;
+
 namespace WindowsForms
 {
     //
-    //перечисление всех таблиц
+    //етаблицы
     //
     enum SqlApplication { ApplicationViewWork, ApplicationTypeWorks, ApplicationCustomers, ApplicationProgreso, ApplicationDrawing, ApplicationPaint, ApplicationSubstrates, ApplicationColor, ApplicationContactCustomers, ApplicationContactsKontinent, ApplicationWorkpieceLength, ApplicationPrint, ApplicationRegister };
     enum SqlSpecification { SpecificationParametersWorkpiece, SpecificationPrametryMachining, SpecificationRotationalSpeed, SpecificationRegistry };
@@ -22,12 +27,12 @@ namespace WindowsForms
     class SqlData
     {
         //
-        //подключения к базе данных
+        //подключение
         //
         private static string conect = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\stich.CONTINENT\Source\Repos\WindowsForms\WindowsForms\Resources\Database.mdf;Integrated Security=True";
         private static SqlConnection sqlConnection = new SqlConnection(conect);
         //
-        //Выборка всей таблицы с сотритровкой (убывание) по первому столбцу
+        //выборка всей таблицы (настройки)
         //
         public static ArrayList GetArrayList(string table)
         {
@@ -43,34 +48,16 @@ namespace WindowsForms
             return arrayList;
         }
         //
-        //выборка всей таблицы с разной сортировкой по столбцам
+        //выборка всей таблицы (фильтр)
         //
-        public static ArrayList GetArrayList(Form form, List<int> column)
+        public static ArrayList GetArrayList(Form form, List<int> column, List<string> data, List<int> order_by)
         {
-            string command = String.Empty;
-            if (column.Count != 0)
-            {
-                command = String.Format("SELECT * FROM {0} ORDER BY", GetTable(form));
-                for (int i = 0; i < column.Count; i++)
-                {
-                    if (i == 0)
-                    {
-                        if(column[i] > 0)
-                            command = String.Format("{0} [Column{1}] DESC", command, column[i]);
-                        else
-                            command = String.Format("{0} [Column{1}]", command, -(column[i]));
-                    }
-                    else
-                    {
-                        if (column[i] > 0)
-                            command = String.Format("{0}, [Column{1}] DESC", command, column[i]);
-                        else
-                            command = String.Format("{0}, [Column{1}]", command, -(column[i]));
-                    }
-                }
-            }
-            else
-                command = String.Format("SELECT * FROM[{0}] ORDER BY[Column1] DESC", GetTable(form));
+            string command = String.Format("SELECT * FROM [{0}] {1}", GetTable(form), GetOrderBy(order_by));
+
+            //string temp = command;
+
+
+
             ArrayList arrayList = new ArrayList();
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlConnection.Open();
@@ -80,9 +67,41 @@ namespace WindowsForms
                     arrayList.Add(result);
             sqlConnection.Close();
             return arrayList;
+
         }
         //
-        //выборка из таблицы одного столбца с сотритровкой (убывание)
+        //сортировка по столбцам
+        //
+        private static string GetOrderBy(List<int> order_by)
+        {
+            string command = String.Empty;
+            if (order_by.Count != 0)
+            {
+                command = String.Format("ORDER BY");
+                for (int i = 0; i < order_by.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        if(order_by[i] > 0)
+                            command = String.Format("{0} [Column{1}] DESC", command, order_by[i]);
+                        else
+                            command = String.Format("{0} [Column{1}]", command, -(order_by[i]));
+                    }
+                    else
+                    {
+                        if (order_by[i] > 0)
+                            command = String.Format("{0}, [Column{1}] DESC", command, order_by[i]);
+                        else
+                            command = String.Format("{0}, [Column{1}]", command, -(order_by[i]));
+                    }
+                }
+            }
+            else
+                command = String.Format("ORDER BY [Column1] DESC");
+            return command;
+        }
+        //
+        //выборка одного столбца
         //
         public static DataTable GetDataTable(Form form, string column)
         {
@@ -96,7 +115,7 @@ namespace WindowsForms
             return dataTable;
         }
         //
-        //выбор таблицы в зависимости от формы
+        //выбор таблицы
         //
         private static string GetTable(Form form)
         {

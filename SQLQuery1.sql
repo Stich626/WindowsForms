@@ -1,1 +1,1 @@
-﻿SELECT * FROM [ApplicationRegister] ORDER BY [Column0];
+﻿SELECT * FROM[ApplicationRegister] ORDER BY[Column1] DESC
