@@ -116,6 +116,11 @@ namespace WindowsForms
                     new MenuVisible(registry);
                     new FormData(registry);
                     new FormText(registry);
+                    //if (registry.registry.RowCount == 0)
+                    //{
+                    //    Message message = new Message();
+                    //    message.ShowDialog();
+                    //}
                 }
             }
         }

@@ -240,6 +240,14 @@ namespace WindowsForms
             //названия колонок реестра
             //
             {
+
+
+                //
+                //*******************
+                //
+
+
+
                 if (registry.typeForm == TypeForm.application)
                     for (int i = 1; i < application.Length; i++)
                         registry.registry.Columns[i - 1].HeaderText = application[i];

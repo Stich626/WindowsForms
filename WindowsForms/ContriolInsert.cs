@@ -38,6 +38,8 @@ namespace WindowsForms
                 settings((Settings)form);
             if (form is Edit)
                 edit((Edit)form);
+            if (form is Message)
+                message((Message)form);
         }
 
         private void application(Document form)
@@ -317,6 +319,15 @@ namespace WindowsForms
             form.Size = new Size(form.Size.Width, (form.Size.Height - form.ClientSize.Height) + (tableLayoutPanel1.Size.Height + form.Padding.Top + form.Padding.Left));
             form.MaximumSize = form.Size;
             form.MinimumSize = form.MaximumSize;
+        }
+
+        private void message(Message form)
+        {
+            int[] row = { 4, 1 };
+            TableLayoutPanel tableLayoutPanel = control.tableLayoutPanel(1, row);
+            tableLayoutPanel.Controls.Add(form.label, 0, 0);
+            tableLayoutPanel.Controls.Add(form.button, 0, 1);
+            form.Controls.Add(tableLayoutPanel);
         }
     }
 }

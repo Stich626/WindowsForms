@@ -205,6 +205,9 @@ namespace WindowsForms
 
         public FormData(Edit edit)
         {
+            //
+            //данные в фильтр
+            //
             if (edit.form is Registry)
             {
                 Registry registry = edit.form as Registry;
@@ -221,30 +224,52 @@ namespace WindowsForms
         private void formData(Registry registry)
         {
             //
-            //сортировка в реестре
-            //
-            List<int> order_by = new List<int>();
-            for (int i = 1; i < registry.filter.RowCount + 1; i++)
-            {
-                if ((String)registry.filter[3, i - 1].Value == FormText.edit[4])
-                    order_by.Add(-i);
-                if ((String)registry.filter[3, i - 1].Value == FormText.edit[5])
-                    order_by.Add(i);
-            }
-            registry.registry.DataSource = null;
-            registry.registry.DataSource = SqlData.GetArrayList(registry, null, null, order_by);
-            //
             //фильтр реестра
             //
-            List<int> list2 = new List<int>();
-            for (int i = 1; i < registry.filter.RowCount + 1; i++)
-                if ((String)registry.filter[3, i - 1].Value == FormText.edit[4])
-                    order_by.Add(-i);
+            List<int> column_data = new List<int>();
+            List<string> data = new List<string>();
+            for (int i = 0; i < registry.filter.RowCount; i++)
+            {
+                if (registry.filter[2, i].Value != null &&
+                    (String)registry.filter[2, i].Value != "" &&
+                    (String)registry.filter[2, i].Value != String.Empty)
+                {
+                    column_data.Add(i + 1);
+                    data.Add(registry.filter[2, i].Value.ToString());
+                }
+            }
             //
             //содержит в реестре
             //
+            {
 
 
+
+
+            }
+            //
+            //сортировка в реестре
+            //
+            List<int> column_order = new List<int>();
+            List<int> order = new List<int>();
+            for (int i = 0; i < registry.filter.RowCount; i++)
+            {
+                if ((String)registry.filter[3, i].Value == FormText.edit[4])
+                {
+                    column_order.Add(i + 1);
+                    order.Add(-1);
+                }
+                if ((String)registry.filter[3, i].Value == FormText.edit[5])
+                {
+                    column_order.Add(i + 1);
+                    order.Add(1);
+                }
+            }
+            //
+            //применить фильтр
+            //
+            registry.registry.DataSource = null;
+            registry.registry.DataSource = SqlData.GetArrayList(registry, column_data, data, column_order, order);
             //
             //количество строк в фильтре
             //

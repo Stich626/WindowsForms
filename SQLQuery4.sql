@@ -1,0 +1,1 @@
+﻿SELECT * FROM [ApplicationRegister]  AND[Column11] = 'Прямая' ORDER BY [Column1], [Column11] DESC

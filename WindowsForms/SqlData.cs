@@ -50,10 +50,11 @@ namespace WindowsForms
         //
         //выборка всей таблицы (фильтр)
         //
-        public static ArrayList GetArrayList(Form form, List<int> column, List<string> data, List<int> order_by)
+        public static ArrayList GetArrayList(Form form, List<int> column_data, List<string> data, List<int> column_order, List<int> order)
         {
-            string command = String.Format("SELECT * FROM [{0}] {1}", GetTable(form), GetOrderBy(order_by));
-
+            string command = String.Format("SELECT * FROM [{0}] ", GetTable(form));
+            command = String.Format("{0} {1}", command, GetWhere(column_data, data));
+            command = String.Format("{0} {1}", command, GetOrderBy(column_order, order));
             //string temp = command;
 
 
@@ -70,34 +71,52 @@ namespace WindowsForms
 
         }
         //
-        //сортировка по столбцам
+        //выборка по значению
         //
-        private static string GetOrderBy(List<int> order_by)
+        private static string GetWhere(List<int> column_data, List<string> data)
         {
             string command = String.Empty;
-            if (order_by.Count != 0)
+            if (column_data.Count != 0)
+            {
+                for (int i = 0; i < column_data.Count; i++)
+                {
+                    if (i == 0)
+                        command = String.Format("WHERE[Column{0}] = '{1}'", column_data[i], data[i]);
+                    else
+                        command = String.Format("{0} AND[Column{1}] = '{2}'", command, column_data[i], data[i]);
+                }
+            }
+            return command;
+        }
+        //
+        //сортировка по столбцам
+        //
+        private static string GetOrderBy(List<int> column_order, List<int> order)
+        {
+            string command = String.Empty;
+            if (column_order.Count != 0)
             {
                 command = String.Format("ORDER BY");
-                for (int i = 0; i < order_by.Count; i++)
+                for (int i = 0; i < column_order.Count; i++)
                 {
                     if (i == 0)
                     {
-                        if(order_by[i] > 0)
-                            command = String.Format("{0} [Column{1}] DESC", command, order_by[i]);
-                        else
-                            command = String.Format("{0} [Column{1}]", command, -(order_by[i]));
+                        if (order[i] == 1)
+                            command = String.Format("{0} [Column{1}] DESC", command, column_order[i]);
+                        if (order[i] == -1)
+                            command = String.Format("{0} [Column{1}]", command, column_order[i]);
                     }
                     else
                     {
-                        if (order_by[i] > 0)
-                            command = String.Format("{0}, [Column{1}] DESC", command, order_by[i]);
-                        else
-                            command = String.Format("{0}, [Column{1}]", command, -(order_by[i]));
+                        if (order[i] == 1)
+                            command = String.Format("{0}, [Column{1}] DESC", command, column_order[i]);
+                        if (order[i] == -1)
+                            command = String.Format("{0}, [Column{1}]", command, column_order[i]);
                     }
                 }
             }
-            else
-                command = String.Format("ORDER BY [Column1] DESC");
+            //else
+            //    command = String.Format("ORDER BY [Column1] DESC");
             return command;
         }
         //

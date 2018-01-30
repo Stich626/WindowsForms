@@ -34,6 +34,8 @@ namespace WindowsForms
                 settings(form as Settings);
             if (form is Edit)
                 edit(form as Edit);
+            if (form is Message)
+                message(form as Message);
         }
 
         private void application(Document form)
@@ -245,37 +247,43 @@ namespace WindowsForms
             form.right = control.dataGridView(true);
         }
 
-        private void edit(Edit edit)
+        private void edit(Edit form)
         {
             int number = 0;
             if (FormType.mdiParent.ActiveMdiChild is Settings)
             {
                 Settings settings = (Settings)FormType.mdiParent.ActiveMdiChild;
                 for (int i = 0; i < settings.right.ColumnCount - 1; i++)
-                    edit.name.Add(control.label(number++));
+                    form.name.Add(control.label(number++));
                 number = 0;
                 for (int i = 0; i < settings.right.ColumnCount - 1; i++)
-                    edit.edit.Add(control.textBox(number++));
+                    form.edit.Add(control.textBox(number++));
             }
             if (FormType.mdiParent.ActiveMdiChild is Registry)
             {
                 Registry registry = (Registry)FormType.mdiParent.ActiveMdiChild;
                 for (int i = 0; i < 5; i++)
-                    edit.name.Add(control.label(number++));
+                    form.name.Add(control.label(number++));
                 number = 0;
                 Label label = control.label(number++);
                 label.Margin = new Padding(3, 1, 3, 1);
-                edit.edit.Add(label);
+                form.edit.Add(label);
                 for (int i = 0; i < 3; i++)
                 {
                     ComboBox comboBox = control.comboBox(number++);
                     comboBox.Margin = new Padding(3, 1, 3, 1);
-                    edit.edit.Add(comboBox);
+                    form.edit.Add(comboBox);
                 }
-                edit.edit.Add(control.textBox(number++));
+                form.edit.Add(control.textBox(number++));
             }
-            edit.button.Add(control.button(AnchorStyles.Right));
-            edit.button.Add(control.button(AnchorStyles.Left));
+            form.button.Add(control.button(AnchorStyles.Right));
+            form.button.Add(control.button(AnchorStyles.Left));
+        }
+
+        private void message (Message form)
+        {
+            form.label = control.label(0);
+            form.button = control.button(AnchorStyles.Bottom);
         }
     }
 }

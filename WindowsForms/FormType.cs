@@ -119,6 +119,28 @@ namespace WindowsForms
         }
     }
 
+    class Settings : Form
+    {
+        public TypeForm typeForm;
+        public Panel minSize = new Panel();
+        public DataGridView left;
+        public DataGridView right;
+
+        public Settings(TypeForm type)
+        {
+            typeForm = type;
+            new FormCreate(this);
+        }
+
+        private IContainer components = null;
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+                components.Dispose();
+            base.Dispose(disposing);
+        }
+    }
+
     class Edit : Form
     {
         public List<Label> name = new List<Label>();
@@ -143,25 +165,15 @@ namespace WindowsForms
         }
     }
 
-    class Settings : Form
+    class Message : Form
     {
-        public TypeForm typeForm;
-        public Panel minSize = new Panel();
-        public DataGridView left;
-        public DataGridView right;
+        public Button button = new Button();
+        public Label label = new Label();
 
-        public Settings(TypeForm type)
-        {
-            typeForm = type;
-            new FormCreate(this);
-        }
+        //public Message(string message)
+        //{
 
-        private IContainer components = null;
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-                components.Dispose();
-            base.Dispose(disposing);
-        }
+        //}
     }
 }
+

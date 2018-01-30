@@ -110,6 +110,11 @@ namespace WindowsForms
                 form.Size = new Size(mdiSize.Height / 2, mdiSize.Height / 2);
                 form.MaximumSize = form.Size;
             }
+            if (form is Message)
+            {
+                form.Size = new Size(mdiSize.Height / 4, mdiSize.Height / 4);
+                form.MaximumSize = form.Size;
+            }
         }
 
         private Size clientSize(Main form)
