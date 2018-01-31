@@ -268,8 +268,23 @@ namespace WindowsForms
             //
             //применить фильтр
             //
-            registry.registry.DataSource = null;
-            registry.registry.DataSource = SqlData.GetArrayList(registry, column_data, data, column_order, order);
+            ArrayList arrayList = SqlData.GetArrayList(registry, column_data, data, column_order, order);
+            if (arrayList.Count != 0)
+            {
+                registry.registry.DataSource = null;
+                registry.registry.DataSource = arrayList;
+            }
+            else
+            {
+                registry.filterOn = true;
+                registry.filter.Visible = true;
+                registry.registry.Visible = false;
+                new MenuVisible(registry);
+                new FormData(registry);
+                new FormText(registry);
+                Message message = new Message("Ничего не найдено");
+                message.ShowDialog();
+            }
             //
             //количество строк в фильтре
             //

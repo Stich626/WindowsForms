@@ -170,10 +170,10 @@ namespace WindowsForms
         public Button button = new Button();
         public Label label = new Label();
 
-        //public Message(string message)
-        //{
-
-        //}
+        public Message(string message)
+        {
+            label.Text = message;
+        }
     }
 }
 
